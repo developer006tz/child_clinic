@@ -23,7 +23,7 @@ class ComposeSmsController extends Controller
 
         $allComposeSms = ComposeSms::search($search)
             ->latest()
-            ->paginate(5)
+            ->paginate(500)
             ->withQueryString();
 
         return view(

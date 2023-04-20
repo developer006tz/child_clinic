@@ -50,7 +50,7 @@ class SmsController extends Controller
         $sms = Sms::create($validated);
 
         return redirect()
-            ->route('all-sms.edit', $sms)
+            ->route('all-sms.index', $sms)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -88,7 +88,7 @@ class SmsController extends Controller
         $sms->update($validated);
 
         return redirect()
-            ->route('all-sms.edit', $sms)
+            ->route('all-sms.index', $sms)
             ->withSuccess(__('crud.common.saved'));
     }
 

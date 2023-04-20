@@ -23,7 +23,7 @@ class FatherController extends Controller
 
         $fathers = Father::search($search)
             ->latest()
-            ->paginate(5)
+            ->paginate(500)
             ->withQueryString();
 
         return view('app.fathers.index', compact('fathers', 'search'));

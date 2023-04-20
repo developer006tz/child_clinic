@@ -23,7 +23,7 @@ class PrenatalApointmentController extends Controller
 
         $prenatalApointments = PrenatalApointment::search($search)
             ->latest()
-            ->paginate(5)
+            ->paginate(500)
             ->withQueryString();
 
         return view(

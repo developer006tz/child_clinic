@@ -22,7 +22,7 @@ class BloodTypeController extends Controller
 
         $bloodTypes = BloodType::search($search)
             ->latest()
-            ->paginate(5)
+            ->paginate(500)
             ->withQueryString();
 
         return view('app.blood_types.index', compact('bloodTypes', 'search'));

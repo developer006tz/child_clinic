@@ -22,7 +22,7 @@ class InsuranceController extends Controller
 
         $insurances = Insurance::search($search)
             ->latest()
-            ->paginate(5)
+            ->paginate(500)
             ->withQueryString();
 
         return view('app.insurances.index', compact('insurances', 'search'));

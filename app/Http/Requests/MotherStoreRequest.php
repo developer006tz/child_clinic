@@ -26,7 +26,7 @@ class MotherStoreRequest extends FormRequest
             'dob' => ['required', 'date'],
             'phone' => ['nullable', 'max:255', 'string'],
             'address' => ['nullable', 'max:255', 'string'],
-            'insurance_info' => ['nullable', 'in:no,yes'],
+            'insurance_info' => ['nullable', 'in:No,Yes'],
             'occupation' => ['nullable', 'max:255', 'string'],
         ];
     }

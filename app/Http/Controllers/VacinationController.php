@@ -78,7 +78,7 @@ class VacinationController extends Controller
      * Update the specified resource in storage.
      */
     public function update(
-        VacinationUpdateRequest $request,
+        VacinationStoreRequest $request,
         Vacination $vacination
     ): RedirectResponse {
         $this->authorize('update', $vacination);

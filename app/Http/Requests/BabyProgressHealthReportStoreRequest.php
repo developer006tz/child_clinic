@@ -23,7 +23,7 @@ class BabyProgressHealthReportStoreRequest extends FormRequest
             'baby_id' => ['required', 'exists:babies,id'],
             'current_height' => ['required', 'numeric'],
             'current_weight' => ['required', 'numeric'],
-            'current_health_status' => ['nullable', 'in:normal,illness'],
+            'current_health_status' => ['nullable', 'in:Normal,Illness'],
             'bmi' => ['nullable', 'numeric'],
         ];
     }

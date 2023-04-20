@@ -5,24 +5,9 @@
     <div class="searchbar mt-0 mb-4">
         <div class="row">
             <div class="col-md-6">
-                <form>
-                    <div class="input-group">
-                        <input
-                            id="indexSearch"
-                            type="text"
-                            name="search"
-                            placeholder="{{ __('crud.common.search') }}"
-                            value="{{ $search ?? '' }}"
-                            class="form-control"
-                            autocomplete="off"
-                        />
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="icon ion-md-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                <h2>
+                    @lang('crud.mother_medical_histories.index_title')
+                </h2>
             </div>
             <div class="col-md-6 text-right">
                 @can('create', App\Models\MotherMedicalHistory::class)
@@ -39,14 +24,9 @@
 
     <div class="card">
         <div class="card-body">
-            <div style="display: flex; justify-content: space-between;">
-                <h4 class="card-title">
-                    @lang('crud.mother_medical_histories.index_title')
-                </h4>
-            </div>
 
             <div class="table-responsive">
-                <table class="table table-borderless table-hover">
+                <table class="table table-borderless table-hover" id="myTable">
                     <thead>
                         <tr>
                             <th class="text-left">

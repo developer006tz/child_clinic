@@ -25,7 +25,7 @@ class MotherHealthStatusStoreRequest extends FormRequest
             'weight' => ['nullable', 'numeric'],
             'hiv_status' => ['nullable', 'in:negative-,positive+'],
             'desease_id' => ['nullable', 'exists:deseases,id'],
-            'health_status' => ['nullable', 'in:normal,illness'],
+            'health_status' => ['nullable', 'in:Normal,Illness'],
         ];
     }
 }

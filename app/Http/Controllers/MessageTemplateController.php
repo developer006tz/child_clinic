@@ -22,7 +22,7 @@ class MessageTemplateController extends Controller
 
         $messageTemplates = MessageTemplate::search($search)
             ->latest()
-            ->paginate(5)
+            ->paginate(500)
             ->withQueryString();
 
         return view(

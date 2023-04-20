@@ -24,7 +24,7 @@ class BabyVaccinationController extends Controller
 
         $babyVaccinations = BabyVaccination::search($search)
             ->latest()
-            ->paginate(5)
+            ->paginate(500)
             ->withQueryString();
 
         return view(
@@ -100,7 +100,7 @@ class BabyVaccinationController extends Controller
      * Update the specified resource in storage.
      */
     public function update(
-        BabyVaccinationUpdateRequest $request,
+        BabyVaccinationStoreRequest $request,
         BabyVaccination $babyVaccination
     ): RedirectResponse {
         $this->authorize('update', $babyVaccination);

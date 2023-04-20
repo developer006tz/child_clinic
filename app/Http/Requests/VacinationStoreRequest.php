@@ -23,7 +23,7 @@ class VacinationStoreRequest extends FormRequest
             'name' => ['nullable', 'max:255', 'string'],
             'type' => [
                 'required',
-                'in:inactivated,live-attenuated,mrna,subunit,toxoid,viral-vector,other',
+                'in:Inactivated,Live-attenuated,mRNA,Subunit,Toxoid,Viral-vector,Other',
             ],
         ];
     }

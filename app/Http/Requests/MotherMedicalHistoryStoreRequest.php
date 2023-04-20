@@ -23,13 +23,13 @@ class MotherMedicalHistoryStoreRequest extends FormRequest
             'mother_id' => ['required', 'exists:mothers,id'],
             'illnes' => [
                 'required',
-                'in:other,anaemia,uti,depression,diabetes,heart-conditions,hypertension,hyperemesis-gravidarum,infections,uit,anxiety,malaria,cancer',
+                'in:Other,Anaemia,Uti,Depression,Diabetes,Heart-conditions,Hypertension,Hyperemesis-gravidarum,Infections,Anxiety,Malaria,Cancer',
             ],
             'Description' => ['nullable', 'max:255', 'string'],
             'date' => ['nullable', 'date'],
             'status' => [
                 'nullable',
-                'in:cured,illness,continuous-illness,on-dose',
+                'in:Cured,illness,"continuous-illness",on-dose',
             ],
         ];
     }

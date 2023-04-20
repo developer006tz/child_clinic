@@ -22,7 +22,7 @@ class ScheduleController extends Controller
 
         $schedules = Schedule::search($search)
             ->latest()
-            ->paginate(5)
+            ->paginate(500)
             ->withQueryString();
 
         return view('app.schedules.index', compact('schedules', 'search'));

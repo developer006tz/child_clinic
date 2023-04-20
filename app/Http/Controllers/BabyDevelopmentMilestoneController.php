@@ -23,7 +23,7 @@ class BabyDevelopmentMilestoneController extends Controller
 
         $babyDevelopmentMilestones = BabyDevelopmentMilestone::search($search)
             ->latest()
-            ->paginate(5)
+            ->paginate(500)
             ->withQueryString();
         /*foreach ($babyDevelopmentMilestones as $test){
             dd($test->baby->name);

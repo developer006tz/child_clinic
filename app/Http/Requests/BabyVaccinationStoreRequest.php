@@ -24,7 +24,7 @@ class BabyVaccinationStoreRequest extends FormRequest
             'vacination_id' => ['required', 'exists:vacinations,id'],
             'date_of_vaccine' => ['required', 'date'],
             'reaction_occured' => ['nullable', 'max:255', 'string'],
-            'is_vaccinated' => ['required', 'in:yes,no'],
+            'is_vaccinated' => ['required', 'in:Yes,No'],
         ];
     }
 }

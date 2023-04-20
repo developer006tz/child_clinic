@@ -5,24 +5,7 @@
     <div class="searchbar mt-0 mb-4">
         <div class="row">
             <div class="col-md-6">
-                <form>
-                    <div class="input-group">
-                        <input
-                            id="indexSearch"
-                            type="text"
-                            name="search"
-                            placeholder="{{ __('crud.common.search') }}"
-                            value="{{ $search ?? '' }}"
-                            class="form-control"
-                            autocomplete="off"
-                        />
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="icon ion-md-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                <h2>@lang('crud.babies.index_title')</h2>
             </div>
             <div class="col-md-6 text-right">
                 @can('create', App\Models\Baby::class)
@@ -36,12 +19,8 @@
 
     <div class="card">
         <div class="card-body">
-            <div style="display: flex; justify-content: space-between;">
-                <h4 class="card-title">@lang('crud.babies.index_title')</h4>
-            </div>
-
             <div class="table-responsive">
-                <table class="table table-borderless table-hover">
+                <table class="table table-borderless table-hover" id="myTable">
                     <thead>
                         <tr>
                             <th class="text-left">
@@ -86,7 +65,7 @@
                                     <a href="{{ route('babies.edit', $baby) }}">
                                         <button
                                             type="button"
-                                            class="btn btn-light"
+                                            class="btn btn-outline-warning"
                                         >
                                             <i class="icon ion-md-create"></i>
                                         </button>
@@ -95,7 +74,7 @@
                                     <a href="{{ route('babies.show', $baby) }}">
                                         <button
                                             type="button"
-                                            class="btn btn-light"
+                                            class="btn btn-outline-info"
                                         >
                                             <i class="icon ion-md-eye"></i>
                                         </button>
@@ -109,7 +88,7 @@
                                         @csrf @method('DELETE')
                                         <button
                                             type="submit"
-                                            class="btn btn-light text-danger"
+                                            class="btn btn-outline-danger"
                                         >
                                             <i class="icon ion-md-trash"></i>
                                         </button>
@@ -126,11 +105,11 @@
                         </tr>
                         @endforelse
                     </tbody>
-                    <tfoot>
+                    {{--<tfoot>
                         <tr>
                             <td colspan="7">{!! $babies->render() !!}</td>
                         </tr>
-                    </tfoot>
+                    </tfoot>--}}
                 </table>
             </div>
         </div>

@@ -24,7 +24,7 @@ class MotherHealthStatusController extends Controller
 
         $motherHealthStatuses = MotherHealthStatus::search($search)
             ->latest()
-            ->paginate(5)
+            ->paginate(500)
             ->withQueryString();
 
         return view(
@@ -103,7 +103,7 @@ class MotherHealthStatusController extends Controller
      * Update the specified resource in storage.
      */
     public function update(
-        MotherHealthStatusUpdateRequest $request,
+        MotherHealthStatusStoreRequest $request,
         MotherHealthStatus $motherHealthStatus
     ): RedirectResponse {
         $this->authorize('update', $motherHealthStatus);

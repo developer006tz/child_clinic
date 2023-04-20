@@ -23,7 +23,7 @@ class PregnantController extends Controller
 
         $pregnants = Pregnant::search($search)
             ->latest()
-            ->paginate(5)
+            ->paginate(500)
             ->withQueryString();
 
         return view('app.pregnants.index', compact('pregnants', 'search'));

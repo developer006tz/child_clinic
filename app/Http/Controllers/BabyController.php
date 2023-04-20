@@ -24,7 +24,7 @@ class BabyController extends Controller
 
         $babies = Baby::search($search)
             ->latest()
-            ->paginate(5)
+            ->paginate(100000)
             ->withQueryString();
 
         return view('app.babies.index', compact('babies', 'search'));

@@ -23,7 +23,7 @@ class MotherController extends Controller
 
         $mothers = Mother::search($search)
             ->latest()
-            ->paginate(5)
+            ->paginate(500)
             ->withQueryString();
 
         return view('app.mothers.index', compact('mothers', 'search'));
@@ -83,7 +83,7 @@ class MotherController extends Controller
      * Update the specified resource in storage.
      */
     public function update(
-        MotherUpdateRequest $request,
+        MotherStoreRequest $request,
         Mother $mother
     ): RedirectResponse {
         $this->authorize('update', $mother);

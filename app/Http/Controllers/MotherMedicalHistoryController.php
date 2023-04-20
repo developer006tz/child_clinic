@@ -23,12 +23,8 @@ class MotherMedicalHistoryController extends Controller
 
         $motherMedicalHistories = MotherMedicalHistory::search($search)
             ->latest()
-            ->paginate(5)
+            ->paginate(500)
             ->withQueryString();
-
-//        foreach ($motherMedicalHistories as $test){
-//            dd($test->Description);
-//        }
 
         return view(
             'app.mother_medical_histories.index',
@@ -101,7 +97,7 @@ class MotherMedicalHistoryController extends Controller
      * Update the specified resource in storage.
      */
     public function update(
-        MotherMedicalHistoryUpdateRequest $request,
+        MotherMedicalHistoryStoreRequest $request,
         MotherMedicalHistory $motherMedicalHistory
     ): RedirectResponse {
         $this->authorize('update', $motherMedicalHistory);
