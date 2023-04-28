@@ -23,9 +23,10 @@ class BabyProgressHealthReportFactory extends Factory
     public function definition(): array
     {
         return [
-            'current_height' => $this->faker->randomNumber(1),
-            'current_weight' => $this->faker->randomNumber(1),
-            'current_health_status' => 'Normal',
+            'age_per_month'=> $this->faker->randomNumber(1),
+            'height' => $this->faker->randomNumber(1),
+            'weight' => $this->faker->randomNumber(1),
+            'head_circumference' => $this->faker->randomNumber(1),
             'bmi' => $this->faker->randomNumber(1),
             'baby_id' => \App\Models\Baby::factory(),
         ];

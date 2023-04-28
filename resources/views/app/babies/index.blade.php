@@ -35,6 +35,12 @@
                             <th class="text-right">
                                 @lang('crud.babies.inputs.weight_at_birth')
                             </th>
+                            <th class="text-right">
+                                @lang('crud.babies.inputs.height_at_birth')
+                            </th>
+                            <th class="text-right">
+                                @lang('crud.babies.inputs.head_circumference')
+                            </th>
                             <th class="text-left">
                                 @lang('crud.babies.inputs.mother_id')
                             </th>
@@ -53,6 +59,8 @@
                             <td>{{ $baby->gender ?? '-' }}</td>
                             <td>{{ $baby->birthdate ?? '-' }}</td>
                             <td>{{ $baby->weight_at_birth ?? '-' }}</td>
+                            <td>{{ $baby->height_at_birth ?? '-' }}</td>
+                            <td>{{ $baby->head_circumference ?? '-' }}</td>
                             <td>{{ optional($baby->mother)->name ?? '-' }}</td>
                             <td>{{ optional($baby->father)->name ?? '-' }}</td>
                             <td class="text-center" style="width: 134px;">

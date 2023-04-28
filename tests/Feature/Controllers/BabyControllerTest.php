@@ -129,7 +129,7 @@ class BabyControllerTest extends TestCase
 
         $this->assertDatabaseHas('babies', $data);
 
-        $response->assertRedirect(route('babies.edit', $baby));
+        $response->assertRedirect(route('babies.index', $baby));
     }
 
     /**

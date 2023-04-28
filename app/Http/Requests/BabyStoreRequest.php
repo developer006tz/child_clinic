@@ -24,6 +24,8 @@ class BabyStoreRequest extends FormRequest
             'gender' => ['required', 'in:male,female'],
             'birthdate' => ['required', 'date'],
             'weight_at_birth' => ['required', 'numeric'],
+            'height_at_birth' => ['required', 'numeric'],
+            'head_circumference' => ['required', 'numeric'],
             'mother_id' => ['required', 'exists:mothers,id'],
             'father_id' => ['required', 'exists:fathers,id'],
         ];

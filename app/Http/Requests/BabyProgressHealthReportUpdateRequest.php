@@ -21,9 +21,9 @@ class BabyProgressHealthReportUpdateRequest extends FormRequest
     {
         return [
             'baby_id' => ['required', 'exists:babies,id'],
-            'current_height' => ['required', 'numeric'],
-            'current_weight' => ['required', 'numeric'],
-            'current_health_status' => ['nullable', 'in:Normal,Illness'],
+            'height' => ['required', 'numeric'],
+            'weight' => ['required', 'numeric'],
+            'head_circumference' => ['required', 'numeric'],
             'bmi' => ['nullable', 'numeric'],
         ];
     }

@@ -24,11 +24,11 @@ return [
 
     'fathers' => [
         'name' => 'Fathers',
-        'index_title' => 'Fathers List',
+        'index_title' => 'Fathers',
         'new_title' => 'New Father',
-        'create_title' => 'Create Father',
+        'create_title' => 'Add Father',
         'edit_title' => 'Edit Father',
-        'show_title' => 'Show Father',
+        'show_title' => 'View Father',
         'inputs' => [
             'name' => 'Name',
             'dob' => 'Dob',
@@ -41,11 +41,11 @@ return [
 
     'pregnants' => [
         'name' => 'Pregnants',
-        'index_title' => 'Pregnants List',
+        'index_title' => 'Pregnants',
         'new_title' => 'New Pregnant',
-        'create_title' => 'Create Pregnant',
+        'create_title' => 'Add Pregnant',
         'edit_title' => 'Edit Pregnant',
-        'show_title' => 'Show Pregnant',
+        'show_title' => 'View Pregnant',
         'inputs' => [
             'mother_id' => 'Mother',
             'due_date' => 'Due Date',
@@ -61,11 +61,11 @@ return [
 
     'all_pregnant_complications' => [
         'name' => 'All Pregnant Complications',
-        'index_title' => 'AllPregnantComplications List',
+        'index_title' => 'Pregnant Complications',
         'new_title' => 'New Pregnant complications',
-        'create_title' => 'Create PregnantComplications',
+        'create_title' => 'Add PregnantComplications',
         'edit_title' => 'Edit PregnantComplications',
-        'show_title' => 'Show PregnantComplications',
+        'show_title' => 'View PregnantComplications',
         'inputs' => [
             'pregnant_id' => 'Pregnant',
             'name' => 'Name',
@@ -75,16 +75,18 @@ return [
 
     'babies' => [
         'name' => 'Babies',
-        'index_title' => 'Babies List',
+        'index_title' => 'Babies',
         'new_title' => 'New Baby',
-        'create_title' => 'Create Baby',
+        'create_title' => 'Add Baby',
         'edit_title' => 'Edit Baby',
-        'show_title' => 'Show Baby',
+        'show_title' => 'View Baby',
         'inputs' => [
             'name' => 'Name',
             'gender' => 'Gender',
             'birthdate' => 'Birthdate',
-            'weight_at_birth' => 'Weight At Birth',
+            'weight_at_birth' => 'weight At Birth',
+            'height_at_birth' => 'height At Birth',
+            'head_circumference' => 'head circumference',
             'mother_id' => 'Mother',
             'father_id' => 'Father',
         ],
@@ -92,11 +94,11 @@ return [
 
     'baby_development_milestones' => [
         'name' => 'Baby Development Milestones',
-        'index_title' => 'BabyDevelopmentMilestones List',
+        'index_title' => 'Babies Development Milestones',
         'new_title' => 'New Baby development milestone',
-        'create_title' => 'Create BabyDevelopmentMilestone',
-        'edit_title' => 'Edit BabyDevelopmentMilestone',
-        'show_title' => 'Show BabyDevelopmentMilestone',
+        'create_title' => 'Add BabyDevelopment Milestone',
+        'edit_title' => 'Edit BabyDevelopment Milestone',
+        'show_title' => 'View BabyDevelopment Milestone',
         'inputs' => [
             'baby_id' => 'Baby',
             'first_smile' => 'First Smile',
@@ -107,11 +109,11 @@ return [
 
     'baby_medical_hostories' => [
         'name' => 'Baby Medical Hostories',
-        'index_title' => 'BabyMedicalHostories List',
+        'index_title' => 'Babies Medical Hostories',
         'new_title' => 'New Baby medical hostory',
-        'create_title' => 'Create BabyMedicalHostory',
-        'edit_title' => 'Edit BabyMedicalHostory',
-        'show_title' => 'Show BabyMedicalHostory',
+        'create_title' => 'Add Baby MedicalHostory',
+        'edit_title' => 'Edit Baby MedicalHostory',
+        'show_title' => 'View Baby MedicalHostory',
         'inputs' => [
             'desease_id' => 'Desease',
             'level_of_illness' => 'Level Of Illness',
@@ -122,27 +124,28 @@ return [
 
     'baby_progress_health_reports' => [
         'name' => 'Baby Progress Health Reports',
-        'index_title' => 'BabyProgressHealthReports List',
+        'index_title' => 'Baby Progress Health Reports',
         'new_title' => 'New Baby progress health report',
-        'create_title' => 'Create BabyProgressHealthReport',
-        'edit_title' => 'Edit BabyProgressHealthReport',
-        'show_title' => 'Show BabyProgressHealthReport',
+        'create_title' => 'Add Baby Progress HealthReport',
+        'edit_title' => 'Edit Baby Progress HealthReport',
+        'show_title' => 'View Baby Progress HealthReport',
         'inputs' => [
+            'age_per_month'=> 'Age per Month',
             'baby_id' => 'Baby',
-            'current_height' => 'Current Height',
-            'current_weight' => 'Current Weight',
-            'current_health_status' => 'Current Health Status',
+            'height' => 'Height',
+            'weight' => 'Weight',
+            'head_circumference' => 'Head Circumference',
             'bmi' => 'Bmi',
         ],
     ],
 
     'baby_vaccinations' => [
         'name' => 'Baby Vaccinations',
-        'index_title' => 'BabyVaccinations List',
+        'index_title' => 'BabyVaccinations',
         'new_title' => 'New Baby vaccination',
-        'create_title' => 'Create BabyVaccination',
+        'create_title' => 'Add BabyVaccination',
         'edit_title' => 'Edit BabyVaccination',
-        'show_title' => 'Show BabyVaccination',
+        'show_title' => 'View BabyVaccination',
         'inputs' => [
             'baby_id' => 'Baby',
             'vacination_id' => 'Vacination',
@@ -154,11 +157,11 @@ return [
 
     'cards' => [
         'name' => 'Cards',
-        'index_title' => 'Cards List',
+        'index_title' => 'Cards',
         'new_title' => 'New Card',
-        'create_title' => 'Create Card',
+        'create_title' => 'Add Card',
         'edit_title' => 'Edit Card',
-        'show_title' => 'Show Card',
+        'show_title' => 'View Card',
         'inputs' => [
             'baby_id' => 'Baby',
             'issue_number' => 'Issue Number',
@@ -173,11 +176,11 @@ return [
 
     'vacinations' => [
         'name' => 'Vacinations',
-        'index_title' => 'Vacinations List',
+        'index_title' => 'Vacinations',
         'new_title' => 'New Vacination',
-        'create_title' => 'Create Vacination',
+        'create_title' => 'Add Vacination',
         'edit_title' => 'Edit Vacination',
-        'show_title' => 'Show Vacination',
+        'show_title' => 'View Vacination',
         'inputs' => [
             'name' => 'Name',
             'type' => 'Type',
@@ -186,11 +189,11 @@ return [
 
     'prenatal_apointments' => [
         'name' => 'Prenatal Apointments',
-        'index_title' => 'PrenatalApointments List',
+        'index_title' => 'PrenatalApointments',
         'new_title' => 'New Prenatal apointment',
-        'create_title' => 'Create PrenatalApointment',
+        'create_title' => 'Add PrenatalApointment',
         'edit_title' => 'Edit PrenatalApointment',
-        'show_title' => 'Show PrenatalApointment',
+        'show_title' => 'View PrenatalApointment',
         'inputs' => [
             'pregnant_id' => 'Pregnant',
             'date' => 'Date',
@@ -200,11 +203,11 @@ return [
 
     'blood_types' => [
         'name' => 'Blood Types',
-        'index_title' => 'BloodTypes List',
+        'index_title' => 'BloodTypes',
         'new_title' => 'New Blood type',
-        'create_title' => 'Create BloodType',
+        'create_title' => 'Add BloodType',
         'edit_title' => 'Edit BloodType',
-        'show_title' => 'Show BloodType',
+        'show_title' => 'View BloodType',
         'inputs' => [
             'name' => 'Name',
             'description' => 'Description',
@@ -214,11 +217,11 @@ return [
 
     'clinics' => [
         'name' => 'Clinics',
-        'index_title' => 'Clinics List',
+        'index_title' => 'Clinics',
         'new_title' => 'New Clinic',
-        'create_title' => 'Create Clinic',
+        'create_title' => 'Add Clinic',
         'edit_title' => 'Edit Clinic',
-        'show_title' => 'Show Clinic',
+        'show_title' => 'View Clinic',
         'inputs' => [
             'name' => 'Name',
             'location' => 'Location',
@@ -228,11 +231,11 @@ return [
 
     'mother_medical_histories' => [
         'name' => 'Mother Medical Histories',
-        'index_title' => 'MotherMedicalHistories List',
+        'index_title' => 'MotherMedicalHistories',
         'new_title' => 'New Mother medical history',
-        'create_title' => 'Create MotherMedicalHistory',
-        'edit_title' => 'Edit MotherMedicalHistory',
-        'show_title' => 'Show MotherMedicalHistory',
+        'create_title' => 'Add Mother Medical History',
+        'edit_title' => 'Edit Mother Medical History',
+        'show_title' => 'View Mother Medical History',
         'inputs' => [
             'mother_id' => 'Mother',
             'illnes' => 'Illnes',
@@ -244,11 +247,11 @@ return [
 
     'mother_health_statuses' => [
         'name' => 'Mother Health Statuses',
-        'index_title' => 'MotherHealthStatuses List',
+        'index_title' => 'Mother Health Statuses',
         'new_title' => 'New Mother health status',
-        'create_title' => 'Create MotherHealthStatus',
+        'create_title' => 'Add Mother Health Status',
         'edit_title' => 'Edit MotherHealthStatus',
-        'show_title' => 'Show MotherHealthStatus',
+        'show_title' => 'View MotherHealthStatus',
         'inputs' => [
             'mother_id' => 'Mother',
             'height' => 'Height',
@@ -261,11 +264,11 @@ return [
 
     'birth_certificates' => [
         'name' => 'Birth Certificates',
-        'index_title' => 'BirthCertificates List',
+        'index_title' => 'BirthCertificates',
         'new_title' => 'New Birth certificate',
-        'create_title' => 'Create BirthCertificate',
+        'create_title' => 'Add Birth Certificate',
         'edit_title' => 'Edit BirthCertificate',
-        'show_title' => 'Show BirthCertificate',
+        'show_title' => 'View BirthCertificate',
         'inputs' => [
             'baby_id' => 'Baby',
             'date_of_birth' => 'Date Of Birth',
@@ -281,11 +284,11 @@ return [
 
     'deseases' => [
         'name' => 'Deseases',
-        'index_title' => 'Deseases List',
+        'index_title' => 'Deseases',
         'new_title' => 'New Desease',
-        'create_title' => 'Create Desease',
+        'create_title' => 'Add Desease',
         'edit_title' => 'Edit Desease',
-        'show_title' => 'Show Desease',
+        'show_title' => 'View Desease',
         'inputs' => [
             'name' => 'Name',
             'type' => 'Type',
@@ -295,11 +298,11 @@ return [
 
     'insurances' => [
         'name' => 'Insurances',
-        'index_title' => 'Insurances List',
+        'index_title' => 'Insurances',
         'new_title' => 'New Insurance',
-        'create_title' => 'Create Insurance',
+        'create_title' => 'Add Insurance',
         'edit_title' => 'Edit Insurance',
-        'show_title' => 'Show Insurance',
+        'show_title' => 'View Insurance',
         'inputs' => [
             'provider_name' => 'Provider Name',
             'insurance_name' => 'Insurance Name',
@@ -310,11 +313,11 @@ return [
 
     'message_templates' => [
         'name' => 'Message Templates',
-        'index_title' => 'MessageTemplates List',
+        'index_title' => 'MessageTemplates',
         'new_title' => 'New Message template',
-        'create_title' => 'Create MessageTemplate',
+        'create_title' => 'Add Message Template',
         'edit_title' => 'Edit MessageTemplate',
-        'show_title' => 'Show MessageTemplate',
+        'show_title' => 'View MessageTemplate',
         'inputs' => [
             'name' => 'Name',
             'body' => 'Body',
@@ -323,11 +326,11 @@ return [
 
     'all_compose_sms' => [
         'name' => 'All Compose Sms',
-        'index_title' => 'AllComposeSms List',
+        'index_title' => 'Compose Sms',
         'new_title' => 'New Compose sms',
-        'create_title' => 'Create ComposeSms',
+        'create_title' => 'Add ComposeSms',
         'edit_title' => 'Edit ComposeSms',
-        'show_title' => 'Show ComposeSms',
+        'show_title' => 'View ComposeSms',
         'inputs' => [
             'message_template_id' => 'Message Template',
             'custom_message' => 'Custom Message',
@@ -336,11 +339,11 @@ return [
 
     'schedules' => [
         'name' => 'Schedules',
-        'index_title' => 'Schedules List',
+        'index_title' => 'Schedules',
         'new_title' => 'New Schedule',
-        'create_title' => 'Create Schedule',
+        'create_title' => 'Add Schedule',
         'edit_title' => 'Edit Schedule',
-        'show_title' => 'Show Schedule',
+        'show_title' => 'View Schedule',
         'inputs' => [
             'name' => 'Name',
             'message' => 'Message',
@@ -353,11 +356,11 @@ return [
 
     'all_sms' => [
         'name' => 'All Sms',
-        'index_title' => 'AllSms List',
+        'index_title' => 'AllSms',
         'new_title' => 'New Sms',
-        'create_title' => 'Create Sms',
+        'create_title' => 'Add Sms',
         'edit_title' => 'Edit Sms',
-        'show_title' => 'Show Sms',
+        'show_title' => 'View Sms',
         'inputs' => [
             'body' => 'Body',
             'phone' => 'Phone',
@@ -367,11 +370,11 @@ return [
 
     'users' => [
         'name' => 'Users',
-        'index_title' => 'Users List',
+        'index_title' => 'Users',
         'new_title' => 'New User',
-        'create_title' => 'Create User',
+        'create_title' => 'Add User',
         'edit_title' => 'Edit User',
-        'show_title' => 'Show User',
+        'show_title' => 'View User',
         'inputs' => [
             'name' => 'Name',
             'email' => 'Email',
@@ -383,11 +386,11 @@ return [
 
     'mothers' => [
         'name' => 'Mothers',
-        'index_title' => 'Mothers List',
+        'index_title' => 'Mothers',
         'new_title' => 'New Mother',
-        'create_title' => 'Create Mother',
+        'create_title' => 'Add Mother',
         'edit_title' => 'Edit Mother',
-        'show_title' => 'Show Mother',
+        'show_title' => 'View Mother',
         'inputs' => [
             'clinic_id' => 'Clinic Id',
             'name' => 'Name',
@@ -402,10 +405,10 @@ return [
 
     'roles' => [
         'name' => 'Roles',
-        'index_title' => 'Roles List',
-        'create_title' => 'Create Role',
+        'index_title' => 'Roles',
+        'create_title' => 'Add Role',
         'edit_title' => 'Edit Role',
-        'show_title' => 'Show Role',
+        'show_title' => 'View Role',
         'inputs' => [
             'name' => 'Name',
         ],
@@ -413,10 +416,10 @@ return [
 
     'permissions' => [
         'name' => 'Permissions',
-        'index_title' => 'Permissions List',
-        'create_title' => 'Create Permission',
+        'index_title' => 'Permissions',
+        'create_title' => 'Add Permission',
         'edit_title' => 'Edit Permission',
-        'show_title' => 'Show Permission',
+        'show_title' => 'View Permission',
         'inputs' => [
             'name' => 'Name',
         ],

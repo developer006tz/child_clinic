@@ -13,9 +13,21 @@
 
     <x-inputs.group class="col-sm-12">
         <x-inputs.number
-            name="current_height"
+            name="age_per_month"
+            label="Current Age"
+            :value="old('age_per_month', ($editing ? $babyProgressHealthReport->age_per_month : ''))"
+            max="255"
+            step="1"
+            placeholder="Age"
+            required
+        ></x-inputs.number>
+    </x-inputs.group>
+
+    <x-inputs.group class="col-sm-12">
+        <x-inputs.number
+            name="height"
             label="Current Height"
-            :value="old('current_height', ($editing ? $babyProgressHealthReport->current_height : ''))"
+            :value="old('height', ($editing ? $babyProgressHealthReport->height : ''))"
             max="255"
             step="0.01"
             placeholder="Current Height"
@@ -25,9 +37,9 @@
 
     <x-inputs.group class="col-sm-12">
         <x-inputs.number
-            name="current_weight"
+            name="weight"
             label="Current Weight"
-            :value="old('current_weight', ($editing ? $babyProgressHealthReport->current_weight : ''))"
+            :value="old('weight', ($editing ? $babyProgressHealthReport->weight : ''))"
             max="255"
             step="0.01"
             placeholder="Current Weight"
@@ -36,14 +48,15 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
-        <x-inputs.select
-            name="current_health_status"
-            label="Current Health Status"
-        >
-            @php $selected = old('current_health_status', ($editing ? $babyProgressHealthReport->current_health_status : 'Normal')) @endphp
-            <option value="Normal" {{ $selected == 'Normal' ? 'selected' : '' }} >Normal</option>
-            <option value="Illness" {{ $selected == 'Illness' ? 'selected' : '' }} >Illness</option>
-        </x-inputs.select>
+        <x-inputs.number
+            name="head_circumference"
+            label="Current Weight"
+            :value="old('head_circumference', ($editing ? $babyProgressHealthReport->head_circumference : ''))"
+            max="255"
+            step="0.01"
+            placeholder="Current head_circumference"
+            required
+        ></x-inputs.number>
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">

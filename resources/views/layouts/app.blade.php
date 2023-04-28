@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 {{--        datatables--}}
-        <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" rel="stylesheet">
+{{--        <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" rel="stylesheet">--}}
         <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css" rel="stylesheet">
         <link href="https://cdn.datatables.net/autofill/2.5.3/css/autoFill.bootstrap4.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.bootstrap4.min.css">
@@ -51,6 +51,20 @@
 
         .nav-icon.icon:before {
             width: 25px;
+        }
+        .btn.btn-success {
+            background-color: #20c997!important;
+            border: #20c997!important ;
+        }
+
+        .btn.btn-primary {
+            background-color: #20c997!important;
+            border: #20c997!important ;
+        }
+
+        .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+            color: #fff;
+            background-color: #20c997!important;
         }
         </style>
 
@@ -138,6 +152,8 @@
 
     <script>
         $(document).ready( function () {
+            $('#myTable_simple').DataTable({
+            });
             $('#myTable').DataTable(
                 {
                     "scrollX": true,
@@ -149,7 +165,7 @@
                     "info": true,
                     "ordering": true,
                     "fixedColumns":   {
-                        "leftColumns": 2,
+                        "leftColumns": 1,
 
                     },
                     "columnDefs": [

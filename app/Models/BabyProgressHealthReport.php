@@ -13,9 +13,10 @@ class BabyProgressHealthReport extends Model
 
     protected $fillable = [
         'baby_id',
-        'current_height',
-        'current_weight',
-        'current_health_status',
+        'age_per_month',
+        'height',
+        'weight',
+        'head_circumference',
         'bmi',
     ];
 

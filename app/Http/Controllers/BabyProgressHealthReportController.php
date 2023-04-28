@@ -105,7 +105,7 @@ class BabyProgressHealthReportController extends Controller
      * Update the specified resource in storage.
      */
     public function update(
-        BabyProgressHealthReportUpdateRequest $request,
+        BabyProgressHealthReportStoreRequest $request,
         BabyProgressHealthReport $babyProgressHealthReport
     ): RedirectResponse {
         $this->authorize('update', $babyProgressHealthReport);

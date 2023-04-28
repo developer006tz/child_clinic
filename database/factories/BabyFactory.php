@@ -26,7 +26,9 @@ class BabyFactory extends Factory
             'name' => $this->faker->name(),
             'gender' => \Arr::random(['male', 'female']),
             'birthdate' => $this->faker->date(),
-            'weight_at_birth' => $this->faker->randomFloat(2, 0, 9999),
+            'weight_at_birth' => $this->faker->randomFloat(2, 0, 99),
+            'height_at_birth' => $this->faker->randomFloat(2, 0, 99),
+            'head_circumference' => $this->faker->randomFloat(2, 0, 99),
             'mother_id' => \App\Models\Mother::factory(),
             'father_id' => \App\Models\Father::factory(),
         ];

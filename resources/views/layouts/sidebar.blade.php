@@ -12,7 +12,18 @@
     $isActiveNotification = in_array(request()->route()->getName(), $notification_route);
     $mother_routes = ['mothers.index','pregnants.index','all-pregnant-complications.index','prenatal-apointments.index','mother-medical-histories.index','mother-health-statuses.index'];
     $isActiveMother = in_array(request()->route()->getName(), $mother_routes);
-    $baby_routes = ['babies.index','baby-development-milestones.index','baby-medical-histories.index','baby-progress-health-reports.index','baby-vaccinations.index'];
+    /*$baby_routes = ['babies.index','babies.create','babies.edit','baby-development-milestones.index','baby-development-milestones.create','baby-development-milestones.edit','baby-medical-histories.index','baby-medical-histories.create','baby-medical-histories.edit','baby-progress-health-reports.index','baby-progress-health-reports.create','baby-progress-health-reports.edit','baby-vaccinations.index','baby-vaccinations.create','baby-vaccinations.edit'];
+
+    $isActiveBaby = in_array(request()->route()->getName(), $baby_routes);*/
+
+    $routes = ['babies', 'baby-development-milestones', 'baby-medical-histories', 'baby-progress-health-reports', 'baby-vaccinations'];
+    $actions = ['index', 'create', 'edit'];
+    $baby_routes = [];
+    foreach ($routes as $route) {
+        foreach ($actions as $action) {
+            $baby_routes[] = $route . '.' . $action;
+        }
+    }
     $isActiveBaby = in_array(request()->route()->getName(), $baby_routes);
     @endphp
     <!-- Sidebar -->

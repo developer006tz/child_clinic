@@ -13,7 +13,7 @@ class BabyProgressHealthReportSeeder extends Seeder
     public function run(): void
     {
         BabyProgressHealthReport::factory()
-            ->count(5)
+            ->count(3)
             ->create();
     }
 }

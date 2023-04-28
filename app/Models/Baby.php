@@ -16,6 +16,8 @@ class Baby extends Model
         'gender',
         'birthdate',
         'weight_at_birth',
+        'height_at_birth',
+        'head_circumference',
         'mother_id',
         'father_id',
     ];

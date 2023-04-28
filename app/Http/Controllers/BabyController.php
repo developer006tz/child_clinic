@@ -55,7 +55,7 @@ class BabyController extends Controller
         $baby = Baby::create($validated);
 
         return redirect()
-            ->route('babies.edit', $baby)
+            ->route('babies.show', $baby)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -86,7 +86,7 @@ class BabyController extends Controller
      * Update the specified resource in storage.
      */
     public function update(
-        BabyUpdateRequest $request,
+        BabyStoreRequest $request,
         Baby $baby
     ): RedirectResponse {
         $this->authorize('update', $baby);
@@ -96,7 +96,7 @@ class BabyController extends Controller
         $baby->update($validated);
 
         return redirect()
-            ->route('babies.edit', $baby)
+            ->route('babies.show', $baby)
             ->withSuccess(__('crud.common.saved'));
     }
 

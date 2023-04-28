@@ -16,6 +16,8 @@ return new class extends Migration {
             $table->enum('gender', ['male', 'female']);
             $table->date('birthdate');
             $table->decimal('weight_at_birth');
+            $table->decimal('height_at_birth');
+            $table->decimal('head_circumference');
             $table->unsignedBigInteger('mother_id');
             $table->unsignedBigInteger('father_id');
 

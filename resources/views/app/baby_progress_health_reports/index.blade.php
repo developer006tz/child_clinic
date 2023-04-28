@@ -26,20 +26,24 @@
         <div class="card-body">
 
             <div class="table-responsive">
-                <table class="table table-borderless table-hover" id="myTable">
+                <table class="table table-borderless table-hover" id="myTable_simple">
                     <thead>
                         <tr>
                             <th class="text-left">
                                 @lang('crud.baby_progress_health_reports.inputs.baby_id')
                             </th>
                             <th class="text-right">
-                                @lang('crud.baby_progress_health_reports.inputs.current_height')
+                                @lang('crud.baby_progress_health_reports.inputs.age_per_month')
                             </th>
                             <th class="text-right">
-                                @lang('crud.baby_progress_health_reports.inputs.current_weight')
+                                @lang('crud.baby_progress_health_reports.inputs.height')
                             </th>
+                            <th class="text-right">
+                                @lang('crud.baby_progress_health_reports.inputs.weight')
+                            </th>
+
                             <th class="text-left">
-                                @lang('crud.baby_progress_health_reports.inputs.current_health_status')
+                                @lang('crud.baby_progress_health_reports.inputs.head_circumference')
                             </th>
                             <th class="text-right">
                                 @lang('crud.baby_progress_health_reports.inputs.bmi')
@@ -53,9 +57,10 @@
                     @forelse($babyProgressHealthReports as $babyProgressHealthReport)
                         <tr>
                             <td>{{ optional($babyProgressHealthReport->baby)->name ?? '-' }}</td>
-                            <td>{{ $babyProgressHealthReport->current_height ?? '-' }}</td>
-                            <td>{{ $babyProgressHealthReport->current_weight ?? '-' }}</td>
-                            <td>{{ $babyProgressHealthReport->current_health_status ?? '-' }}</td>
+                            <td>{{ $babyProgressHealthReport->age_per_month ?? '-' }} Month</td>
+                            <td>{{ $babyProgressHealthReport->height ?? '-' }} inchs</td>
+                            <td>{{ $babyProgressHealthReport->weight ?? '-' }} kigs</td>
+                            <td>{{ $babyProgressHealthReport->head_circumference ?? '-' }} cm</td>
                             <td>{{ $babyProgressHealthReport->bmi ?? '-' }}</td>
                             <td class="text-center" style="width: 134px;">
                                 <div role="group" aria-label="Row Actions" class="btn-group">
