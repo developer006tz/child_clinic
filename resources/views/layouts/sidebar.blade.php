@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-light-teal elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('/') }}" class="brand-link">
-        <img src="https://vemto.app/favicon.png" alt="Vemto Logo" class="brand-image bg-white img-circle">
+        <img src="{{asset('assets/images/clinic-logo.png')}}" alt="Vemto Logo" class="brand-image bg-white img-circle">
         <span class="brand-text font-weight-light">CLINIC-CMS</span>
     </a>
     @php

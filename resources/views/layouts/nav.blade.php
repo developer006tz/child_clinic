@@ -91,7 +91,7 @@
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <span>
-                    <img src="https://api.dicebear.com/6.x/adventurer/svg?seed=Cuddles" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                    <img src="{{asset('assets/images/avatar.png')}}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
