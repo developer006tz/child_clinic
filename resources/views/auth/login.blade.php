@@ -39,6 +39,7 @@
                         {{ __('Login') }}
                     </button>
                 </div>
+                 @if (Route::has('login'))
                 <div class="form-group">
                     <a href="{{ route('register') }}">
                         {{ __('Register') }}
@@ -50,6 +51,7 @@
                     </a>
                     @endif
                 </div>
+                @endif
             </form>
         </div>
     </section>

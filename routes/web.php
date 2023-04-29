@@ -41,7 +41,7 @@ use App\Http\Controllers\BabyProgressHealthReportController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('welcome');
 });
 
 Auth::routes();

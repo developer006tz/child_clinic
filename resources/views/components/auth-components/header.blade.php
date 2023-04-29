@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js">
+    </script>
     <title>CLINIC | LOGIN</title>
     <link rel="stylesheet" href="{{ asset('assets/css/theme/theme.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/auth.css') }}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js">
-    </script>
+    <link rel="stylesheet" href="{{ asset('assets/input/build/css/intlTelInput.css') }}">
+    <script src="{{asset('assets/input/build/js/intlTelInput.js')}}"></script>
+
 
 
     <script>
@@ -33,6 +36,25 @@
     }
     span.invalid-feedback {
     text-align: left;
+}
+
+.hide{
+    display: none;
+}
+.iti.iti--allow-dropdown.iti--show-flags {
+    width: 100%;
+}
+    .iti__country-name{
+        color: #000 !important;
+    }
+    .iti__selected-dial-code {
+        color: #284547;
+    }
+#error-msg {
+  color: red;
+}
+#valid-msg {
+  color: #00C900;
 }
 </style>
 

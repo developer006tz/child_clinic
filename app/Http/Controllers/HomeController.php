@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Baby;
+use App\Models\Mother;
+use App\Models\User;
+use App\Models\Pregnant;
+
 
 class HomeController extends Controller
 {
@@ -23,6 +28,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $babies = Baby::all();
+        $mothers = Mother::all();
+        $users = User::all();
+        $pregnants = Pregnant::all();
+        return view('home', compact('babies', 'mothers', 'users', 'pregnants'));
     }
 }
