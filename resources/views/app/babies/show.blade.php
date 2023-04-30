@@ -140,27 +140,19 @@
                                     <tr>
                                         <td>Weight at birth</td>
                                         <td>
-                                            {{ $baby->weight_at_birth ?? '-' }}
+                                            {{ $baby->weight_at_birth ?? '-' }}{{__(' Kg')}}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Height at birth</td>
                                         <td>
-                                            {{ $baby->height_at_birth ?? '-' }}
+                                            {{ $baby->height_at_birth ?? '-'}}{{__(' cm')}}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Head Circumference at birth</td>
                                         <td>
-                                            {{ $baby->head_circumference ?? '-' }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fix and squish bugs</td>
-                                        <td>
-                                            <div class="progress progress-xs progress-striped active">
-                                                <div class="progress-bar bg-success" style="width: 90%"></div>
-                                            </div>
+                                            {{ $baby->head_circumference ?? '-' }}{{__(' cm')}}
                                         </td>
                                     </tr>
                                     </tbody>
@@ -183,6 +175,7 @@
                         <div class="time-label">
                         <span class="bg-danger">
                           10 Feb. 2014
+                          {{-- {{dd($baby->babyDevelopmentMilestones)}} --}}
                         </span>
                         </div>
                         <!-- /.timeline-label -->

@@ -49,7 +49,7 @@
                 <i class="icon ion-md-menu"></i>
             </a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
+        {{-- <li class="nav-item d-none d-sm-inline-block">
             <form class="form-inline ml-3">
                 <div class="input-group input-group-md">
                     <input class="form-control form-control-navbar text-dark" type="search" placeholder="Search" aria-label="Search">
@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </form>
-        </li>
+        </li> --}}
     </ul>
 
     <ul class="navbar-nav ml-auto">

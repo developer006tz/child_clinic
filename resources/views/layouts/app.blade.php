@@ -48,6 +48,11 @@
         <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+        {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+        <link rel="stylesheet" href="{{URL::to('plugins/select2/css/select2.min.css')}}">
+        <script src="{{URL::to('plugins/select2/js/select2.full.min.js')}}"></script>
+
         <!-- Small Ionicons Fixes for AdminLTE -->
         <style>
         html {
@@ -70,6 +75,13 @@
         .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
             color: #fff;
             background-color: #20c997!important;
+        }
+
+        span.select2.select2-container.select2-container--default.select2-container--below.select2-container--focus {
+            width: 100% !important;
+        }
+        span.select2-selection.select2-selection--single {
+            width: 100% !important;
         }
         </style>
 
@@ -191,6 +203,10 @@
 
                 }
             );
+
+                // add select livesearch
+                $('.select2').select2();
+            
 
         } );
     </script>

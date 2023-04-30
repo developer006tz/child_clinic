@@ -67,7 +67,7 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="mother_id" label="Mother" required>
+        <x-inputs.select name="mother_id" label="Mother" class="select2" required>
             @php $selected = old('mother_id', ($editing ? $baby->mother_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Mother</option>
             @foreach($mothers as $value => $label)
@@ -77,7 +77,7 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="father_id" label="Father" required>
+        <x-inputs.select name="father_id" class="select2" label="Father" required>
             @php $selected = old('father_id', ($editing ? $baby->father_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Father</option>
             @foreach($fathers as $value => $label)

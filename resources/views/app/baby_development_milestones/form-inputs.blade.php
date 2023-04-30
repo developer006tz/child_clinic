@@ -2,7 +2,7 @@
 
 <div class="row">
     <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="baby_id" label="Baby" required>
+        <x-inputs.select name="baby_id" label="Baby" class="select2" required>
             @php $selected = old('baby_id', ($editing ? $babyDevelopmentMilestone->baby_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Baby</option>
             @foreach($babies as $value => $label)
