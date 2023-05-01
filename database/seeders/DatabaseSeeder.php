@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(BabySeeder::class);
         $this->call(BabyDevelopmentMilestoneSeeder::class);
-        $this->call(BabyMedicalHostorySeeder::class);
+        $this->call(BabyMedicalHistorySeeder::class);
         $this->call(BabyProgressHealthReportSeeder::class);
         $this->call(BabyVaccinationSeeder::class);
         $this->call(BirthCertificateSeeder::class);

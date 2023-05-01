@@ -15,9 +15,9 @@ class Desease extends Model
 
     protected $searchableFields = ['*'];
 
-    public function babyMedicalHostories()
+    public function babyMedicalHistories()
     {
-        return $this->hasMany(BabyMedicalHostory::class);
+        return $this->hasMany(BabyMedicalHistory::class);
     }
 
     public function motherHealthStatuses()

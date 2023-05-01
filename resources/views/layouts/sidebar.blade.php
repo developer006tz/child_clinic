@@ -68,9 +68,9 @@
                                 </a>
                             </li>
                         @endcan
-                        @can('view-any', App\Models\BabyMedicalHostory::class)
+                        @can('view-any', App\Models\BabyMedicalHistory::class)
                             <li class="nav-item">
-                                <a href="{{ route('baby-medical-hostories.index') }}" class="nav-link {{ request()->routeIs('baby-medical-hostories.index') ? 'active' : '' }}">
+                                <a href="{{ route('baby-medical-histories.index') }}" class="nav-link {{ request()->routeIs('baby-medical-histories.index') ? 'active' : '' }}">
                                     <i class="nav-icon icon ion-md-medkit"></i>
                                     <p>Medical History</p>
                                 </a>

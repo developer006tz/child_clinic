@@ -173,145 +173,92 @@
                     <div class="timeline timeline-inverse">
                         <!-- timeline time label -->
                         <div class="time-label">
-                        <span class="bg-danger">
-                          10 Feb. 2014
-                          {{-- {{dd($baby->babyDevelopmentMilestones)}} --}}
+                        <span class="bg-pink">
+                           {{__('First Smile')}}
                         </span>
                         </div>
                         <!-- /.timeline-label -->
                         <!-- timeline item -->
                         <div>
-                            <i class="fas fa-envelope bg-primary"></i>
+                            <i class="far fa-calendar-alt bg-gray"></i>
 
                             <div class="timeline-item">
-                                <span class="time"><i class="far fa-clock"></i> 12:05</span>
+                                <span class="time"><i class="far fa-clock"></i></span>
 
-                                <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+                                <h3 class="timeline-header"><a href="#">{{$baby->babyDevelopmentMilestones ? \Carbon\Carbon::parse($baby->babyDevelopmentMilestones->first_smile)->format('Y-m-d') :  '-' }}</a></h3>
 
-                                <div class="timeline-body">
-                                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                                    weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                                    jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                                    quora plaxo ideeli hulu weebly balihoo...
-                                </div>
-                                <div class="timeline-footer">
-                                    <a href="#" class="btn btn-primary btn-sm">Read more</a>
-                                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                </div>
                             </div>
                         </div>
                         <!-- END timeline item -->
-                        <!-- timeline item -->
-                        <div>
-                            <i class="fas fa-user bg-info"></i>
 
-                            <div class="timeline-item">
-                                <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
-
-                                <h3 class="timeline-header border-0"><a href="#">Sarah Young</a> accepted your friend request
-                                </h3>
-                            </div>
-                        </div>
-                        <!-- END timeline item -->
-                        <!-- timeline item -->
-                        <div>
-                            <i class="fas fa-comments bg-warning"></i>
-
-                            <div class="timeline-item">
-                                <span class="time"><i class="far fa-clock"></i> 27 mins ago</span>
-
-                                <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                                <div class="timeline-body">
-                                    Take me to your leader!
-                                    Switzerland is small and neutral!
-                                    We are more like Germany, ambitious and misunderstood!
-                                </div>
-                                <div class="timeline-footer">
-                                    <a href="#" class="btn btn-warning btn-flat btn-sm">View comment</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END timeline item -->
                         <!-- timeline time label -->
                         <div class="time-label">
                         <span class="bg-success">
-                          3 Jan. 2014
+                          First Word
                         </span>
                         </div>
                         <!-- /.timeline-label -->
                         <!-- timeline item -->
                         <div>
-                            <i class="fas fa-camera bg-purple"></i>
+                            <i class="far fa-calendar-alt bg-gray"></i>
 
                             <div class="timeline-item">
-                                <span class="time"><i class="far fa-clock"></i> 2 days ago</span>
-
-                                <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                                <div class="timeline-body">
-                                    <img src="https://placehold.it/150x100" alt="...">
-                                    <img src="https://placehold.it/150x100" alt="...">
-                                    <img src="https://placehold.it/150x100" alt="...">
-                                    <img src="https://placehold.it/150x100" alt="...">
-                                </div>
+                                <span class="time"><i class="far fa-clock"></i></span>
+                                <h3 class="timeline-header"><a href="#">{{$baby->babyDevelopmentMilestones ? \Carbon\Carbon::parse($baby->babyDevelopmentMilestones->first_word)->format('Y-m-d') :  '-' }}</a></h3>
                             </div>
                         </div>
                         <!-- END timeline item -->
-                        <div>
-                            <i class="far fa-clock bg-gray"></i>
+
+                        <!-- timeline time label -->
+                        <div class="time-label">
+                        <span class="bg-info">
+                          First Step
+                        </span>
                         </div>
+                        <!-- /.timeline-label -->
+                        <!-- timeline item -->
+                        <div>
+                            <i class="far fa-calendar-alt bg-gray"></i>
+
+                            <div class="timeline-item">
+                                <span class="time"><i class="far fa-clock"></i></span>
+                                <h3 class="timeline-header"><a href="#">{{$baby->babyDevelopmentMilestones ? \Carbon\Carbon::parse($baby->babyDevelopmentMilestones->first_step)->format('Y-m-d') :  '-' }}</a></h3>
+                            </div>
+                        </div>
+                        <!-- END timeline item -->
                     </div>
                 </div>
                 <!-- /.tab-pane -->
 
                 <div class="tab-pane" id="vaccine">
-                    <form class="form-horizontal">
-                        <div class="form-group row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputName" placeholder="Name">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputName2" placeholder="Name">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
-                            <div class="col-sm-10">
-                                <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="offset-sm-2 col-sm-10">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="offset-sm-2 col-sm-10">
-                                <button type="submit" class="btn btn-danger">Submit</button>
-                            </div>
-                        </div>
-                    </form>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th style="width: 30%">Vaccination name</th>
+                            <th>Date Vaccinated</th>
+                            <th>Reaction Occurred</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @forelse( $baby->babyVaccinations as $vaccine)
+                        <tr >
+                            <td>{{$vaccine->vacination->name}}</td>
+                            <td>{{ \Carbon\Carbon::parse($vaccine->date_of_vaccine)->format('Y-m-d') ?? '-'}}</td>
+                            <td>{{$vaccine->reaction_occured}}</td>
+                            <td>
+                                {{$vaccine->is_vaccinated}}
+                            </td>
+                        </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" @class('text-center') >
+                                    @lang('crud.common.no_items_found')
+                                </td>
+                            </tr>
+                        @endforelse
+                        </tbody>
+                    </table>
                 </div>
                 <!-- /.tab-pane -->
 
@@ -319,147 +266,95 @@
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="medical">
                     <!-- The timeline -->
-                    <div class="timeline timeline-inverse">
+                    <div class="">
                         <!-- timeline time label -->
-                        <div class="time-label">
-                        <span class="bg-danger">
-                          10 Feb. 2014
-                        </span>
-                        </div>
-                        <!-- /.timeline-label -->
-                        <!-- timeline item -->
-                        <div>
-                            <i class="fas fa-envelope bg-primary"></i>
-
-                            <div class="timeline-item">
-                                <span class="time"><i class="far fa-clock"></i> 12:05</span>
-
-                                <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                                <div class="timeline-body">
-                                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                                    weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                                    jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                                    quora plaxo ideeli hulu weebly balihoo...
-                                </div>
-                                <div class="timeline-footer">
-                                    <a href="#" class="btn btn-primary btn-sm">Read more</a>
-                                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END timeline item -->
-                        <!-- timeline item -->
-                        <div>
-                            <i class="fas fa-user bg-info"></i>
-
-                            <div class="timeline-item">
-                                <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
-
-                                <h3 class="timeline-header border-0"><a href="#">Sarah Young</a> accepted your friend request
-                                </h3>
-                            </div>
-                        </div>
-                        <!-- END timeline item -->
-                        <!-- timeline item -->
-                        <div>
-                            <i class="fas fa-comments bg-warning"></i>
-
-                            <div class="timeline-item">
-                                <span class="time"><i class="far fa-clock"></i> 27 mins ago</span>
-
-                                <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                                <div class="timeline-body">
-                                    Take me to your leader!
-                                    Switzerland is small and neutral!
-                                    We are more like Germany, ambitious and misunderstood!
-                                </div>
-                                <div class="timeline-footer">
-                                    <a href="#" class="btn btn-warning btn-flat btn-sm">View comment</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END timeline item -->
-                        <!-- timeline time label -->
-                        <div class="time-label">
-                        <span class="bg-success">
-                          3 Jan. 2014
-                        </span>
-                        </div>
-                        <!-- /.timeline-label -->
-                        <!-- timeline item -->
-                        <div>
-                            <i class="fas fa-camera bg-purple"></i>
-
-                            <div class="timeline-item">
-                                <span class="time"><i class="far fa-clock"></i> 2 days ago</span>
-
-                                <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                                <div class="timeline-body">
-                                    <img src="https://placehold.it/150x100" alt="...">
-                                    <img src="https://placehold.it/150x100" alt="...">
-                                    <img src="https://placehold.it/150x100" alt="...">
-                                    <img src="https://placehold.it/150x100" alt="...">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END timeline item -->
-                        <div>
-                            <i class="far fa-clock bg-gray"></i>
-                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th style="width: 30%">Vaccination name</th>
+                                <th>Date Vaccinated</th>
+                                <th>Reaction Occurred</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @forelse( $baby->babyVaccinations as $vaccine)
+                                <tr >
+                                    <td>{{$vaccine->vacination->name}}</td>
+                                    <td>{{ \Carbon\Carbon::parse($vaccine->date_of_vaccine)->format('Y-m-d') ?? '-'}}</td>
+                                    <td>{{$vaccine->reaction_occured}}</td>
+                                    <td>
+                                        {{$vaccine->is_vaccinated}}
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4" @class('text-center') >
+                                        @lang('crud.common.no_items_found')
+                                    </td>
+                                </tr>
+                            @endforelse
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <!-- /.tab-pane -->
 
                 <div class="tab-pane" id="health">
-                    <form class="form-horizontal">
-                        <div class="form-group row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputName" placeholder="Name">
+                    <div class="timeline timeline-inverse">
+                        <!-- timeline time label -->
+
+                        @forelse($baby->babyProgressHealthReports->sortBy('age_per_month') as $report)
+                            @php
+                                if (!empty($report)) {
+                                  $weight = (float)$report->weight;
+                                  $time = (int)$report->age_per_month;
+                                  $class = ($weight < 3 && $time <= 2) ? 'red' : (($weight < 3.1 && $time <= 2) ? 'grey' : (($weight >= 3.2 && $time < 2) ? 'green' : 'blue'));
+                                }
+                                @endphp
+                            <div class="time-label">
+                        <span class="bg-{{$class}}">
+                           {{$report->age_per_month ?? '-'}} {{__('Months')}}
+                        </span>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputName2" placeholder="Name">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
-                            <div class="col-sm-10">
-                                <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="offset-sm-2 col-sm-10">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                                    </label>
+                            <!-- /.timeline-label -->
+                            <!-- timeline item -->
+                            <div>
+                                <i class="far fa-calendar-alt bg-gray"></i>
+
+                                <div class="timeline-item">
+                                    <span class="time"><i class="far fa-info"></i></span>
+
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 30%">Height (cm)</th>
+                                            <th>Weight (kg)</th>
+                                            <th>Head circumference (cm)</th>
+                                            <th>BMI</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>{{$report->height ?? '-'}}</td>
+                                            <td>{{$report->weight ?? '-'}}</td>
+                                            <td>{{$report->head_circumference ?? '-'}}</td>
+                                            <td>{{$report->bmi ?? '-'}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="offset-sm-2 col-sm-10">
-                                <button type="submit" class="btn btn-danger">Submit</button>
-                            </div>
-                        </div>
-                    </form>
+
+                        @empty
+                            {{__('--No records--')}}
+                        @endforelse
+
+                        <!-- END timeline item -->
+
+                        <!-- END timeline item -->
+                    </div>
                 </div>
 
 {{--                card--}}

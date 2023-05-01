@@ -27,11 +27,11 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update babydevelopmentmilestones']);
         Permission::create(['name' => 'delete babydevelopmentmilestones']);
 
-        Permission::create(['name' => 'list babymedicalhostories']);
-        Permission::create(['name' => 'view babymedicalhostories']);
-        Permission::create(['name' => 'create babymedicalhostories']);
-        Permission::create(['name' => 'update babymedicalhostories']);
-        Permission::create(['name' => 'delete babymedicalhostories']);
+        Permission::create(['name' => 'list babymedicalhistories']);
+        Permission::create(['name' => 'view babymedicalhistories']);
+        Permission::create(['name' => 'create babymedicalhistories']);
+        Permission::create(['name' => 'update babymedicalhistories']);
+        Permission::create(['name' => 'delete babymedicalhistories']);
 
         Permission::create(['name' => 'list babyprogresshealthreports']);
         Permission::create(['name' => 'view babyprogresshealthreports']);

@@ -107,15 +107,16 @@ return [
         ],
     ],
 
-    'baby_medical_hostories' => [
-        'name' => 'Baby Medical Hostories',
-        'index_title' => 'Babies Medical Hostories',
-        'new_title' => 'New Baby medical hostory',
-        'create_title' => 'Add Baby MedicalHostory',
-        'edit_title' => 'Edit Baby MedicalHostory',
-        'show_title' => 'View Baby MedicalHostory',
+    'baby_medical_histories' => [
+        'name' => 'Baby Medical Histories',
+        'index_title' => 'Babies Medical Histories',
+        'new_title' => 'New Baby medical history',
+        'create_title' => 'Add Baby MedicalHistory',
+        'edit_title' => 'Edit Baby MedicalHistory',
+        'show_title' => 'View Baby MedicalHistory',
         'inputs' => [
             'desease_id' => 'Desease',
+            'baby_id'=>'Baby',
             'level_of_illness' => 'Level Of Illness',
             'description' => 'Description',
             'date' => 'Date',
@@ -130,7 +131,7 @@ return [
         'edit_title' => 'Edit Baby Progress HealthReport',
         'show_title' => 'View Baby Progress HealthReport',
         'inputs' => [
-            'age_per_month'=> 'Age per Month',
+            'age_per_month' => 'Age per Month',
             'baby_id' => 'Baby',
             'height' => 'Height',
             'weight' => 'Weight',

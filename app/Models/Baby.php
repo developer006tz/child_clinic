@@ -45,7 +45,7 @@ class Baby extends Model
 
     public function birthCertificates()
     {
-        return $this->hasMany(BirthCertificate::class);
+        return $this->hasOne(BirthCertificate::class);
     }
 
     public function babyVaccinations()
@@ -53,9 +53,14 @@ class Baby extends Model
         return $this->hasMany(BabyVaccination::class);
     }
 
+    public function babyMedicalHistory()
+    {
+        return $this->hasMany(BabyMedicalHistory::class);
+    }
+
     public function babyDevelopmentMilestones()
     {
-        return $this->hasMany(BabyDevelopmentMilestone::class);
+        return $this->hasOne(BabyDevelopmentMilestone::class);
     }
 
     public function babyProgressHealthReports()

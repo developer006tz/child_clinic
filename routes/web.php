@@ -21,7 +21,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\BabyVaccinationController;
 use App\Http\Controllers\MessageTemplateController;
 use App\Http\Controllers\BirthCertificateController;
-use App\Http\Controllers\BabyMedicalHostoryController;
+use App\Http\Controllers\BabyMedicalHistoryController;
 use App\Http\Controllers\PrenatalApointmentController;
 use App\Http\Controllers\MotherHealthStatusController;
 use App\Http\Controllers\MotherMedicalHistoryController;
@@ -91,8 +91,8 @@ Route::prefix('/')
             BabyDevelopmentMilestoneController::class
         );
         Route::resource(
-            'baby-medical-hostories',
-            BabyMedicalHostoryController::class
+            'baby-medical-histories',
+            BabyMedicalHistoryController::class
         );
         Route::resource(
             'baby-progress-health-reports',
