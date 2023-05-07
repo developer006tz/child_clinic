@@ -66,6 +66,7 @@ font-weight: 800;
     height: 35px;
     margin-bottom: 10px;
     padding: 5px;
+    border: 3px solid red;
 }
 
 p.login_error {
@@ -78,4 +79,59 @@ p.login_error {
     text-align: left !important;
     margin-top: -8px !important;
     margin-left: 22px;
+}
+
+/* Media queries for smaller devices */
+@media (max-width: 576px) {
+
+    /* Adjust the font size of the title */
+    .title-clinic {
+        font-size: 1.8rem;
+    }
+
+    .auth-form{
+        width: 90%;
+    }
+
+    /* Adjust the width of the form inputs */
+    .form-control {
+        width: 100%;
+    }
+        .form input[type=email],
+        input[type=password] {
+            border: none;
+            height: 40px;
+            margin-bottom: 10px;
+            padding: 15px;
+
+        }
+
+    /* Adjust the margin of the form check labels */
+    .form-check-label {
+        margin-left: 0;
+    }
+
+    /* Center the form check input and label */
+    .form-check-input,
+    .form-check-label {
+        display: block;
+        width: auto;
+        text-align: center;
+    }
+
+    /* Adjust the padding of the submit button */
+    #submit {
+        padding: 10px 0;
+    }
+
+}
+
+/* Media queries for larger devices */
+@media (min-width: 577px) {
+
+    /* Adjust the width of the form inputs */
+    .form-control {
+        width: 75%;
+    }
+
 }
