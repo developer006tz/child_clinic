@@ -292,5 +292,22 @@
             }
 
         </script>
+        @auth
+        @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) ||
+                    Auth::user()->can('view-any', Spatie\Permission\Models\Permission::class))
+            @can('view-any', Spatie\Permission\Models\Role::class)
+        <script>
+            var allChecked = false;
+            document.getElementById('toggle-checkbox').addEventListener('click', function() {
+                var checkboxes = document.querySelectorAll('input[name="permissions[]"]');
+                for (var i = 0; i < checkboxes.length; i++) {
+                    checkboxes[i].checked = !allChecked;
+                }
+                allChecked = !allChecked;
+            });
+        </script>
+            @endcan
+        @endif
+        @endauth
     </body>
 </html>
