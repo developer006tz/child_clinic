@@ -1,58 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-{{--<div class="container">
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">
-                <a href="{{ route('babies.index') }}" class="mr-4"
-                    ><i class="icon ion-md-arrow-back"></i
-                ></a>
-                @lang('crud.babies.show_title')
-            </h4>
 
-            <div class="mt-4">
-                <div class="mb-4">
-                    <h5>@lang('crud.babies.inputs.name')</h5>
-                    <span>{{ $baby->name ?? '-' }}</span>
-                </div>
-                <div class="mb-4">
-                    <h5>@lang('crud.babies.inputs.gender')</h5>
-                    <span>{{ $baby->gender ?? '-' }}</span>
-                </div>
-                <div class="mb-4">
-                    <h5>@lang('crud.babies.inputs.birthdate')</h5>
-                    <span>{{ $baby->birthdate ?? '-' }}</span>
-                </div>
-                <div class="mb-4">
-                    <h5>@lang('crud.babies.inputs.weight_at_birth')</h5>
-                    <span>{{ $baby->weight_at_birth ?? '-' }}</span>
-                </div>
-                <div class="mb-4">
-                    <h5>@lang('crud.babies.inputs.mother_id')</h5>
-                    <span>{{ optional($baby->mother)->name ?? '-' }}</span>
-                </div>
-                <div class="mb-4">
-                    <h5>@lang('crud.babies.inputs.father_id')</h5>
-                    <span>{{ optional($baby->father)->name ?? '-' }}</span>
-                </div>
-            </div>
-
-            <div class="mt-4">
-                <a href="{{ route('babies.index') }}" class="btn btn-light">
-                    <i class="icon ion-md-return-left"></i>
-                    @lang('crud.common.back')
-                </a>
-
-                @can('create', App\Models\Baby::class)
-                <a href="{{ route('babies.create') }}" class="btn btn-light">
-                    <i class="icon ion-md-add"></i> @lang('crud.common.create')
-                </a>
-                @endcan
-            </div>
-        </div>
-    </div>
-</div>--}}
 
 <!-- /.col -->
 <div class="container-fluid">
@@ -361,97 +310,16 @@
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="card">
                     <!-- The timeline -->
-                    <div class="timeline timeline-inverse">
-                        <!-- timeline time label -->
-                        <div class="time-label">
-                        <span class="bg-danger">
-                          10 Feb. 2014
-                        </span>
+                    <button id="printButton">Print</button>
+                    <div class="card_wrapper">
+                        <div class="title text-center">
+                            <h3>ROAD TO HEALTH CHART</h3>
+                            <h6>for baby {{ $baby->name ?? '-' }}</h6>
                         </div>
-                        <!-- /.timeline-label -->
-                        <!-- timeline item -->
-                        <div>
-                            <i class="fas fa-envelope bg-primary"></i>
-
-                            <div class="timeline-item">
-                                <span class="time"><i class="far fa-clock"></i> 12:05</span>
-
-                                <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                                <div class="timeline-body">
-                                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                                    weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                                    jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                                    quora plaxo ideeli hulu weebly balihoo...
-                                </div>
-                                <div class="timeline-footer">
-                                    <a href="#" class="btn btn-primary btn-sm">Read more</a>
-                                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END timeline item -->
-                        <!-- timeline item -->
-                        <div>
-                            <i class="fas fa-user bg-info"></i>
-
-                            <div class="timeline-item">
-                                <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
-
-                                <h3 class="timeline-header border-0"><a href="#">Sarah Young</a> accepted your friend request
-                                </h3>
-                            </div>
-                        </div>
-                        <!-- END timeline item -->
-                        <!-- timeline item -->
-                        <div>
-                            <i class="fas fa-comments bg-warning"></i>
-
-                            <div class="timeline-item">
-                                <span class="time"><i class="far fa-clock"></i> 27 mins ago</span>
-
-                                <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                                <div class="timeline-body">
-                                    Take me to your leader!
-                                    Switzerland is small and neutral!
-                                    We are more like Germany, ambitious and misunderstood!
-                                </div>
-                                <div class="timeline-footer">
-                                    <a href="#" class="btn btn-warning btn-flat btn-sm">View comment</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END timeline item -->
-                        <!-- timeline time label -->
-                        <div class="time-label">
-                        <span class="bg-success">
-                          3 Jan. 2014
-                        </span>
-                        </div>
-                        <!-- /.timeline-label -->
-                        <!-- timeline item -->
-                        <div>
-                            <i class="fas fa-camera bg-purple"></i>
-
-                            <div class="timeline-item">
-                                <span class="time"><i class="far fa-clock"></i> 2 days ago</span>
-
-                                <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                                <div class="timeline-body">
-                                    <img src="https://placehold.it/150x100" alt="...">
-                                    <img src="https://placehold.it/150x100" alt="...">
-                                    <img src="https://placehold.it/150x100" alt="...">
-                                    <img src="https://placehold.it/150x100" alt="...">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END timeline item -->
-                        <div>
-                            <i class="far fa-clock bg-gray"></i>
-                        </div>
+                        <canvas id="roadToHealth"></canvas>
                     </div>
+                       
+                    
                 </div>
                 <!-- /.tab-pane -->
 

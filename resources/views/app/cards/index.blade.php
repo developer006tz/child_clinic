@@ -17,9 +17,6 @@
                 @endcan
             </div>
         </div>
-        <div class="row">
-            <canvas id="growthChart"></canvas>
-        </div>
     </div>
 
     <div class="card">
