@@ -25,6 +25,14 @@ return new class extends Migration {
 
             $table->timestamps();
         });
+
+        DB::table('vacinations')->insert([
+            ['name' => 'Hepatitis B Vaccine', 'type' => 'Inactivated'],
+            ['name' => 'Rotavirus Vaccine', 'type' => 'Live-attenuated'],
+            ['name' => 'DTaP Vaccine', 'type' => 'Other'],
+            ['name' => 'Hib Vaccine', 'type' => 'Subunit'],
+            ['name' => 'Pneumococcal', 'type' => 'Subunit'],
+        ]);
     }
 
     /**
