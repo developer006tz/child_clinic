@@ -13,7 +13,7 @@ class MessageTemplateSeeder extends Seeder
     public function run(): void
     {
         MessageTemplate::factory()
-            ->count(5)
+            ->count(0)
             ->create();
     }
 }

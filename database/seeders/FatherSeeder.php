@@ -13,7 +13,7 @@ class FatherSeeder extends Seeder
     public function run(): void
     {
         Father::factory()
-            ->count(5)
+            ->count(0)
             ->create();
     }
 }

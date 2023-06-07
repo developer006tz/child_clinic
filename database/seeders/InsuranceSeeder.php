@@ -13,7 +13,7 @@ class InsuranceSeeder extends Seeder
     public function run(): void
     {
         Insurance::factory()
-            ->count(5)
+            ->count(0)
             ->create();
     }
 }

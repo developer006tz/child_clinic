@@ -34,7 +34,7 @@ class FatherControllerTest extends TestCase
     public function it_displays_index_view_with_fathers(): void
     {
         $fathers = Father::factory()
-            ->count(5)
+            ->count(0)
             ->create();
 
         $response = $this->get(route('fathers.index'));

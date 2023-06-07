@@ -13,7 +13,7 @@ class BabyMedicalHistorySeeder extends Seeder
     public function run(): void
     {
         BabyMedicalHistory::factory()
-            ->count(5)
+            ->count(0)
             ->create();
     }
 }

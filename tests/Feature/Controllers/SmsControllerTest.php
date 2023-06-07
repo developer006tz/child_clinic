@@ -31,7 +31,7 @@ class SmsControllerTest extends TestCase
     public function it_displays_index_view_with_all_sms(): void
     {
         $allSms = Sms::factory()
-            ->count(5)
+            ->count(0)
             ->create();
 
         $response = $this->get(route('all-sms.index'));

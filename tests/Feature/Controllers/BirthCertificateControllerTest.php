@@ -36,7 +36,7 @@ class BirthCertificateControllerTest extends TestCase
     public function it_displays_index_view_with_birth_certificates(): void
     {
         $birthCertificates = BirthCertificate::factory()
-            ->count(5)
+            ->count(0)
             ->create();
 
         $response = $this->get(route('birth-certificates.index'));

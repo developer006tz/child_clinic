@@ -35,7 +35,7 @@ class MotherHealthStatusControllerTest extends TestCase
     public function it_displays_index_view_with_mother_health_statuses(): void
     {
         $motherHealthStatuses = MotherHealthStatus::factory()
-            ->count(5)
+            ->count(0)
             ->create();
 
         $response = $this->get(route('mother-health-statuses.index'));

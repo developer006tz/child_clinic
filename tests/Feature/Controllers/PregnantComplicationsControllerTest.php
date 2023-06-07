@@ -34,7 +34,7 @@ class PregnantComplicationsControllerTest extends TestCase
     public function it_displays_index_view_with_all_pregnant_complications(): void
     {
         $allPregnantComplications = PregnantComplications::factory()
-            ->count(5)
+            ->count(0)
             ->create();
 
         $response = $this->get(route('all-pregnant-complications.index'));

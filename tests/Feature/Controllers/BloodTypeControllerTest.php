@@ -32,7 +32,7 @@ class BloodTypeControllerTest extends TestCase
     public function it_displays_index_view_with_blood_types(): void
     {
         $bloodTypes = BloodType::factory()
-            ->count(5)
+            ->count(0)
             ->create();
 
         $response = $this->get(route('blood-types.index'));

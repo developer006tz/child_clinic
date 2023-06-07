@@ -13,7 +13,7 @@ class MotherHealthStatusSeeder extends Seeder
     public function run(): void
     {
         MotherHealthStatus::factory()
-            ->count(5)
+            ->count(0)
             ->create();
     }
 }

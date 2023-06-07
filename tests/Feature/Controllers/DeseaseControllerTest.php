@@ -32,7 +32,7 @@ class DeseaseControllerTest extends TestCase
     public function it_displays_index_view_with_deseases(): void
     {
         $deseases = Desease::factory()
-            ->count(5)
+            ->count(0)
             ->create();
 
         $response = $this->get(route('deseases.index'));

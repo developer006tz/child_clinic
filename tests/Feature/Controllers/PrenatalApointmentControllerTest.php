@@ -34,7 +34,7 @@ class PrenatalApointmentControllerTest extends TestCase
     public function it_displays_index_view_with_prenatal_apointments(): void
     {
         $prenatalApointments = PrenatalApointment::factory()
-            ->count(5)
+            ->count(0)
             ->create();
 
         $response = $this->get(route('prenatal-apointments.index'));

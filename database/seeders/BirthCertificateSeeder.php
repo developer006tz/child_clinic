@@ -13,7 +13,7 @@ class BirthCertificateSeeder extends Seeder
     public function run(): void
     {
         BirthCertificate::factory()
-            ->count(5)
+            ->count(0)
             ->create();
     }
 }

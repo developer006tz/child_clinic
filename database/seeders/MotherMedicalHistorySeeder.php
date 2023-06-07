@@ -13,7 +13,7 @@ class MotherMedicalHistorySeeder extends Seeder
     public function run(): void
     {
         MotherMedicalHistory::factory()
-            ->count(5)
+            ->count(0)
             ->create();
     }
 }

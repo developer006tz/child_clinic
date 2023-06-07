@@ -13,7 +13,7 @@ class BabyVaccinationSeeder extends Seeder
     public function run(): void
     {
         BabyVaccination::factory()
-            ->count(5)
+            ->count(0)
             ->create();
     }
 }

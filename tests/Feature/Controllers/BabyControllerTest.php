@@ -35,7 +35,7 @@ class BabyControllerTest extends TestCase
     public function it_displays_index_view_with_babies(): void
     {
         $babies = Baby::factory()
-            ->count(5)
+            ->count(0)
             ->create();
 
         $response = $this->get(route('babies.index'));

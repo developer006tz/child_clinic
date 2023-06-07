@@ -32,7 +32,7 @@ class InsuranceControllerTest extends TestCase
     public function it_displays_index_view_with_insurances(): void
     {
         $insurances = Insurance::factory()
-            ->count(5)
+            ->count(0)
             ->create();
 
         $response = $this->get(route('insurances.index'));

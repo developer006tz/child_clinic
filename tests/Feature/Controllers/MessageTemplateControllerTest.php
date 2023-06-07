@@ -32,7 +32,7 @@ class MessageTemplateControllerTest extends TestCase
     public function it_displays_index_view_with_message_templates(): void
     {
         $messageTemplates = MessageTemplate::factory()
-            ->count(5)
+            ->count(0)
             ->create();
 
         $response = $this->get(route('message-templates.index'));

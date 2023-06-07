@@ -13,7 +13,7 @@ class PrenatalApointmentSeeder extends Seeder
     public function run(): void
     {
         PrenatalApointment::factory()
-            ->count(5)
+            ->count(0)
             ->create();
     }
 }

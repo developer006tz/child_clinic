@@ -13,7 +13,7 @@ class DeseaseSeeder extends Seeder
     public function run(): void
     {
         Desease::factory()
-            ->count(5)
+            ->count(0)
             ->create();
     }
 }

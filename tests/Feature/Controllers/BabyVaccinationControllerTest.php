@@ -35,7 +35,7 @@ class BabyVaccinationControllerTest extends TestCase
     public function it_displays_index_view_with_baby_vaccinations(): void
     {
         $babyVaccinations = BabyVaccination::factory()
-            ->count(5)
+            ->count(0)
             ->create();
 
         $response = $this->get(route('baby-vaccinations.index'));

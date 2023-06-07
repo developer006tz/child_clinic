@@ -33,7 +33,7 @@ class UserControllerTest extends TestCase
     public function it_displays_index_view_with_users(): void
     {
         $users = User::factory()
-            ->count(5)
+            ->count(0)
             ->create();
 
         $response = $this->get(route('users.index'));

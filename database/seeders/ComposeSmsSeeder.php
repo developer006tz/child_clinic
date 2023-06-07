@@ -13,7 +13,7 @@ class ComposeSmsSeeder extends Seeder
     public function run(): void
     {
         ComposeSms::factory()
-            ->count(5)
+            ->count(0)
             ->create();
     }
 }

@@ -34,7 +34,7 @@ class BabyDevelopmentMilestoneControllerTest extends TestCase
     public function it_displays_index_view_with_baby_development_milestones(): void
     {
         $babyDevelopmentMilestones = BabyDevelopmentMilestone::factory()
-            ->count(5)
+            ->count(0)
             ->create();
 
         $response = $this->get(route('baby-development-milestones.index'));

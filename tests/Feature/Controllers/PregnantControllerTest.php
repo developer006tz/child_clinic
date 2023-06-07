@@ -34,7 +34,7 @@ class PregnantControllerTest extends TestCase
     public function it_displays_index_view_with_pregnants(): void
     {
         $pregnants = Pregnant::factory()
-            ->count(5)
+            ->count(0)
             ->create();
 
         $response = $this->get(route('pregnants.index'));

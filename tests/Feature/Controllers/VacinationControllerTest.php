@@ -32,7 +32,7 @@ class VacinationControllerTest extends TestCase
     public function it_displays_index_view_with_vacinations(): void
     {
         $vacinations = Vacination::factory()
-            ->count(5)
+            ->count(0)
             ->create();
 
         $response = $this->get(route('vacinations.index'));

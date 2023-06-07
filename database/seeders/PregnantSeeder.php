@@ -13,7 +13,7 @@ class PregnantSeeder extends Seeder
     public function run(): void
     {
         Pregnant::factory()
-            ->count(5)
+            ->count(0)
             ->create();
     }
 }

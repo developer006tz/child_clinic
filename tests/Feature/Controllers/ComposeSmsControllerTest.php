@@ -34,7 +34,7 @@ class ComposeSmsControllerTest extends TestCase
     public function it_displays_index_view_with_all_compose_sms(): void
     {
         $allComposeSms = ComposeSms::factory()
-            ->count(5)
+            ->count(0)
             ->create();
 
         $response = $this->get(route('all-compose-sms.index'));

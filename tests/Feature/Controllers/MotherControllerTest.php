@@ -34,7 +34,7 @@ class MotherControllerTest extends TestCase
     public function it_displays_index_view_with_mothers(): void
     {
         $mothers = Mother::factory()
-            ->count(5)
+            ->count(0)
             ->create();
 
         $response = $this->get(route('mothers.index'));

@@ -13,7 +13,7 @@ class ClinicSeeder extends Seeder
     public function run(): void
     {
         Clinic::factory()
-            ->count(5)
+            ->count(0)
             ->create();
     }
 }
