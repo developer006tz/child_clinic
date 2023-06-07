@@ -220,20 +220,20 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th style="width: 30%">Vaccination name</th>
-                                <th>Date Vaccinated</th>
-                                <th>Reaction Occurred</th>
-                                <th>Status</th>
+                                <th style="width: 30%">desease</th>
+                                <th>Level of illness</th>
+                                <th>Description</th>
+                                <th>Date</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse( $baby->babyVaccinations as $vaccine)
+                            @forelse( $baby->babyMedicalHistory as $history)
                                 <tr >
-                                    <td>{{$vaccine->vacination->name}}</td>
-                                    <td>{{ \Carbon\Carbon::parse($vaccine->date_of_vaccine)->format('Y-m-d') ?? '-'}}</td>
-                                    <td>{{$vaccine->reaction_occured}}</td>
+                                    <td>{{$history->desease->name ?? '-'}}</td>
+                                    <td>{{$history->level_of_illness ?? '-'}}</td>
+                                    <td>{{$history->description}}</td>
                                     <td>
-                                        {{$vaccine->is_vaccinated}}
+                                        {{ \Carbon\Carbon::parse($history->date)->format('Y-m-d') ?? '-'}}
                                     </td>
                                 </tr>
                             @empty
