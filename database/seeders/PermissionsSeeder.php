@@ -155,8 +155,23 @@ class PermissionsSeeder extends Seeder
 
         // Create user role and assign existing permissions
         $currentPermissions = Permission::all();
-        $userRole = Role::create(['name' => 'user']);
+        $userRole = Role::create(['name' => 'staff']);
         $userRole->givePermissionTo($currentPermissions);
+
+        //create parent role and assign permissions related to parents
+        $parentRole = Role::create(['name' => 'parent']);
+        $parentRole->givePermissionTo(['list babies', 'view babies', 'create babies', 'update babies', 'delete babies', 'list clinics', 'view clinics', 'list insurances', 'view insurances', 'list pregnants', 'view pregnants', 'list prenatalapointments', 'view prenatalapointments', 'list schedules', 'view schedules', 'list vacinations', 'view vacinations']);
+
+        //create doctor role and assign permissions related to doctors
+        $doctorRole = Role::create(['name' => 'doctor']);
+        $doctorRole->givePermissionTo(['list babies', 'view babies', 'list clinics', 'view clinics', 'list pregnants', 'view pregnants', 'list prenatalapointments', 'view prenatalapointments', 'list schedules', 'view schedules', 'list vacinations', 'view vacinations']);
+
+        //create nurse role and assign permissions related to nurses
+        $nurseRole = Role::create(['name' => 'nurse']);
+        $nurseRole->givePermissionTo(['list babies', 'view babies', 'list clinics', 'view clinics', 'list pregnants', 'view pregnants', 'list prenatalapointments', 'view prenatalapointments', 'list schedules', 'view schedules', 'list vacinations', 'view vacinations']);
+
+        
+       
 
         // Create admin exclusive permissions
         Permission::create(['name' => 'list roles']);
@@ -176,6 +191,10 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'create users']);
         Permission::create(['name' => 'update users']);
         Permission::create(['name' => 'delete users']);
+
+        //create admin role and assign permissions related to admins
+        $adminRole = Role::create(['name' => 'admin']);
+        $adminRole->givePermissionTo(['list roles', 'view roles', 'create roles', 'update roles', 'delete roles', 'list permissions', 'view permissions', 'create permissions', 'update permissions', 'delete permissions', 'list users', 'view users', 'create users', 'update users', 'delete users']);
 
         // Create admin role and assign all permissions
         $allPermissions = Permission::all();
