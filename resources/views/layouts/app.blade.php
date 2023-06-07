@@ -337,40 +337,8 @@ var myChart = new Chart(ctx, {
                 top: 0,
                 bottom: 20
             }
-        },
-        plugins: {
-            annotation: {
-                annotations: [
-                    {
-                        type: 'box',
-                        drawTime: 'beforeDatasetsDraw',
-                        xScaleID: 'x',
-                        yScaleID: 'y',
-                        xMin: 2, // Normal zone start index
-                        xMax: 8, // Normal zone end index
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)', // Normal zone color
-                    },
-                    {
-                        type: 'box',
-                        drawTime: 'beforeDatasetsDraw',
-                        xScaleID: 'x',
-                        yScaleID: 'y',
-                        xMin: 6, // Danger zone start index
-                        xMax: 10, // Danger zone end index
-                        backgroundColor: 'rgba(255, 0, 0, 0.2)', // Danger zone color
-                    },
-                    {
-                        type: 'box',
-                        drawTime: 'beforeDatasetsDraw',
-                        xScaleID: 'x',
-                        yScaleID: 'y',
-                        xMin: 10, // Poor growth zone start index
-                        xMax: 12, // Poor growth zone end index
-                        backgroundColor: 'rgba(255, 206, 86, 0.2)', // Poor growth zone color
-                    }
-                ]
-            }
         }
+        
     }
 }); 
 
