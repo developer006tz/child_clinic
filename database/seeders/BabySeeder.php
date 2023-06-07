@@ -13,7 +13,7 @@ class BabySeeder extends Seeder
     public function run(): void
     {
         Baby::factory()
-            ->count(3)
+            ->count(0)
             ->create();
     }
 }
