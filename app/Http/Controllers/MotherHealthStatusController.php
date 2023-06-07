@@ -62,7 +62,7 @@ class MotherHealthStatusController extends Controller
         $motherHealthStatus = MotherHealthStatus::create($validated);
 
         return redirect()
-            ->route('mother-health-statuses.edit', $motherHealthStatus)
+            ->route('mother-health-statuses.index', $motherHealthStatus)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -113,7 +113,7 @@ class MotherHealthStatusController extends Controller
         $motherHealthStatus->update($validated);
 
         return redirect()
-            ->route('mother-health-statuses.edit', $motherHealthStatus)
+            ->route('mother-health-statuses.index', $motherHealthStatus)
             ->withSuccess(__('crud.common.saved'));
     }
 

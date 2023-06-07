@@ -50,7 +50,7 @@ class DeseaseController extends Controller
         $desease = Desease::create($validated);
 
         return redirect()
-            ->route('deseases.edit', $desease)
+            ->route('deseases.index', $desease)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -88,7 +88,7 @@ class DeseaseController extends Controller
         $desease->update($validated);
 
         return redirect()
-            ->route('deseases.edit', $desease)
+            ->route('deseases.index', $desease)
             ->withSuccess(__('crud.common.saved'));
     }
 

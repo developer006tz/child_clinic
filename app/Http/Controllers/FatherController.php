@@ -53,7 +53,7 @@ class FatherController extends Controller
         $father = Father::create($validated);
 
         return redirect()
-            ->route('fathers.edit', $father)
+            ->route('fathers.index', $father)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -93,7 +93,7 @@ class FatherController extends Controller
         $father->update($validated);
 
         return redirect()
-            ->route('fathers.edit', $father)
+            ->route('fathers.index', $father)
             ->withSuccess(__('crud.common.saved'));
     }
 

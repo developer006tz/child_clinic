@@ -65,7 +65,7 @@ class BabyDevelopmentMilestoneController extends Controller
 
         return redirect()
             ->route(
-                'baby-development-milestones.edit',
+                'baby-development-milestones.index',
                 $babyDevelopmentMilestone
             )
             ->withSuccess(__('crud.common.created'));
@@ -118,7 +118,7 @@ class BabyDevelopmentMilestoneController extends Controller
 
         return redirect()
             ->route(
-                'baby-development-milestones.edit',
+                'baby-development-milestones.index',
                 $babyDevelopmentMilestone
             )
             ->withSuccess(__('crud.common.saved'));

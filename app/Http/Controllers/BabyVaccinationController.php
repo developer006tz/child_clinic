@@ -62,7 +62,7 @@ class BabyVaccinationController extends Controller
         $babyVaccination = BabyVaccination::create($validated);
 
         return redirect()
-            ->route('baby-vaccinations.edit', $babyVaccination)
+            ->route('baby-vaccinations.index', $babyVaccination)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -110,7 +110,7 @@ class BabyVaccinationController extends Controller
         $babyVaccination->update($validated);
 
         return redirect()
-            ->route('baby-vaccinations.edit', $babyVaccination)
+            ->route('baby-vaccinations.index', $babyVaccination)
             ->withSuccess(__('crud.common.saved'));
     }
 

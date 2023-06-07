@@ -63,7 +63,7 @@ class BabyProgressHealthReportController extends Controller
 
         return redirect()
             ->route(
-                'baby-progress-health-reports.edit',
+            'baby-progress-health-reports.index',
                 $babyProgressHealthReport
             )
             ->withSuccess(__('crud.common.created'));
@@ -116,7 +116,7 @@ class BabyProgressHealthReportController extends Controller
 
         return redirect()
             ->route(
-                'baby-progress-health-reports.edit',
+            'baby-progress-health-reports.index',
                 $babyProgressHealthReport
             )
             ->withSuccess(__('crud.common.saved'));

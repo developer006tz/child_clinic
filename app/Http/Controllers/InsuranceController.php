@@ -50,7 +50,7 @@ class InsuranceController extends Controller
         $insurance = Insurance::create($validated);
 
         return redirect()
-            ->route('insurances.edit', $insurance)
+            ->route('insurances.index', $insurance)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -88,7 +88,7 @@ class InsuranceController extends Controller
         $insurance->update($validated);
 
         return redirect()
-            ->route('insurances.edit', $insurance)
+            ->route('insurances.index', $insurance)
             ->withSuccess(__('crud.common.saved'));
     }
 

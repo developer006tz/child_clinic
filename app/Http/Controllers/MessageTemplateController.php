@@ -54,7 +54,7 @@ class MessageTemplateController extends Controller
         $messageTemplate = MessageTemplate::create($validated);
 
         return redirect()
-            ->route('message-templates.edit', $messageTemplate)
+            ->route('message-templates.index', $messageTemplate)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -96,7 +96,7 @@ class MessageTemplateController extends Controller
         $messageTemplate->update($validated);
 
         return redirect()
-            ->route('message-templates.edit', $messageTemplate)
+            ->route('message-templates.index', $messageTemplate)
             ->withSuccess(__('crud.common.saved'));
     }
 

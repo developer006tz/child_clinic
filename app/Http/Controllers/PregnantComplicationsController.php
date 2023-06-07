@@ -60,7 +60,7 @@ class PregnantComplicationsController extends Controller
         $pregnantComplications = PregnantComplications::create($validated);
 
         return redirect()
-            ->route('all-pregnant-complications.edit', $pregnantComplications)
+            ->route('all-pregnant-complications.index', $pregnantComplications)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -110,7 +110,7 @@ class PregnantComplicationsController extends Controller
         $pregnantComplications->update($validated);
 
         return redirect()
-            ->route('all-pregnant-complications.edit', $pregnantComplications)
+            ->route('all-pregnant-complications.index', $pregnantComplications)
             ->withSuccess(__('crud.common.saved'));
     }
 

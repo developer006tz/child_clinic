@@ -50,7 +50,7 @@ class BloodTypeController extends Controller
         $bloodType = BloodType::create($validated);
 
         return redirect()
-            ->route('blood-types.edit', $bloodType)
+            ->route('blood-types.index', $bloodType)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -88,7 +88,7 @@ class BloodTypeController extends Controller
         $bloodType->update($validated);
 
         return redirect()
-            ->route('blood-types.edit', $bloodType)
+            ->route('blood-types.index', $bloodType)
             ->withSuccess(__('crud.common.saved'));
     }
 

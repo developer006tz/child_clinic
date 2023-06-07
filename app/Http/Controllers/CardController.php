@@ -210,7 +210,7 @@ class CardController extends Controller
         $card = Card::create($validated);
 
         return redirect()
-            ->route('cards.edit', $card)
+            ->route('cards.index', $card)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -251,7 +251,7 @@ class CardController extends Controller
         $card->update($validated);
 
         return redirect()
-            ->route('cards.edit', $card)
+            ->route('cards.index', $card)
             ->withSuccess(__('crud.common.saved'));
     }
 

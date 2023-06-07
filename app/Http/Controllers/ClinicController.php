@@ -50,7 +50,7 @@ class ClinicController extends Controller
         $clinic = Clinic::create($validated);
 
         return redirect()
-            ->route('clinics.edit', $clinic)
+            ->route('clinics.index', $clinic)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -88,7 +88,7 @@ class ClinicController extends Controller
         $clinic->update($validated);
 
         return redirect()
-            ->route('clinics.edit', $clinic)
+            ->route('clinics.index', $clinic)
             ->withSuccess(__('crud.common.saved'));
     }
 

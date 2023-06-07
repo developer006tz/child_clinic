@@ -50,7 +50,7 @@ class ScheduleController extends Controller
         $schedule = Schedule::create($validated);
 
         return redirect()
-            ->route('schedules.edit', $schedule)
+            ->route('schedules.index', $schedule)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -88,7 +88,7 @@ class ScheduleController extends Controller
         $schedule->update($validated);
 
         return redirect()
-            ->route('schedules.edit', $schedule)
+            ->route('schedules.index', $schedule)
             ->withSuccess(__('crud.common.saved'));
     }
 

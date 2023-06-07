@@ -64,7 +64,7 @@ class BirthCertificateController extends Controller
         $birthCertificate = BirthCertificate::create($validated);
 
         return redirect()
-            ->route('birth-certificates.edit', $birthCertificate)
+            ->route('birth-certificates.index', $birthCertificate)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -113,7 +113,7 @@ class BirthCertificateController extends Controller
         $birthCertificate->update($validated);
 
         return redirect()
-            ->route('birth-certificates.edit', $birthCertificate)
+            ->route('birth-certificates.index', $birthCertificate)
             ->withSuccess(__('crud.common.saved'));
     }
 

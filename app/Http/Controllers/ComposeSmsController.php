@@ -56,7 +56,7 @@ class ComposeSmsController extends Controller
         $composeSms = ComposeSms::create($validated);
 
         return redirect()
-            ->route('all-compose-sms.edit', $composeSms)
+            ->route('all-compose-sms.index', $composeSms)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -99,7 +99,7 @@ class ComposeSmsController extends Controller
         $composeSms->update($validated);
 
         return redirect()
-            ->route('all-compose-sms.edit', $composeSms)
+            ->route('all-compose-sms.index', $composeSms)
             ->withSuccess(__('crud.common.saved'));
     }
 

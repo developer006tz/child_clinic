@@ -57,7 +57,7 @@ class PrenatalApointmentController extends Controller
         $prenatalApointment = PrenatalApointment::create($validated);
 
         return redirect()
-            ->route('prenatal-apointments.edit', $prenatalApointment)
+            ->route('prenatal-apointments.index', $prenatalApointment)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -107,7 +107,7 @@ class PrenatalApointmentController extends Controller
         $prenatalApointment->update($validated);
 
         return redirect()
-            ->route('prenatal-apointments.edit', $prenatalApointment)
+            ->route('prenatal-apointments.index', $prenatalApointment)
             ->withSuccess(__('crud.common.saved'));
     }
 

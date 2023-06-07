@@ -57,7 +57,7 @@ class MotherMedicalHistoryController extends Controller
         $motherMedicalHistory = MotherMedicalHistory::create($validated);
 
         return redirect()
-            ->route('mother-medical-histories.edit', $motherMedicalHistory)
+            ->route('mother-medical-histories.index', $motherMedicalHistory)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -107,7 +107,7 @@ class MotherMedicalHistoryController extends Controller
         $motherMedicalHistory->update($validated);
 
         return redirect()
-            ->route('mother-medical-histories.edit', $motherMedicalHistory)
+            ->route('mother-medical-histories.index', $motherMedicalHistory)
             ->withSuccess(__('crud.common.saved'));
     }
 

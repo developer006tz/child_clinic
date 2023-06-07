@@ -50,7 +50,7 @@ class VacinationController extends Controller
         $vacination = Vacination::create($validated);
 
         return redirect()
-            ->route('vacinations.edit', $vacination)
+            ->route('vacinations.index', $vacination)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -88,7 +88,7 @@ class VacinationController extends Controller
         $vacination->update($validated);
 
         return redirect()
-            ->route('vacinations.edit', $vacination)
+            ->route('vacinations.index', $vacination)
             ->withSuccess(__('crud.common.saved'));
     }
 
