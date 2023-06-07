@@ -41,9 +41,9 @@ class BabyMedicalHistoryController extends Controller
         $this->authorize('create', BabyMedicalHistory::class);
 
         $deseases = Desease::pluck('name', 'id');
-        $baby = Baby::pluck('name', 'id');
+        $babies = Baby::pluck('name', 'id');
 
-        return view('app.baby_medical_histories.create', compact('deseases','baby'));
+        return view('app.baby_medical_histories.create', compact('deseases','babies'));
     }
 
     /**
@@ -88,11 +88,11 @@ class BabyMedicalHistoryController extends Controller
         $this->authorize('update', $babyMedicalHistory);
 
         $deseases = Desease::pluck('name', 'id');
-        $baby = Baby::pluck('name','id');
+        $babies = Baby::pluck('name','id');
 
         return view(
             'app.baby_medical_histories.edit',
-            compact('babyMedicalHistory', 'deseases','baby')
+            compact('babyMedicalHistory', 'deseases', 'babies')
         );
     }
 

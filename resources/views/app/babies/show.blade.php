@@ -332,20 +332,19 @@
 </div>
     </div>
     </div>
-    <script>
-        $(document).ready(function(){
-            $("li.nav-item a.nav-link#navCard").click(function(){
-                $("div.col-md-3.profile").hide();
-                $("div.col-md-9#all-info").removeClass("col-md-9").addClass("col-md-12");
-            });
-            $("li.nav-item a.nav-link:not(#navCard)").click(function(){
-                $("div.col-md-3.profile").show();
-                $("div.col-md-12#all-info").removeClass("col-md-12").addClass("col-md-9");
-            });
-        });
-    </script>
+
+    {{-- @php
+        $weight = (float)$baby->babyProgressHealthReports->last()->weight;
+        $time = (int)$baby->babyProgressHealthReports->last()->age_per_month;
+        $class = ($weight < 3 && $time <= 2) ? 'red' : (($weight < 3.1 && $time <= 2) ? 'grey' : (($weight >= 3.2 && $time < 2) ? 'green' : 'blue'));
+    @endphp --}}
+
+
+  
     @push('scripts')
       <script>
+
+        
 var ctx = document.getElementById('roadToHealth').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'line',
@@ -419,6 +418,17 @@ function printChart() {
     printWindow.document.write('</body></html>');
 }
 
+
+ $(document).ready(function(){
+            $("li.nav-item a.nav-link#navCard").click(function(){
+                $("div.col-md-3.profile").hide();
+                $("div.col-md-9#all-info").removeClass("col-md-9").addClass("col-md-12");
+            });
+            $("li.nav-item a.nav-link:not(#navCard)").click(function(){
+                $("div.col-md-3.profile").show();
+                $("div.col-md-12#all-info").removeClass("col-md-12").addClass("col-md-9");
+            });
+        });
 
 
 </script>

@@ -6,10 +6,14 @@
         <x-inputs.select name="baby_id" label="Baby" @class('select2') required >
             @php $selected = old('baby_id', ($editing ? $babyMedicalHistory->baby_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Baby</option>
-            @foreach($deseases as $value => $label)
+            @foreach($babies as $value => $label)
                 <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
             @endforeach
         </x-inputs.select>
+
+      
+
+
     </x-inputs.group>
     <x-inputs.group class="col-sm-12">
         <x-inputs.select name="desease_id" label="Desease"  @class('select2') required>
