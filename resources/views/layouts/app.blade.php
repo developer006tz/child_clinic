@@ -107,8 +107,7 @@
 
         @livewireScripts
 
-        @stack('scripts')
-
+        
         <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
         @if (session()->has('success'))
@@ -167,6 +166,7 @@
         <script src="https://cdn.datatables.net/searchpanes/2.1.2/js/dataTables.searchPanes.min.js"></script>
         <script src="https://cdn.datatables.net/select/1.6.2/js/dataTables.select.min.js"></script>
         <script src="https://cdn.datatables.net/staterestore/1.2.2/js/dataTables.stateRestore.min.js"></script>
+@stack('scripts')
 
     <script>
         $(document).ready( function () {
@@ -293,83 +293,7 @@
             }
 
         </script> --}}
-        <script>
-var ctx = document.getElementById('roadToHealth').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Birth', '2 months', '4 months', '6 months', '9 months', '12 months', '18 months', '24 months', '36 months', '48 months', '60 months'],
-        datasets: [{
-            label: 'Weight',
-            data: [7.2, 8, 10, 13, 15, 18, 20, 24, 28, 35, 42, 48],
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(255, 99, 132, 1)',
-            fill: false,
-            tension: 0.5
-        }, {
-            label: 'Length',
-            data: [20, 21, 23, 25, 27, 29, 31, 33, 35, 38, 41, 44],
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            fill: false,
-            tension: 0.5
-        }, {
-            label: 'Head Circumference',
-            data: [14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5],
-            backgroundColor: 'rgba(255, 206, 86, 0.2)',
-            borderColor: 'rgba(255, 206, 86, 1)',
-            fill: false,
-            tension: 0.5
-        }]
-    },
-    options: {
-        title: {
-            display: true,
-            text: 'Road to Health'
-        },
-        legend: {
-            display: true
-        },
-        layout: {
-            padding: {
-                left: 20,
-                right: 20,
-                top: 0,
-                bottom: 20
-            }
-        }
-        
-    }
-}); 
-
-document.getElementById("printButton").addEventListener("click", function() {
-    printChart();
-});
-
-function printChart() {
-    var chartArea = document.getElementById('roadToHealth').getContext('2d').canvas;
-    var chartImage = chartArea.toDataURL("image/png");
-    var printWindow = window.open('', '', 'height=800,width=800'); 
-    printWindow.document.write('<html><head><title>Road to Health Chart</title>');
-    printWindow.document.write('<style>@media print { h2,h3 { text-align: center; } }</style>');
-    printWindow.document.write('</head><body>');
-
-    var img = new Image();
-    img.onload = function() {
-        printWindow.document.write('<h2>Road to Health Chart</h2>');
-        printWindow.document.write('<h3>This chart illustrates the progress towards achieving optimal health.</h3>');
-        printWindow.document.write('<img src="' + chartImage + '" width="790" height="500"><br>');
-        printWindow.print();
-        printWindow.document.close();
-    };
-    img.src = chartImage;
-    
-    printWindow.document.write('</body></html>');
-}
-
-
-
-</script>
+      
         @auth
         @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) ||
                     Auth::user()->can('view-any', Spatie\Permission\Models\Permission::class))

@@ -45,11 +45,11 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.number
             name="height_at_birth"
-            label="Weight At Birth"
+            label="Height At Birth"
             :value="old('height_at_birth', ($editing ? $baby->height_at_birth : ''))"
             max="255"
             step="0.01"
-            placeholder="Weight At Birth"
+            placeholder="Height At Birth"
             required
         ></x-inputs.number>
     </x-inputs.group>
@@ -57,11 +57,11 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.number
             name="head_circumference"
-            label="Weight At Birth"
+            label="Head Circumference"
             :value="old('head_circumference', ($editing ? $baby->head_circumference : ''))"
             max="255"
             step="0.01"
-            placeholder="Weight At Birth"
+            placeholder="Head Circumference"
             required
         ></x-inputs.number>
     </x-inputs.group>

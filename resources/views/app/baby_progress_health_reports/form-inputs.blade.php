@@ -50,7 +50,7 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.number
             name="head_circumference"
-            label="Current Weight"
+            label="Current Head Circumference"
             :value="old('head_circumference', ($editing ? $babyProgressHealthReport->head_circumference : ''))"
             max="255"
             step="0.01"
