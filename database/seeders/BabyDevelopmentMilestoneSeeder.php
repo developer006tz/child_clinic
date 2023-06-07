@@ -13,7 +13,7 @@ class BabyDevelopmentMilestoneSeeder extends Seeder
     public function run(): void
     {
         BabyDevelopmentMilestone::factory()
-            ->count(5)
+            ->count(1)
             ->create();
     }
 }
