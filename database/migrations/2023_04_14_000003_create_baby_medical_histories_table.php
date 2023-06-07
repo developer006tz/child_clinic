@@ -27,6 +27,45 @@ return new class extends Migration
 
             $table->timestamps();
         });
+
+        DB::table('baby_medical_histories')->insert([
+            [
+                'desease_id' => 1,
+                'baby_id' => 1,
+                'level_of_illness' => 'medium',
+                'description' => 'Had a fever and cough',
+                'date' => '2022-02-10',
+            ],
+            [
+                'desease_id' => 2,
+                'baby_id' => 2,
+                'level_of_illness' => 'serious',
+                'description' => 'Diagnosed with asthma',
+                'date' => '2022-03-20',
+            ],
+            [
+                'desease_id' => 3,
+                'baby_id' => 3,
+                'level_of_illness' => 'normal',
+                'description' => 'Recovered from a common cold',
+                'date' => '2022-04-05',
+            ],
+            [
+                'desease_id' => 4,
+                'baby_id' => 4,
+                'level_of_illness' => 'icu',
+                'description' => 'Admitted to the ICU due to pneumonia',
+                'date' => '2022-06-15',
+            ],
+            [
+                'desease_id' => 5,
+                'baby_id' => 5,
+                'level_of_illness' => 'serious',
+                'description' => 'Underwent surgery for congenital heart defect',
+                'date' => '2022-08-30',
+            ],
+        ]);
+
     }
 
     /**

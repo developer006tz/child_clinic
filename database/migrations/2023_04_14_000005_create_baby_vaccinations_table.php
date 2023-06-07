@@ -20,6 +20,73 @@ return new class extends Migration {
 
             $table->timestamps();
         });
+
+        DB::table('baby_vaccinations')->insert([
+            [
+                'baby_id' => 1,
+                'vacination_id' => 1,
+                'date_of_vaccine' => '2022-01-15',
+                'reaction_occured' => null,
+                'is_vaccinated' => 'Yes',
+            ],
+            [
+                'baby_id' => 1,
+                'vacination_id' => 2,
+                'date_of_vaccine' => '2022-02-28',
+                'reaction_occured' => 'Mild fever',
+                'is_vaccinated' => 'Yes',
+            ],
+            [
+                'baby_id' => 2,
+                'vacination_id' => 1,
+                'date_of_vaccine' => '2022-01-20',
+                'reaction_occured' => null,
+                'is_vaccinated' => 'Yes',
+            ],
+            [
+                'baby_id' => 3,
+                'vacination_id' => 1,
+                'date_of_vaccine' => '2022-02-05',
+                'reaction_occured' => null,
+                'is_vaccinated' => 'Yes',
+            ],
+            [
+                'baby_id' => 3,
+                'vacination_id' => 3,
+                'date_of_vaccine' => '2022-03-15',
+                'reaction_occured' => null,
+                'is_vaccinated' => 'Yes',
+            ],
+            [
+                'baby_id' => 4,
+                'vacination_id' => 1,
+                'date_of_vaccine' => '2022-01-25',
+                'reaction_occured' => null,
+                'is_vaccinated' => 'Yes',
+            ],
+            [
+                'baby_id' => 4,
+                'vacination_id' => 2,
+                'date_of_vaccine' => '2022-03-10',
+                'reaction_occured' => 'Redness at injection site',
+                'is_vaccinated' => 'Yes',
+            ],
+            [
+                'baby_id' => 5,
+                'vacination_id' => 1,
+                'date_of_vaccine' => '2022-02-10',
+                'reaction_occured' => null,
+                'is_vaccinated' => 'Yes',
+            ],
+            [
+                'baby_id' => 5,
+                'vacination_id' => 3,
+                'date_of_vaccine' => '2022-03-20',
+                'reaction_occured' => null,
+                'is_vaccinated' => 'Yes',
+            ],
+        ]);
+
     }
 
     /**
