@@ -333,40 +333,47 @@
     </div>
     </div>
 
-    {{-- @php
-        $weight = (float)$baby->babyProgressHealthReports->last()->weight;
-        $time = (int)$baby->babyProgressHealthReports->last()->age_per_month;
-        $class = ($weight < 3 && $time <= 2) ? 'red' : (($weight < 3.1 && $time <= 2) ? 'grey' : (($weight >= 3.2 && $time < 2) ? 'green' : 'blue'));
-    @endphp --}}
-
-
-  
+   @php
+    $babyProgressHealthReports = $baby->babyProgressHealthReports->sortBy('age_per_month');
+    @endphp
     @push('scripts')
       <script>
 
-        
+        let labels = [];
+        let weightData = [];
+        let lengthData = [];
+        let headCircumferenceData = [];
+@php
+    foreach ($babyProgressHealthReports as $report) {
+        echo "labels.push('" . $report->age_per_month . " months');";
+        echo "weightData.push(" . $report->weight . ");";
+        echo "lengthData.push(" . $report->height . ");";
+        echo "headCircumferenceData.push(" . $report->head_circumference . ");";
+    }
+@endphp
+
 var ctx = document.getElementById('roadToHealth').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ['Birth', '2 months', '4 months', '6 months', '9 months', '12 months', '18 months', '24 months', '36 months', '48 months', '60 months'],
+        labels: labels,
         datasets: [{
             label: 'Weight',
-            data: [7.2, 8, 10, 13, 15, 18, 20, 24, 28, 35, 42, 48],
+            data: weightData,
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             borderColor: 'rgba(255, 99, 132, 1)',
             fill: false,
             tension: 0.5
         }, {
             label: 'Length',
-            data: [20, 21, 23, 25, 27, 29, 31, 33, 35, 38, 41, 44],
+            data: lengthData,
             backgroundColor: 'rgba(54, 162, 235, 0.2)',
             borderColor: 'rgba(54, 162, 235, 1)',
             fill: false,
             tension: 0.5
         }, {
             label: 'Head Circumference',
-            data: [14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5],
+            data: headCircumferenceData,
             backgroundColor: 'rgba(255, 206, 86, 0.2)',
             borderColor: 'rgba(255, 206, 86, 1)',
             fill: false,
@@ -389,9 +396,9 @@ var myChart = new Chart(ctx, {
                 bottom: 20
             }
         }
-        
     }
-}); 
+});
+
 
 document.getElementById("printButton").addEventListener("click", function() {
     printChart();
