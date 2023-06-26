@@ -59,10 +59,14 @@ class BabyVaccinationController extends Controller
 
         $validated = $request->validated();
 
-        $babyVaccination = BabyVaccination::create($validated);
+        BabyVaccination::create($validated);
 
+        $baby = Baby::find($request->baby_id);
         return redirect()
-            ->route('baby-vaccinations.index', $babyVaccination)
+            ->route(
+                'babies.show',
+                $baby
+            )
             ->withSuccess(__('crud.common.created'));
     }
 

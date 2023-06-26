@@ -58,8 +58,12 @@ class BabyMedicalHistoryController extends Controller
 
         $babyMedicalHistory = BabyMedicalHistory::create($validated);
 
+        $baby = Baby::find($request->baby_id);
         return redirect()
-            ->route('baby-medical-histories.index', $babyMedicalHistory)
+            ->route(
+                'babies.show',
+                $baby
+            )
             ->withSuccess(__('crud.common.created'));
     }
 

@@ -57,14 +57,15 @@ class BabyProgressHealthReportController extends Controller
 
         $validated = $request->validated();
 
-        $babyProgressHealthReport = BabyProgressHealthReport::create(
+        BabyProgressHealthReport::create(
             $validated
         );
 
+        $baby = Baby::find($request->baby_id);
         return redirect()
             ->route(
-            'baby-progress-health-reports.index',
-                $babyProgressHealthReport
+            'babies.show',
+                $baby
             )
             ->withSuccess(__('crud.common.created'));
     }

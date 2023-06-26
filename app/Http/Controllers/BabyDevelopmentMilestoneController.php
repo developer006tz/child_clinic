@@ -59,14 +59,15 @@ class BabyDevelopmentMilestoneController extends Controller
 
         $validated = $request->validated();
 
-        $babyDevelopmentMilestone = BabyDevelopmentMilestone::create(
+        BabyDevelopmentMilestone::create(
             $validated
         );
 
+        $baby = Baby::find($request->baby_id);
         return redirect()
             ->route(
-                'baby-development-milestones.index',
-                $babyDevelopmentMilestone
+                'babies.show',
+                $baby
             )
             ->withSuccess(__('crud.common.created'));
     }
@@ -116,12 +117,13 @@ class BabyDevelopmentMilestoneController extends Controller
 
         $babyDevelopmentMilestone->update($validated);
 
+        $baby = Baby::find($request->baby_id);
         return redirect()
             ->route(
-                'baby-development-milestones.index',
-                $babyDevelopmentMilestone
+                'babies.show',
+                $baby
             )
-            ->withSuccess(__('crud.common.saved'));
+            ->withSuccess(__('crud.common.created'));
     }
 
     /**

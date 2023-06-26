@@ -60,7 +60,7 @@
                                 </a>
                             </li>
                         @endcan
-                        @can('view-any', App\Models\BabyDevelopmentMilestone::class)
+                        {{-- @can('view-any', App\Models\BabyDevelopmentMilestone::class)
                             <li class="nav-item">
                                 <a href="{{ route('baby-development-milestones.index') }}" class="nav-link {{ request()->routeIs('baby-development-milestones.index') ? 'active' : '' }}">
                                     <i class="nav-icon icon ion-ios-trending-up"></i>
@@ -91,7 +91,7 @@
                                     <p>Vaccine History</p>
                                 </a>
                             </li>
-                        @endcan
+                        @endcan --}}
 
                     </ul>
                 </li>

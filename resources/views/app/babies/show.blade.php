@@ -118,16 +118,28 @@
                 </div>
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="milestone">
-                    <!-- The timeline -->
+                    <div class="row d-flex justify-content-end">
+                        <div class="col-md-3">
+                             @can('create', App\Models\BabyDevelopmentMilestone::class)
+                            @if($baby->babyDevelopmentMilestones->count() < 1)
+                            <a href="#milestone_modal" class="btn btn-success btn-block" data-toggle="modal" data-target="#milestone_modal"><b> <i class="icon ion-md-create"></i> Add</b></a>
+                            @endif
+                            @endcan
+
+                             @can('update', App\Models\BabyDevelopmentMilestone::class)
+                            @if(!empty($baby->babyDevelopmentMilestones))
+                            <a href="#milestone_modal" class="btn btn-success btn-block" data-toggle="modal" data-target="#editing_milestone_modal"><b> <i class="icon ion-md-create"></i> update record</b></a>
+                            @endif
+                            @endcan
+                        </div>
+                        
+                    </div>
                     <div class="timeline timeline-inverse">
-                        <!-- timeline time label -->
                         <div class="time-label">
                         <span class="bg-pink">
                            {{__('First Smile')}}
                         </span>
                         </div>
-                        <!-- /.timeline-label -->
-                        <!-- timeline item -->
                         <div>
                             <i class="far fa-calendar-alt bg-gray"></i>
 
@@ -180,6 +192,14 @@
                 <!-- /.tab-pane -->
 
                 <div class="tab-pane" id="vaccine">
+                    <div class="row d-flex justify-content-end mb-2">
+                        <div class="col-md-3">
+                            @can('create', App\Models\BabyVaccination::class)
+                            <a href="#vaccine" class="btn btn-success btn-block" data-toggle="modal" data-target="#vaccination_modal"><b> <i class="icon ion-md-create"></i> Add</b></a>
+                            @endcan
+                        </div>
+                        
+                    </div>
                     <table class="table table-bordered">
                         <thead>
                         <tr>
@@ -214,9 +234,15 @@
 {{--                vaccine tabpane--}}
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="medical">
-                    <!-- The timeline -->
+                    <div class="row d-flex justify-content-end mb-2">
+                        <div class="col-md-3">
+                             @can('create', App\Models\BabyMedicalHistory::class)
+                            <a href="#medical-history" class="btn btn-success btn-block" data-toggle="modal" data-target="#medical_history" ><b> <i class="icon ion-md-create"></i> Add</b></a>
+                            @endcan
+                        </div>
+                        
+                    </div>
                     <div class="">
-                        <!-- timeline time label -->
                         <table class="table table-bordered">
                             <thead>
                             <tr>
@@ -250,6 +276,14 @@
                 <!-- /.tab-pane -->
 
                 <div class="tab-pane" id="health">
+                    <div class="row d-flex justify-content-end mb-2">
+                        <div class="col-md-3">
+                            @can('create', App\Models\BabyProgressHealthReport::class)
+                            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#progress_health" ><b> <i class="icon ion-md-create"></i> Add</b></a>
+                            @endcan
+                        </div>
+                        
+                    </div>
                     <div class="timeline timeline-inverse">
                         <!-- timeline time label -->
 
@@ -318,39 +352,64 @@
                         </div>
                         <canvas id="roadToHealth"></canvas>
                     </div>
-                       
-                    
                 </div>
-                <!-- /.tab-pane -->
-
-                <!-- /.tab-pane -->
             </div>
-            <!-- /.tab-content -->
-        </div><!-- /.card-body -->
+        </div>
     </div>
-    <!-- /.card -->
 </div>
     </div>
     </div>
 
-   @php
-    $babyProgressHealthReports = $baby->babyProgressHealthReports->sortBy('age_per_month');
-    @endphp
     @push('scripts')
       <script>
+
+        
+
+// Similar for length and head circumference
 
         let labels = [];
         let weightData = [];
         let lengthData = [];
         let headCircumferenceData = [];
+
+        let weightBackgroundColor = [];
+        let $weightBorderColor = [];
+        let lengthBackgroundColor = [];
+        let lengthBorderColor = [];
+        let headCircumferenceBackgroundColor = [];
+        let headCircumferenceBorderColor = [];
+
 @php
+    $babyProgressHealthReports = $baby->babyProgressHealthReports->sortBy('age_per_month');
+
     foreach ($babyProgressHealthReports as $report) {
         echo "labels.push('" . $report->age_per_month . " months');";
         echo "weightData.push(" . $report->weight . ");";
         echo "lengthData.push(" . $report->height . ");";
         echo "headCircumferenceData.push(" . $report->head_circumference . ");";
     }
+    //create background color for weigh
+    foreach ($babyProgressHealthReports as $report) {
+        if ($report->weight < 3 && $report->age_per_month <= 2) {
+            echo "weightBackgroundColor.push('rgba(255, 99, 132, 1)');";
+            echo "weightBorderColor.push('rgba(255, 99, 132, 1)');";
+        } elseif ($report->weight < 3.1 && $report->age_per_month <= 2) {
+            echo "weightBackgroundColor.push('rgba(255, 99, 132, 0.2)');";
+            echo "weightBorderColor.push('rgba(255, 99, 132, 1)');";
+        } elseif ($report->weight >= 3.2 && $report->age_per_month < 2) {
+            echo "weightBackgroundColor.push('rgba(54, 162, 235, 0.2)');";
+            echo "weightBorderColor.push('rgba(54, 162, 235, 1)');";
+        } else {
+            echo "weightBackgroundColor.push('rgba(255, 206, 86, 0.2)');";
+            echo "weightBorderColor.push('rgba(255, 206, 86, 1)');";
+        }
+    }
+    
+
+    
 @endphp
+
+
 
 var ctx = document.getElementById('roadToHealth').getContext('2d');
 var myChart = new Chart(ctx, {
@@ -360,7 +419,7 @@ var myChart = new Chart(ctx, {
         datasets: [{
             label: 'Weight',
             data: weightData,
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            backgroundColor: 'rgba(255, 99, 132, 1)',
             borderColor: 'rgba(255, 99, 132, 1)',
             fill: false,
             tension: 0.5
@@ -440,4 +499,11 @@ function printChart() {
 
 </script>
     @endpush
+
+    
+ @include('modals.progress-health')
+ @include('modals.medical-history')
+ @include('modals.vaccine')
+ @include('modals.development-milestone')
+ 
 @endsection

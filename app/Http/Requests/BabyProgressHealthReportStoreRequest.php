@@ -19,6 +19,7 @@ class BabyProgressHealthReportStoreRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
             'baby_id' => ['required', 'exists:babies,id'],
             'age_per_month' => ['required', 'numeric'],

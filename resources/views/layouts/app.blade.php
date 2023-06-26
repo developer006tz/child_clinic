@@ -102,7 +102,6 @@
                 @yield('content')
             </main>
         </div>
-
         @stack('modals')
 
         @livewireScripts
@@ -211,89 +210,6 @@
 
         } );
     </script>
-
-
-        {{-- <script>
-            createGrowthChart();
-
-            function createGrowthChart() {
-                // Get the canvas element
-                var canvas = document.getElementById('growthChart');
-                // Get the growth rate data from the sample card
-                var growthData = @php echo json_encode($sampleCard['growth_rate'] ?? '-') @endphp;
-
-                // Extract the weight, length, and head circumference data into separate arrays
-                var weightData = [];
-                var lengthData = [];
-                var headCircumferenceData = [];
-                var labels = [];
-                for (var key in growthData) {
-                    if (growthData.hasOwnProperty(key)) {
-                        weightData.push(growthData[key]['weight']);
-                        lengthData.push(growthData[key]['length']);
-                        headCircumferenceData.push(growthData[key]['head_circumference']);
-                        labels.push(key);
-                    }
-                }
-
-                // Create the chart data object
-                var chartData = {
-                    labels: labels,
-                    datasets: [
-                        {
-                            label: 'Weight',
-                            data: weightData,
-                            borderColor: 'blue',
-                            fill: false
-                        },
-                        {
-                            label: 'Length',
-                            data: lengthData,
-                            borderColor: 'green',
-                            fill: false
-                        },
-                        {
-                            label: 'Head Circumference',
-                            data: headCircumferenceData,
-                            borderColor: 'red',
-                            fill: false
-                        }
-                    ]
-                };
-
-                // Create the chart options object
-                var chartOptions = {
-                    responsive: true,
-                    title: {
-                        display: true,
-                        text: 'Baby Growth Chart'
-                    },
-                    scales: {
-                        yAxes: [{
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Measurement'
-                            }
-                        }],
-                        xAxes: [{
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Age (months)'
-                            }
-                        }]
-                    }
-                };
-
-                // Create the chart
-                var chart = new Chart(canvas, {
-                    type: 'line',
-                    data: chartData,
-                    options: chartOptions
-                });
-            }
-
-        </script> --}}
-      
         @auth
         @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) ||
                     Auth::user()->can('view-any', Spatie\Permission\Models\Permission::class))
