@@ -38,10 +38,6 @@ class Mother extends Model
         return $this->hasMany(Baby::class);
     }
 
-    public function father(){
-        return $this->hasOne(Father::class);
-    }
-
     public function pregnants()
     {
         return $this->hasMany(Pregnant::class);
