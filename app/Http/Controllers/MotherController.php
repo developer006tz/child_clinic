@@ -51,13 +51,28 @@ class MotherController extends Controller
     {
         $this->authorize('create', Mother::class);
 
-        $validated = $request->validated();
+        $mother_validated = $request->validated();
 
-        $mother = Mother::create($validated);
+        $request->validate([
+            'f_name' => ['required', 'max:255', 'string'],
+            'f_dob' => ['required', 'date'],
+            'f_phone' => ['required', 'max:255', 'string'],
+            'f_address' => ['required', 'max:255', 'string'],
+            'f_occupation' => ['required', 'max:255', 'string'],
+        ]);
+        $mother = Mother::create($mother_validated);
 
-        return redirect()
-            ->route('mothers.index', $mother)
-            ->withSuccess(__('crud.common.created'));
+        $father_data = [
+            'name' => $request->name,
+            'dob' => $request->dob,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'occupation' => $request->f_occupation,
+            'mother_id' => $mother->id,
+        ];
+        $mother->father()->create($father_data);
+
+        return to_route('mothers.index', $mother)->withSuccess(__('crud.common.created'));
     }
 
     /**
@@ -68,15 +83,14 @@ class MotherController extends Controller
         $this->authorize('view', $mother);
 
         $pregnancies = Pregnant::where('mother_id', $mother->id)->get();
+        $sms = Sms::where('phone', $mother->phone)->get();
         $father = $mother->father;
         if(!empty($pregnancies)){
             foreach ($pregnancies as $key => $pregnancy) {
                 $pregnancy_appointments= PrenatalApointment::where('pregnant_id', $pregnancy->id)->get();
             }
             if(!empty($pregnancy_appointments)){
-                foreach ($pregnancy_appointments as $key => $pregnancy_appointment) {
-                    $sms = Sms::where('pregnant_id', $pregnancy_appointment->pregnant_id)->get();
-                }
+                
                 return view('app.mothers.show', compact('mother', 'father', 'pregnancies', 'pregnancy_appointments'));
 
             }else{

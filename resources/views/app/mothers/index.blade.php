@@ -12,7 +12,7 @@
             <div class="col-md-6 text-right">
                 @can('create', App\Models\Mother::class)
                 <a href="{{ route('mothers.create') }}" class="btn btn-primary">
-                    <i class="icon ion-md-add"></i> @lang('crud.common.create')
+                    <i class="icon ion-md-add"></i> add new
                 </a>
                 @endcan
             </div>
@@ -22,7 +22,7 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-borderless table-hover" id="myTable_simple">
+                <table class="table table-bordered table-hover" id="myTable_simple">
                     <thead>
                         <tr>
                             <th class="text-left">

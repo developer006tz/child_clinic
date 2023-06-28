@@ -113,7 +113,7 @@
                                     </a>
                                 </li>
                             @endcan
-                            @can('view-any', App\Models\Pregnant::class)
+                            {{-- @can('view-any', App\Models\Pregnant::class)
                                 <li class="nav-item">
                                     <a href="{{ route('pregnants.index') }}" class="nav-link {{ request()->routeIs('pregnants.index') ? 'active' : '' }}">
                                         <i class="nav-icon icon ion-ios-happy"></i>
@@ -152,28 +152,18 @@
                                             <p>Health Statuses</p>
                                         </a>
                                     </li>
-                                @endcan
+                                @endcan --}}
                         </ul>
                     </li>
 {{--                end mother--}}
-                    @can('view-any', App\Models\Father::class)
-                        <li class="nav-item">
-                            <a href="{{ route('fathers.index') }}" class="nav-link {{ request()->routeIs('fathers.index') ? 'active' : '' }}">
-                                <i class="nav-icon icon ion-md-male"></i>
-                                <p>Fathers</p>
-                            </a>
-                        </li>
-                    @endcan
-
-
-                    @can('view-any', App\Models\Card::class)
+                    {{-- @can('view-any', App\Models\Card::class)
                         <li class="nav-item">
                             <a href="{{ route('cards.index') }}" class="nav-link {{ request()->routeIs('cards.index') ? 'active' : '' }}">
                                 <i class="nav-icon icon  ion-ios-card"></i>
                                 <p>Clinic Cards</p>
                             </a>
                         </li>
-                    @endcan
+                    @endcan --}}
                     @can('view-any', App\Models\Vacination::class)
                         <li class="nav-item">
                             <a href="{{ route('vacinations.index') }}" class="nav-link {{ request()->routeIs('vacinations.index') ? 'active' : '' }}">
@@ -244,6 +234,14 @@
                                     </a>
                                 </li>
                             @endcan
+                             @can('view-any', App\Models\Father::class)
+                        <li class="nav-item">
+                            <a href="{{ route('fathers.index') }}" class="nav-link {{ request()->routeIs('fathers.index') ? 'active' : '' }}">
+                                <i class="nav-icon icon ion-md-male"></i>
+                                <p>Manage Fathers</p>
+                            </a>
+                        </li>
+                    @endcan
                                 @can('view-any', Spatie\Permission\Models\Role::class)
                                     <li class="nav-item">
                                         <a href="{{ route('roles.index') }}" class="nav-link {{ request()->routeIs('roles.index') ? 'active' : '' }}">

@@ -2,15 +2,13 @@
 
 @section('content')
 <div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>@lang('crud.mothers.create_title')</h2>
+        </div>
+    </div>
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">
-                <a href="{{ route('mothers.index') }}" class="mr-4"
-                    ><i class="icon ion-md-arrow-back"></i
-                ></a>
-                @lang('crud.mothers.create_title')
-            </h4>
-
             <x-form
                 method="POST"
                 action="{{ route('mothers.store') }}"
@@ -29,7 +27,7 @@
 
                     <button type="submit" class="btn btn-primary float-right">
                         <i class="icon ion-md-save"></i>
-                        @lang('crud.common.create')
+                        submit
                     </button>
                 </div>
             </x-form>

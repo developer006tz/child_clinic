@@ -1,7 +1,13 @@
 @php $editing = isset($mother) @endphp
 
 <div class="row">
-    <x-inputs.group class="col-sm-12">
+    <div class="col-sm-6">
+         <div class="row">
+            <div class="col-sm-12">
+                <h3>Mother Info's</h3>
+            </div>
+        </div>
+        <x-inputs.group class="col-sm-12">
         <x-inputs.text
             name="clinic_id"
             label="Clinic Id"
@@ -79,4 +85,71 @@
             placeholder="Occupation"
         ></x-inputs.text>
     </x-inputs.group>
+    </div>
+    {{-- //father form  --}}
+    <div class="col-sm-6">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>Father Info's</h3>
+            </div>
+        </div>
+
+<div class="row">
+    <x-inputs.group class="col-sm-12">
+        <x-inputs.text
+            name="f_name"
+            label="Father Name"
+            :value="old('f_name')"
+            maxlength="255"
+            placeholder="Name"
+            required
+        ></x-inputs.text>
+    </x-inputs.group>
+
+    <x-inputs.group class="col-sm-12">
+        <x-inputs.date
+            name="f_dob"
+            label="Father Date of birth"
+            value="{{ old('f_dob') }}"
+            max="255"
+            required
+        ></x-inputs.date>
+    </x-inputs.group>
+
+    <x-inputs.group class="col-sm-12">
+        <x-inputs.text
+            name="f_phone"
+            label="Father Phone"
+            :value="old('f_phone')"
+            maxlength="255"
+            placeholder="Phone"
+            required
+        ></x-inputs.text>
+    </x-inputs.group>
+
+    <x-inputs.group class="col-sm-12">
+        <x-inputs.text
+            name="f_address"
+            label="Father Address"
+            :value="old('f_address')"
+            maxlength="255"
+            placeholder="Address"
+            required
+        ></x-inputs.text>
+    </x-inputs.group>
+
+    <x-inputs.group class="col-sm-12">
+        <x-inputs.text
+            name="f_occupation"
+            label="Father Occupation"
+            :value="old('f_occupation')"
+            maxlength="255"
+            placeholder="Occupation"
+            required
+        ></x-inputs.text>
+    </x-inputs.group>
+</div>
+
+    </div>
+    
 </div>

@@ -19,7 +19,7 @@
 
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">
-                            <b>Dob</b> <a class="float-right">{{ $mother->dob ?? '-' }}</a>
+                            <b>Dob</b> <a class="float-right">{{ \Carbon\Carbon::parse($mother->dob)->format('d/m/Y') ?? '-' }}</a>
                         </li>
                         <li class="list-group-item">
                             <b>Phone</b> <a class="float-right">{{ $mother->phone ?? '-' }}</a>
@@ -38,16 +38,24 @@
     <div class="card">
         <div class="card-header p-2">
             <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link nine active" href="#pregnances" data-toggle="tab">Mother Pregnances</a></li>
+                <li class="nav-item"><a class="nav-link nine active" href="#babies" data-toggle="tab">Babies</a></li>
+                <li class="nav-item"><a class="nav-link nine" href="#pregnances" data-toggle="tab">Mother Pregnances</a></li>
                 <li class="nav-item"><a class="nav-link nine" href="#appointments" data-toggle="tab">Appointments</a></li>
-                <li class="nav-item"><a class="nav-link nine" href="#babies" data-toggle="tab">Health Statues</a></li>
                 <li class="nav-item"><a class="nav-link nine" href="#father_details" data-toggle="tab">Father Details</a></li>
             </ul>
         </div><!-- /.card-header -->
         <div class="card-body">
             <div class="tab-content">
 
-                <div class="active tab-pane" id="pregnances">
+                <div class="tab-pane" id="pregnances">
+                    <div class="row d-flex justify-content-end mb-2">
+                        <div class="col-md-3">
+                            @can('create', App\Models\Pregnant::class)
+                            <a href="#appointment" class="btn btn-success btn-block" data-toggle="modal" data-target="#appoint_modal_add"><b> <i class="icon ion-md-create"></i> Add</b></a>
+                            @endcan
+                        </div>
+                        
+                    </div>
                     <div class="post">
                         <div class="card">
                             <div class="card-header">
@@ -59,8 +67,8 @@
                                     <table class="table table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th>pregnancy Due date</th>
-                                                <th>Estimated Date of delivery</th>
+                                                <th>Date registered</th>
+                                                <th>Date of Delivery</th>
                                                 <th>Time of Delivery</th>
                                                 <th>Number of week lasted</th>
                                                 <th>Child Gender</th>
@@ -70,8 +78,8 @@
                                         <tbody>
                                             @forelse($mother->pregnants as $pregnancy)
                                             <tr>
-                                                <td>{{ $pregnancy->due_date ?? '-' }}</td>
-                                                <td>{{ $pregnancy->date_of_delivery ?? '-' }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($pregnancy->due_date)->format('d/m/Y') ?? '-' }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($pregnancy->date_of_delivery)->format('d/m/Y') ?? '-' }}</td>
                                                 <td>{{ $pregnancy->time_of_delivery ?? '-' }}</td>
                                                 <td>{{ $pregnancy->number_of_weeks_lasted ?? '-' }}</td>
                                                 <td>{{ $pregnancy->gender ?? '-' }}</td>
@@ -130,7 +138,7 @@
                                              <tr>
                                                 <td>{{ $complication->name ?? '-' }}</td>
                                                 <td>{{ $complication->description ?? '-' }}</td>
-                                                <td>{{ $complication->created_at ?? '-' }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($complication->created_at)->format('d/m/Y') ?? '-' }}</td>
                                             </tr>
                                             @empty
                                                 <td colspan="3">No Complications Found</td>
@@ -167,7 +175,7 @@
                             @isset($pregnancy_appointments)
                             @forelse($pregnancy_appointments as $appointment)
                             <tr>
-                                <td>{{ $appointment->date ?? '-' }}</td>
+                                <td>{{ \Carbon\Carbon::parse($appointment->date)->format('d/m/Y') ?? '-' }}</td>
                                 <td>{{ $appointment->time ?? '-' }}</td>
                             </tr>
                             @empty
@@ -205,7 +213,7 @@
                             <tr>
                                 <td>{{ $history->illness ?? '-' }}</td>
                                 <td>{{ $history->description ?? '-' }}</td>
-                                <td>{{ $history->date ?? '-' }}</td>
+                                <td>{{ \Carbon\Carbon::parse($history->date)->format('d/m/Y') ?? '-' }}</td>
                                 <td>{{ $history->status ?? '-' }}</td>
                             </tr>
                             @empty
@@ -219,13 +227,14 @@
                 </div>
                 <!-- /.tab-pane -->
 
-                <div class="tab-pane" id="babies">
+                <div class="tab-pane active" id="babies">
                     <div class="row d-flex justify-content-end mb-2">
                         <div class="col-md-3">
                             @can('view-any', App\Models\Babies::class)
                             <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#progress_health" ><b> <i class="icon ion-md-create"></i> Add</b></a>
                             @endcan
                         </div>
+                    </div>
 
                         <div class="row">
                             {{-- create mother health status table here --}}
@@ -245,8 +254,8 @@
                                     <tr>
                                         <td>{{ $baby->name ?? '-' }}</td>
                                         <td>{{ $baby->gender ?? '-' }}</td>
-                                        <td>{{ $baby->birthdate ?? '-' }}</td>
-                                        <td>{{ $baby->weight_at_birth?? '-' }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($baby->birthdate)->format('d/m/Y') ?? '-' }}</td>
+                                        <td class="bg-info" >{{ $baby->weight_at_birth.' kg'?? '-' }}</td>
                                     </tr>
                                     @empty
                                     <tr>
@@ -257,7 +266,6 @@
                                 </table>
                         </div>
                     </div>
-            </div>
                 </div>
 
 
@@ -278,7 +286,7 @@
                                 </thead>
                                 <tbody>
                                 <td>{{$mother->father->name ?? '-'}}</td>
-                                <td>{{$mother->father->dob ?? '-'}}</td>
+                                <td>{{\Carbon\Carbon::parse($mother->father->dob)->format('d/m/Y') ?? '-'}}</td>
                                 <td>{{$mother->father->phone ?? '-'}}</td>
                                 <td>{{$mother->father->address ?? '-'}}</td>
                                 <td>{{$mother->father->occupation ?? '-'}}</td>
