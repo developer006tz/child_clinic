@@ -48,6 +48,7 @@
         </div><!-- /.card-header -->
         <div class="card-body">
             <div class="tab-content">
+
                 <div class="active tab-pane" id="pregnances">
                     <div class="post">
                         <div class="card">
@@ -93,10 +94,19 @@
                 <div class="tab-pane" id="pregnancy_complications">
                     <div class="row d-flex justify-content-end">
                         <div class="col-md-3">
-                             @can('view-any', App\Models\PregnantComplications::class)
-                            @if($mother->pregnants->allPregnantComplications->count() < 1)
-                            <a href="#milestone_modal" class="btn btn-success btn-block" data-toggle="modal" data-target="#milestone_modal"><b> <i class="icon ion-md-create"></i> Add</b></a>
-                            @endif
+                            @can('view-any', App\Models\PregnantComplications::class)
+                            @forelse($mother->pregnants as $pregnancy)
+                                @forelse ($pregnancy->allPregnantComplications as $complication)
+                                <div class="edit-btn d-flex justify-content-between">
+                                    <div class="label">{{$complication->name ?? '-'}}</div>
+                                     <a href="#pregnancy_complications_modal" class="btn btn-success btn-block" data-toggle="modal" data-target="#pregnancy_complications_modal_edit"><b> <i class="icon ion-md-create"></i> Add</b></a>
+                                </div>
+                                @empty
+                                    <a href="#pregnancy_complications_modal" class="btn btn-success btn-block" data-toggle="modal" data-target="#pregnancy_complications_modal_add"><b> <i class="icon ion-md-create"></i> Add</b></a>
+                                @endforelse
+                            @empty 
+                            <span>__</span>
+                            @endforelse
                             @endcan
                         </div>
                         
@@ -106,7 +116,6 @@
                                 <h3 class="card-title">Mother Pregnancies Complications</h3>
                             </div>
                             <div class="card-body">
-                                {{-- //mother pregnances complications table  --}}
                                 <div class="table-responsive">
                                     <table class="table table-striped table-hover">
                                         <thead>
@@ -117,17 +126,20 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse($mother->pregnancyComplications as $complication)
-                                            <tr>
+                                            @forelse($mother->pregnants as $pregnancy)
+                                            @forelse ($pregnancy->allPregnantComplications as $complication)
+                                             <tr>
                                                 <td>{{ $complication->name ?? '-' }}</td>
                                                 <td>{{ $complication->description ?? '-' }}</td>
                                                 <td>{{ $complication->created_at ?? '-' }}</td>
                                             </tr>
                                             @empty
-                                            <tr>
                                                 <td colspan="3">No Complications Found</td>
-                                            </tr>
                                             @endforelse
+                                            @empty 
+                                            <td colspan="3">No Complications Found</td>
+                                            @endforelse
+
                                         </tbody>
                                     </table>
                             </div>
@@ -286,17 +298,15 @@
                                 </tbody>
                             </table>
                     </div>
-        </div>
+                </div>
             </div>
         </div>
     </div>
+                </div>
 </div>
 </div>
 </div>
- @include('modals.progress-health')
- @include('modals.medical-history')
- @include('modals.vaccine')
- @include('modals.development-milestone')
+
  
 @endsection
 

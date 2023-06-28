@@ -121,7 +121,7 @@
                     <div class="row d-flex justify-content-end">
                         <div class="col-md-3">
                              @can('create', App\Models\BabyDevelopmentMilestone::class)
-                            @if($baby->babyDevelopmentMilestones->count() < 1)
+                            @if(empty($baby->babyDevelopmentMilestones) || $baby->babyDevelopmentMilestones->count() < 1)
                             <a href="#milestone_modal" class="btn btn-success btn-block" data-toggle="modal" data-target="#milestone_modal"><b> <i class="icon ion-md-create"></i> Add</b></a>
                             @endif
                             @endcan

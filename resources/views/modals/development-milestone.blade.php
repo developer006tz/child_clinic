@@ -84,7 +84,7 @@
       @php $updating = isset($babyDevelopmentMilestone) @endphp
       <x-form
       method="PUT"
-      action="{{ route('baby-development-milestones.update',$babyDevelopmentMilestone) }}"
+      action="{{ route('baby-development-milestones.update',($updating ? $babyDevelopmentMilestone : 0)) }}"
       class="mt-4" >
       @csrf
     {{-- form inputs  --}}
