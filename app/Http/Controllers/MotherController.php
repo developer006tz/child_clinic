@@ -73,9 +73,17 @@ class MotherController extends Controller
             foreach ($pregnancies as $key => $pregnancy) {
                 $pregnancy_appointments= PrenatalApointment::where('pregnant_id', $pregnancy->id)->get();
             }
-            return view('app.mothers.show', compact('mother','father', 'pregnancies','pregnancy_appointments')); 
+            if(!empty($pregnancy_appointments)){
+                foreach ($pregnancy_appointments as $key => $pregnancy_appointment) {
+                    $sms = Sms::where('pregnant_id', $pregnancy_appointment->pregnant_id)->get();
+                }
+                return view('app.mothers.show', compact('mother', 'father', 'pregnancies', 'pregnancy_appointments'));
+
+            }else{
+                return view('app.mothers.show', compact('mother', 'father', 'pregnancies'));
+            }
         }
-        return view('app.mothers.show', compact('mother', 'pregnancies', 'father'));
+        return view('app.mothers.show', compact('mother', 'father'));
     }
 
     /**
