@@ -61,7 +61,7 @@
                                     >
                                         <button
                                             type="button"
-                                            class="btn btn-light"
+                                            class="btn btn-primary"
                                         >
                                             <i class="icon ion-md-create"></i>
                                         </button>
@@ -72,7 +72,7 @@
                                     >
                                         <button
                                             type="button"
-                                            class="btn btn-light"
+                                            class="btn btn-info mx-2"
                                         >
                                             <i class="icon ion-md-eye"></i>
                                         </button>
@@ -86,7 +86,7 @@
                                         @csrf @method('DELETE')
                                         <button
                                             type="submit"
-                                            class="btn btn-light text-danger"
+                                            class="btn btn-danger text-light"
                                         >
                                             <i class="icon ion-md-trash"></i>
                                         </button>

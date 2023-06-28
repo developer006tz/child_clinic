@@ -92,7 +92,7 @@
                                             @csrf @method('DELETE')
                                             <button
                                                 type="submit"
-                                                class="btn btn-light text-danger"
+                                                class="btn btn-danger text-light"
                                             >
                                                 <i class="icon ion-md-trash"></i>
                                             </button>

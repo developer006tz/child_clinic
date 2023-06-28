@@ -82,7 +82,7 @@
                                               onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-light text-danger">
+                                            <button type="submit" class="btn btn-danger text-light">
                                                 <i class="icon ion-md-trash"></i>
                                             </button>
                                         </form>
