@@ -88,6 +88,7 @@
                         </div>
                     </div>
                 </div>
+                </div>
 
                 <div class="tab-pane" id="pregnancy_complications">
                     <div class="row d-flex justify-content-end">
@@ -143,13 +144,14 @@
                             </div>
                     </div>
                 </div>
+                </div>
                 <!-- /.tab-pane -->
 
                 <div class="tab-pane" id="appointments">
                     <div class="row d-flex justify-content-end mb-2">
                         <div class="col-md-3">
                             @can('view-any', App\Models\PrenatalApointment::class)
-                            <a href="#vaccine" class="btn btn-success btn-block" data-toggle="modal" data-target="#vaccination_modal"><b> <i class="icon ion-md-create"></i> Add</b></a>
+                            <a href="#appointment" class="btn btn-success btn-block" data-toggle="modal" data-target="#appoint_modal_add"><b> <i class="icon ion-md-create"></i> Add</b></a>
                             @endcan
                         </div>
                         
@@ -162,17 +164,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        prenatal appointments for mother
-                        @forelse($mother->prenatalAppointments as $appointment)
-                        <tr>
-                            <td>{{ $appointment->date ?? '-' }}</td>
-                            <td>{{ $appointment->time ?? '-' }}</td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="2">No Appointments Found</td>
-                        </tr>
+                            @isset($pregnancy_appointments)
+                            @forelse($pregnancy_appointments as $appointment)
+                            <tr>
+                                <td>{{ $appointment->date ?? '-' }}</td>
+                                <td>{{ $appointment->time ?? '-' }}</td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="2">No Appointments Found</td>
+                            </tr>
                         @endforelse
+                        @endisset
                         </tbody>
                     </table>
                 </div>
@@ -255,6 +258,7 @@
                         </div>
                     </div>
             </div>
+                </div>
 
 
          <div class="tab-pane" id="father_details">
@@ -282,7 +286,8 @@
                             </table>
                     </div>
                 </div>
-            </div>
+        </div>
+        
         </div>
     </div>
                 </div>

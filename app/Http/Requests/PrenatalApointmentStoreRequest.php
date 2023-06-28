@@ -22,7 +22,7 @@ class PrenatalApointmentStoreRequest extends FormRequest
         return [
             'pregnant_id' => ['required', 'exists:pregnants,id'],
             'date' => ['required', 'date'],
-            'time' => ['required', 'date_format:H:i:s'],
+            'time' => ['required', 'date_format:H:i'],
         ];
     }
 }

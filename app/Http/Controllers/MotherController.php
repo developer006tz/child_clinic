@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Mother;
 use Illuminate\View\View;
 use App\Models\BloodType;
+use App\Models\Pregnant;
+use App\Models\PrenatalApointment;
+use App\Models\Sms;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\MotherStoreRequest;
@@ -64,7 +67,15 @@ class MotherController extends Controller
     {
         $this->authorize('view', $mother);
 
-        return view('app.mothers.show', compact('mother'));
+        $pregnancies = Pregnant::where('mother_id', $mother->id)->get();
+        $father = $mother->father;
+        if(!empty($pregnancies)){
+            foreach ($pregnancies as $key => $pregnancy) {
+                $pregnancy_appointments= PrenatalApointment::where('pregnant_id', $pregnancy->id)->get();
+            }
+            return view('app.mothers.show', compact('mother','father', 'pregnancies','pregnancy_appointments')); 
+        }
+        return view('app.mothers.show', compact('mother', 'pregnancies', 'father'));
     }
 
     /**
