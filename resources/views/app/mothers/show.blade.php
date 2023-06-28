@@ -39,10 +39,8 @@
         <div class="card-header p-2">
             <ul class="nav nav-pills">
                 <li class="nav-item"><a class="nav-link nine active" href="#pregnances" data-toggle="tab">Mother Pregnances</a></li>
-                <li class="nav-item"><a class="nav-link nine" href="#pregnancy_complications" data-toggle="tab">Pregnancy Complications</a></li>
                 <li class="nav-item"><a class="nav-link nine" href="#appointments" data-toggle="tab">Appointments</a></li>
-                <li class="nav-item"><a class="nav-link nine" href="#medical" data-toggle="tab">Medical History</a></li>
-                <li class="nav-item"><a class="nav-link nine" href="#health" data-toggle="tab">Health Statues</a></li>
+                <li class="nav-item"><a class="nav-link nine" href="#babies" data-toggle="tab">Health Statues</a></li>
                 <li class="nav-item"><a class="nav-link nine" href="#father_details" data-toggle="tab">Father Details</a></li>
             </ul>
         </div><!-- /.card-header -->
@@ -218,10 +216,10 @@
                 </div>
                 <!-- /.tab-pane -->
 
-                <div class="tab-pane" id="health">
+                <div class="tab-pane" id="babies">
                     <div class="row d-flex justify-content-end mb-2">
                         <div class="col-md-3">
-                            @can('view-any', App\Models\MotherHealthStatus::class)
+                            @can('view-any', App\Models\Babies::class)
                             <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#progress_health" ><b> <i class="icon ion-md-create"></i> Add</b></a>
                             @endcan
                         </div>
@@ -232,27 +230,24 @@
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>
-                                        <th style="width: 30%">Date</th>
-                                        <th>Weight</th>
-                                        <th>Height</th>
-                                        <th>HIV Status</th>
-                                        <th>Desease</th>
-                                        <th>Health Status</th>
+                                        <th style="width: 30%">Name</th>
+                                        <th>Gender</th>
+                                        <th>date of Birth</th>
+                                        <th>Weight at Birth</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {{-- mother health status --}}
-                                    @forelse($mother->motherHealthStatuses as $status)
+                                    @forelse($mother->babies as $baby)
                                     <tr>
-                                        <td>{{ $status->weight ?? '-' }}</td>
-                                        <td>{{ $status->height ?? '-' }}</td>
-                                        <td>{{ $status->hiv_status ?? '-' }}</td>
-                                        <td>{{ $status->desease->name ?? '-' }}</td>
-                                        <td>{{ $status->health_status ?? '-' }}</td>
+                                        <td>{{ $baby->name ?? '-' }}</td>
+                                        <td>{{ $baby->gender ?? '-' }}</td>
+                                        <td>{{ $baby->birthdate ?? '-' }}</td>
+                                        <td>{{ $baby->weight_at_birth?? '-' }}</td>
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="5">No Health Status Found</td>
+                                        <td colspan="4">No Health Status Found</td>
                                     </tr>
                                     @endforelse
                                     </tbody>
@@ -271,30 +266,18 @@
                                 <thead>
                                 <tr>
                                     <th style="width: 30%">Name</th>
-                                    <th>Phone</th>
+                                    <th>Date of Birth</th>
+                                    <th>Phone number</th>
                                     <th>Address</th>
                                     <th>Occupation</th>
-                                    <th>Date of Birth</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {{-- father details --}}
-                                @forelse($mother->fatherDetails as $father)
-                                <tr>
-                                    <td>{{ $father->name ?? '-' }}</td>
-                                    <td>{{ $father->phone ?? '-' }}</td>
-                                    <td>{{ $father->address ?? '-' }}</td>
-                                    <td>{{ $father->occupation ?? '-' }}</td>
-                                    <td>{{ $father->education ?? '-' }}</td>
-                                    <td>{{ $father->religion ?? '-' }}</td>
-                                    <td>{{ $father->tribe ?? '-' }}</td>
-                                    <td>{{ $father->age ?? '-' }}</td>
-                                </tr>
-                                @empty
-                                <tr>
-                                    <td colspan="8">No Father Details Found</td>
-                                </tr>
-                                @endforelse
+                                <td>{{$mother->father->name ?? '-'}}</td>
+                                <td>{{$mother->father->dob ?? '-'}}</td>
+                                <td>{{$mother->father->phone ?? '-'}}</td>
+                                <td>{{$mother->father->address ?? '-'}}</td>
+                                <td>{{$mother->father->occupation ?? '-'}}</td>
                                 </tbody>
                             </table>
                     </div>

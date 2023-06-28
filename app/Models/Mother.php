@@ -72,4 +72,6 @@ class Mother extends Model
     {
         return $this->belongsToMany(Schedule::class);
     }
+
+    
 }
