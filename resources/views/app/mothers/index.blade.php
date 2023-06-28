@@ -62,7 +62,7 @@
                             <td>
                                 {{ optional($mother->bloodType)->name ?? '-' }}
                             </td>
-                            <td>{{ $mother->dob ?? '-' }}</td>
+                            <td>{{ \Carbon\Carbon::parse($mother->dob)->format('d/m/Y') ?? '-' }}</td>
                             <td>{{ $mother->phone ?? '-' }}</td>
                             <td>{{ $mother->address ?? '-' }}</td>
                             <td>{{ $mother->insurance_info ?? '-' }}</td>

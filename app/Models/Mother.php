@@ -13,6 +13,7 @@ class Mother extends Model
 
     protected $fillable = [
         'clinic_id',
+        'user_id',
         'name',
         'blood_type_id',
         'dob',
@@ -71,6 +72,11 @@ class Mother extends Model
     public function schedules()
     {
         return $this->belongsToMany(Schedule::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     

@@ -382,6 +382,7 @@ return [
             'phone' => 'Phone',
             'clinic_id' => 'Clinic',
             'password' => 'Password',
+            'role' => 'Role',
         ],
     ],
 

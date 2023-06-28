@@ -22,10 +22,19 @@ class BabyController extends Controller
 
         $search = $request->get('search', '');
 
-        $babies = Baby::search($search)
+        if($request->user()->hasRole('super-admin')){
+            $babies = Baby::search($search)
             ->latest()
-            ->paginate(100000)
+            ->paginate(5)
             ->withQueryString();
+        }else{
+            $mother = Mother::where('user_id', $request->user()->id)->first();
+            $babies = Baby::search($search)
+            ->where('mother_id', $mother->id)
+            ->latest()
+            ->paginate(5)
+            ->withQueryString();
+        }
 
         return view('app.babies.index', compact('babies', 'search'));
     }

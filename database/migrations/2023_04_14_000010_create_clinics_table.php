@@ -18,6 +18,16 @@ return new class extends Migration {
 
             $table->timestamps();
         });
+
+        //insert one clinic record into the clinics table
+        DB::table('clinics')->insert([
+            [
+                'id'=> 1,
+                'name' => 'MULEBA CLINIC',
+                'location' => 'KAGERA',
+                'registration_number' => '1234567890',
+            ],
+        ]);
     }
 
     /**

@@ -7,15 +7,10 @@
                 <h3>Mother Info's</h3>
             </div>
         </div>
-        <x-inputs.group class="col-sm-12">
-        <x-inputs.text
+        <x-inputs.hidden
             name="clinic_id"
-            label="Clinic Id"
-            :value="old('clinic_id', ($editing ? $mother->clinic_id : ''))"
-            maxlength="255"
-            placeholder="Clinic Id"
-        ></x-inputs.text>
-    </x-inputs.group>
+            :value="old('clinic_id', ($editing ? $mother->clinic_id : $clinic->id))"
+        ></x-inputs.hidden>
 
     <x-inputs.group class="col-sm-12">
         <x-inputs.text

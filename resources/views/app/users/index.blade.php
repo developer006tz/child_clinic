@@ -29,6 +29,9 @@
                                 @lang('crud.users.inputs.name')
                             </th>
                             <th class="text-left">
+                                @lang('crud.users.inputs.role')
+                            </th>
+                            <th class="text-left">
                                 @lang('crud.users.inputs.email')
                             </th>
                             <th class="text-left">
@@ -46,6 +49,7 @@
                         @forelse($users as $user)
                         <tr>
                             <td>{{ $user->name ?? '-' }}</td>
+                            <td>{{ $user->getRoleNames()[0] ?? '-' }}</td>
                             <td>{{ $user->email ?? '-' }}</td>
                             <td>{{ $user->phone ?? '-' }}</td>
                             <td>{{ optional($user->clinic)->name ?? '-' }}</td>

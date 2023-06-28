@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('clinic_id')->nullable();
             $table->string('name');
             $table->unsignedBigInteger('blood_type_id');
+            $table->unsignedBigInteger('user_id');
             $table->date('dob');
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
@@ -31,6 +32,7 @@ return new class extends Migration {
             [
                 'clinic_id' => 'CL1234',
                 'name' => 'Emma Johnson',
+                'user_id' => 2,
                 'blood_type_id' => 1,
                 'dob' => '1990-05-15',
                 'phone' => '123-456-7890',
@@ -41,6 +43,7 @@ return new class extends Migration {
             [
                 'clinic_id' => 'CL5678',
                 'name' => 'Olivia Davis',
+                'user_id' => 3,
                 'blood_type_id' => 2,
                 'dob' => '1992-09-22',
                 'phone' => '987-654-3210',
@@ -51,6 +54,7 @@ return new class extends Migration {
             [
                 'clinic_id' => 'CL9012',
                 'name' => 'Sophia Wilson',
+                'user_id' => 4,
                 'blood_type_id' => 1,
                 'dob' => '1988-07-10',
                 'phone' => '555-123-4567',
@@ -61,6 +65,7 @@ return new class extends Migration {
             [
                 'clinic_id' => null,
                 'name' => 'Ava Thompson',
+                'user_id' => 5,
                 'blood_type_id' => 2,
                 'dob' => '1995-03-29',
                 'phone' => '111-222-3333',
@@ -71,6 +76,7 @@ return new class extends Migration {
             [
                 'clinic_id' => 'CL3456',
                 'name' => 'Isabella Moore',
+                'user_id' => 6,
                 'blood_type_id' => 1,
                 'dob' => '1991-12-05',
                 'phone' => '444-555-6666',

@@ -53,12 +53,21 @@
                     </a>
                     <ul class="nav nav-treeview">
                         @can('view-any', App\Models\Baby::class)
+                        @if(auth()->user()->hasRole('parent'))
+                        <li class="nav-item">
+                                <a href="{{ route('babies.index') }}" class="nav-link {{ request()->routeIs('babies.index') ? 'active' : '' }}">
+                                    <i class="nav-icon icon ion-logo-reddit"></i>
+                                    <p>baby info's</p>
+                                </a>
+                            </li>
+                        @else
                             <li class="nav-item">
                                 <a href="{{ route('babies.index') }}" class="nav-link {{ request()->routeIs('babies.index') ? 'active' : '' }}">
                                     <i class="nav-icon icon ion-logo-reddit"></i>
                                     <p>All babies</p>
                                 </a>
                             </li>
+                        @endif
                         @endcan
                         {{-- @can('view-any', App\Models\BabyDevelopmentMilestone::class)
                             <li class="nav-item">
@@ -230,7 +239,7 @@
                                 <li class="nav-item">
                                     <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}">
                                         <i class="nav-icon icon ion-md-person-add"></i>
-                                        <p>Manage Staffs</p>
+                                        <p>Manage Users</p>
                                     </a>
                                 </li>
                             @endcan

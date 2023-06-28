@@ -17,6 +17,9 @@ class PermissionsSeeder extends Seeder
         // Create default permissions
         Permission::create(['name' => 'list babies']);
         Permission::create(['name' => 'view babies']);
+        Permission::create(['name' => 'list mothers']);
+        Permission::create(['name' => 'view mothers']);
+
         Permission::create(['name' => 'create babies']);
         Permission::create(['name' => 'update babies']);
         Permission::create(['name' => 'delete babies']);
@@ -99,8 +102,6 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update messagetemplates']);
         Permission::create(['name' => 'delete messagetemplates']);
 
-        Permission::create(['name' => 'list mothers']);
-        Permission::create(['name' => 'view mothers']);
         Permission::create(['name' => 'create mothers']);
         Permission::create(['name' => 'update mothers']);
         Permission::create(['name' => 'delete mothers']);
@@ -160,7 +161,21 @@ class PermissionsSeeder extends Seeder
 
         //create parent role and assign permissions related to parents
         $parentRole = Role::create(['name' => 'parent']);
-        $parentRole->givePermissionTo(['list babies', 'view babies', 'create babies', 'update babies', 'delete babies', 'list clinics', 'view clinics', 'list insurances', 'view insurances', 'list pregnants', 'view pregnants', 'list prenatalapointments', 'view prenatalapointments', 'list schedules', 'view schedules', 'list vacinations', 'view vacinations']);
+        $parentRole->givePermissionTo(['list babies', 'view babies',  'list mothers','view mothers','list allsms','view allsms']);
+
+        $emails = [
+            1 => 'ava.thompson@gmail.com',
+            2 => 'emma.johnson@gmail.com',
+            3 => 'isabella.moore@gmail.com',
+            4 => 'olivia.davis@gmail.com',
+            5 => 'sophia.wilson@gmail.com',
+        ];
+
+        // for each email assign role parent 
+        foreach ($emails as $email) {
+            $user = \App\Models\User::whereEmail($email)->first();
+            $user->assignRole($parentRole);
+        }
 
         //create doctor role and assign permissions related to doctors
         $doctorRole = Role::create(['name' => 'doctor']);

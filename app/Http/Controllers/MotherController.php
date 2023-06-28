@@ -11,7 +11,11 @@ use App\Models\Sms;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\MotherStoreRequest;
-use App\Http\Requests\MotherUpdateRequest;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use App\Models\Clinic;
+
 
 class MotherController extends Controller
 {
@@ -40,8 +44,8 @@ class MotherController extends Controller
         $this->authorize('create', Mother::class);
 
         $bloodTypes = BloodType::pluck('name', 'id');
-
-        return view('app.mothers.create', compact('bloodTypes'));
+        $clinic = Clinic::first();
+        return view('app.mothers.create', compact('bloodTypes', 'clinic'));
     }
 
     /**
@@ -71,6 +75,29 @@ class MotherController extends Controller
             'mother_id' => $mother->id,
         ];
         $mother->father()->create($father_data);
+
+        //create user from mothers data
+        $password = rand(1000, 999999);
+        $pass = Hash::make($password);
+        $random_email = str_replace(' ', '', $mother->name) . rand(10, 9999) . '@gmail.com';
+        $user_data = [
+            'name' => $request->name,
+            'email' => $random_email,
+            'phone' => validatePhoneNumber($mother->phone),
+            'clinic_id'=>(int)$mother->clinic_id,
+            'password' => $pass,
+        ];
+        $user = User::create($user_data);
+        $user->assignRole(Role::findByName('parent'));
+
+        $sms_data = [
+            'phone' => $mother->phone,
+            'message' => 'Hellow '.$user->name.' You are registered as Parent  in ' . $mother->clinic->name . ' Clinic System. You can  login with email: '.$random_email.' and password: ' . $password,
+            'status' => '0',
+        ];
+        $sms = Sms::create($sms_data);
+
+        beem_sms($user->phone, $sms->message);
 
         return to_route('mothers.index', $mother)->withSuccess(__('crud.common.created'));
     }
