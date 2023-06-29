@@ -23,7 +23,7 @@
 
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">
-                            <b>Dob</b> <a class="float-right">{{ $baby->birthdate ?? '-' }}</a>
+                            <b>Dob</b> <a class="float-right">{{ \Carbon\Carbon::parse($baby->birthdate)->format('d/m/Y') ?? '-' }}</a>
                         </li>
                         <li class="list-group-item">
                             <b>Mother</b> <a class="float-right">{{ optional($baby->mother)->name ?? '-' }}</a>
@@ -120,17 +120,20 @@
                 <div class="tab-pane" id="milestone">
                     <div class="row d-flex justify-content-end">
                         <div class="col-md-3">
+
+                            
                              @can('create', App\Models\BabyDevelopmentMilestone::class)
                             @if(empty($baby->babyDevelopmentMilestones) || $baby->babyDevelopmentMilestones->count() < 1)
                             <a href="#milestone_modal" class="btn btn-success btn-block" data-toggle="modal" data-target="#milestone_modal"><b> <i class="icon ion-md-create"></i> Add</b></a>
                             @endif
                             @endcan
 
-                             @can('update', App\Models\BabyDevelopmentMilestone::class)
+                             @can('update', $baby->babyDevelopmentMilestones)
                             @if(!empty($baby->babyDevelopmentMilestones))
                             <a href="#milestone_modal" class="btn btn-success btn-block" data-toggle="modal" data-target="#editing_milestone_modal"><b> <i class="icon ion-md-create"></i> update record</b></a>
                             @endif
                             @endcan
+                          
                         </div>
                         
                     </div>
@@ -360,57 +363,35 @@
     </div>
     </div>
 
+
     @push('scripts')
       <script>
-
-        
-
-// Similar for length and head circumference
-
-        let labels = [];
-        let weightData = [];
-        let lengthData = [];
-        let headCircumferenceData = [];
-
-        let weightBackgroundColor = [];
-        let $weightBorderColor = [];
-        let lengthBackgroundColor = [];
-        let lengthBorderColor = [];
-        let headCircumferenceBackgroundColor = [];
-        let headCircumferenceBorderColor = [];
+         let labels = [];
+let weightData = [];
+let colors = [];
 
 @php
-    $babyProgressHealthReports = $baby->babyProgressHealthReports->sortBy('age_per_month');
-
+    $babyProgressHealthReports = $baby->card_data->sortBy('age_per_month');
+    
     foreach ($babyProgressHealthReports as $report) {
         echo "labels.push('" . $report->age_per_month . " months');";
         echo "weightData.push(" . $report->weight . ");";
-        echo "lengthData.push(" . $report->height . ");";
-        echo "headCircumferenceData.push(" . $report->head_circumference . ");";
-    }
-    //create background color for weigh
-    foreach ($babyProgressHealthReports as $report) {
-        if ($report->weight < 3 && $report->age_per_month <= 2) {
-            echo "weightBackgroundColor.push('rgba(255, 99, 132, 1)');";
-            echo "weightBorderColor.push('rgba(255, 99, 132, 1)');";
-        } elseif ($report->weight < 3.1 && $report->age_per_month <= 2) {
-            echo "weightBackgroundColor.push('rgba(255, 99, 132, 0.2)');";
-            echo "weightBorderColor.push('rgba(255, 99, 132, 1)');";
-        } elseif ($report->weight >= 3.2 && $report->age_per_month < 2) {
-            echo "weightBackgroundColor.push('rgba(54, 162, 235, 0.2)');";
-            echo "weightBorderColor.push('rgba(54, 162, 235, 1)');";
+        
+        // Set color based on weight
+        if ($report->weight < 3) {
+            echo "colors.push('red');";
+        } else if ($report->weight >= 3 && $report->weight < 4) {
+            echo "colors.push('orange');";
+        } else if ($report->weight >= 4 && $report->weight < 5) {
+            echo "colors.push('gray');";    
         } else {
-            echo "weightBackgroundColor.push('rgba(255, 206, 86, 0.2)');";
-            echo "weightBorderColor.push('rgba(255, 206, 86, 1)');";
+            echo "colors.push('green');";
         }
     }
-    
-
-    
 @endphp
 
-
-
+var babyProgressHealthReports = {!! json_encode($babyProgressHealthReports) !!}; 
+console.log(babyProgressHealthReports)
 var ctx = document.getElementById('roadToHealth').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'line',
@@ -419,24 +400,20 @@ var myChart = new Chart(ctx, {
         datasets: [{
             label: 'Weight',
             data: weightData,
-            backgroundColor: 'rgba(255, 99, 132, 1)',
-            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: colors,
+            borderColor: colors,
             fill: false,
-            tension: 0.5
-        }, {
-            label: 'Length',
-            data: lengthData,
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            fill: false,
-            tension: 0.5
-        }, {
-            label: 'Head Circumference',
-            data: headCircumferenceData,
-            backgroundColor: 'rgba(255, 206, 86, 0.2)',
-            borderColor: 'rgba(255, 206, 86, 1)',
-            fill: false,
-            tension: 0.5
+            fillOpacity: 0.9,
+            lineTension: 0.5,
+            pointRadius: 5,
+            pointHoverRadius: 10,
+            pointHitRadius: 30,
+            pointBorderWidth: 7,
+            pointStyle: 'rectRounded',
+            pointBackgroundColor: colors,
+            pointBorderColor: colors,
+            pointHoverBackgroundColor: colors,
+            tension: 0.5,
         }]
     },
     options: {
@@ -446,6 +423,50 @@ var myChart = new Chart(ctx, {
         },
         legend: {
             display: true
+        },
+        scales: {
+             x: {
+            display: true,
+            title: {
+                display: true,
+                text: 'Age in Month'
+        },
+        border: {
+            display: true,
+            drawOnChartArea: true,
+            drawTicks: true,
+            drawBorder: true,
+            color: 'black',
+        },
+        grid: {
+            display: true,
+            drawOnChartArea: true,
+            drawTicks: true,
+            drawBorder: true,
+            color: colors,
+            fill: true,
+            fillOpacity: 0.5,
+            fillColor: colors,
+
+        }
+      },
+        y: {
+        display: true,
+        title: {
+          display: true,
+          text: 'Weight in kg'
+        },
+        }
+        },
+        backgroundColor: function(ctx) {
+            var weight = weightData[ctx.dataIndex];
+            if (weight < 3) {
+                return 'red';
+            } else if (weight >= 3 && weight < 6) {
+                return 'gray';
+            } else {
+                return 'green';
+            }
         },
         layout: {
             padding: {
@@ -457,7 +478,6 @@ var myChart = new Chart(ctx, {
         }
     }
 });
-
 
 document.getElementById("printButton").addEventListener("click", function() {
     printChart();
@@ -505,5 +525,5 @@ function printChart() {
  @include('modals.medical-history')
  @include('modals.vaccine')
  @include('modals.development-milestone')
- 
+ @include('modals.edit-development-milestone')
 @endsection

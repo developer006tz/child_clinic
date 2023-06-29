@@ -28,10 +28,16 @@ class MotherController extends Controller
 
         $search = $request->get('search', '');
 
-        $mothers = Mother::search($search)
+        if(auth()->user()->hasRole('parent')){
+            $mothers = Mother::search($search)
             ->latest()
-            ->paginate(500)
-            ->withQueryString();
+            ->where('user_id', auth()->user()->id)
+            ->paginate(20);
+        }else{
+            $mothers = Mother::search($search)
+            ->latest()
+            ->paginate(20);
+        }
 
         return view('app.mothers.index', compact('mothers', 'search'));
     }
@@ -64,6 +70,23 @@ class MotherController extends Controller
             'f_address' => ['required', 'max:255', 'string'],
             'f_occupation' => ['required', 'max:255', 'string'],
         ]);
+
+        //create user from mothers data
+        $clinic = Clinic::first();
+        $password = rand(1000, 999999);
+        $pass = Hash::make($password);
+        $random_email = str_replace(' ', '', $mother_validated['name']) . rand(10, 9999) . '@clinic.com';
+        $user_data = [
+            'name' => $mother_validated['name'],
+            'email' => $random_email,
+            'phone' => validatePhoneNumber($mother_validated['phone']),
+            'clinic_id' => $clinic->id,
+            'password' => $pass,
+        ];
+        $user = User::create($user_data);
+        $user->assignRole(Role::findByName('parent'));
+
+        $mother_validated['user_id'] = $user->id;
         $mother = Mother::create($mother_validated);
 
         $father_data = [
@@ -74,30 +97,16 @@ class MotherController extends Controller
             'occupation' => $request->f_occupation,
             'mother_id' => $mother->id,
         ];
+        
         $mother->father()->create($father_data);
-
-        //create user from mothers data
-        $password = rand(1000, 999999);
-        $pass = Hash::make($password);
-        $random_email = str_replace(' ', '', $mother->name) . rand(10, 9999) . '@gmail.com';
-        $user_data = [
-            'name' => $request->name,
-            'email' => $random_email,
-            'phone' => validatePhoneNumber($mother->phone),
-            'clinic_id'=>(int)$mother->clinic_id,
-            'password' => $pass,
-        ];
-        $user = User::create($user_data);
-        $user->assignRole(Role::findByName('parent'));
-
         $sms_data = [
             'phone' => $mother->phone,
-            'message' => 'Hellow '.$user->name.' You are registered as Parent  in ' . $mother->clinic->name . ' Clinic System. You can  login with email: '.$random_email.' and password: ' . $password,
+            'body' => 'Hellow '.$mother->name.' You are registered as Parent  in ' . $clinic->name . ' Clinic System. You can  login with email: '.$random_email.' and password: ' . $password,
             'status' => '0',
         ];
         $sms = Sms::create($sms_data);
 
-        beem_sms($user->phone, $sms->message);
+        beem_sms(validatePhoneNumber($user->phone), $sms->body);
 
         return to_route('mothers.index', $mother)->withSuccess(__('crud.common.created'));
     }

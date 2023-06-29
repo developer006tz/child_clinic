@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('mothers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('clinic_id')->nullable();
+            $table->unsignedBigInteger('clinic_id');
             $table->string('name');
             $table->unsignedBigInteger('blood_type_id');
             $table->unsignedBigInteger('user_id');
@@ -30,7 +30,7 @@ return new class extends Migration {
 
         DB::table('mothers')->insert([
             [
-                'clinic_id' => 'CL1234',
+                'clinic_id' => 1,
                 'name' => 'Emma Johnson',
                 'user_id' => 2,
                 'blood_type_id' => 1,
@@ -41,7 +41,7 @@ return new class extends Migration {
                 'occupation' => 'Teacher',
             ],
             [
-                'clinic_id' => 'CL5678',
+                'clinic_id' => 1,
                 'name' => 'Olivia Davis',
                 'user_id' => 3,
                 'blood_type_id' => 2,
@@ -52,7 +52,7 @@ return new class extends Migration {
                 'occupation' => 'Doctor',
             ],
             [
-                'clinic_id' => 'CL9012',
+                'clinic_id' => 1,
                 'name' => 'Sophia Wilson',
                 'user_id' => 4,
                 'blood_type_id' => 1,
@@ -63,7 +63,7 @@ return new class extends Migration {
                 'occupation' => 'Engineer',
             ],
             [
-                'clinic_id' => null,
+                'clinic_id' => 1,
                 'name' => 'Ava Thompson',
                 'user_id' => 5,
                 'blood_type_id' => 2,
@@ -74,7 +74,7 @@ return new class extends Migration {
                 'occupation' => 'Accountant',
             ],
             [
-                'clinic_id' => 'CL3456',
+                'clinic_id' => 1,
                 'name' => 'Isabella Moore',
                 'user_id' => 6,
                 'blood_type_id' => 1,

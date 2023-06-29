@@ -1,4 +1,6 @@
 <div class="container-fluid">
+    @php $mother = \App\Models\Mother::where('user_id',auth()->user()->id)->first() @endphp
+    {{$mother}}
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-lg-6 col-6">
@@ -21,7 +23,7 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>{{ count($babies) ?? '-' }}<sup style="font-size: 20px"></sup></h3>
+                                <h3>{{ count($mother->babies) ?? '-' }}<sup style="font-size: 20px"></sup></h3>
 
                                 <p>Baby</p>
                             </div>

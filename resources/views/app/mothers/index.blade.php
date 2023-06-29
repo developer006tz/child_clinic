@@ -25,11 +25,12 @@
                 <table class="table table-bordered table-hover" id="myTable_simple">
                     <thead>
                         <tr>
-                            <th class="text-left">
-                                @lang('crud.mothers.inputs.clinic_id')
-                            </th>
+                            
                             <th class="text-left">
                                 @lang('crud.mothers.inputs.name')
+                            </th>
+                            <th class="text-left">
+                                email
                             </th>
                             <th class="text-left">
                                 @lang('crud.mothers.inputs.blood_type_id')
@@ -57,8 +58,9 @@
                     <tbody>
                         @forelse($mothers as $mother)
                         <tr>
-                            <td>{{ $mother->clinic_id ?? '-' }}</td>
+                            {{-- <td>{{ $mother->user->clinic->name ?? '-' }}</td> --}}
                             <td>{{ $mother->name ?? '-' }}</td>
+                            <td>{{ $mother->user->email ?? '-' }}</td>
                             <td>
                                 {{ optional($mother->bloodType)->name ?? '-' }}
                             </td>
@@ -115,7 +117,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="9">
+                            <td colspan="8">
                                 @lang('crud.common.no_items_found')
                             </td>
                         </tr>
@@ -123,7 +125,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="9">{!! $mothers->render() !!}</td>
+                            <td colspan="8">{!! $mothers->render() !!}</td>
                         </tr>
                     </tfoot>
                 </table>

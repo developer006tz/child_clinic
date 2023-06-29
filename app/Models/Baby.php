@@ -68,6 +68,11 @@ class Baby extends Model
         return $this->hasMany(BabyProgressHealthReport::class);
     }
 
+    public function card_data()
+    {
+        return $this->hasMany(BabyProgressHealthReport::class)->select('id', 'age_per_month', 'weight');
+    }
+
     public function insurances()
     {
         return $this->belongsToMany(Insurance::class);
