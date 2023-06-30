@@ -17,7 +17,7 @@
         <!-- Bootstrap 4 -->
         <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{ asset('dist/js/adminlte.js')}}"></script>
-        <script src="{{URL::to('node_modules/alpinejs/builds/cdn.js')}}" defer></script>
+        {{-- <script src="{{URL::to('node_modules/alpinejs/builds/cdn.js')}}" defer></script> --}}
         
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -85,9 +85,6 @@
             width: 100% !important;
         }
         </style>
-
-
-        @livewireStyles
     </head>
 
     <body class="sidebar-mini layout-fixed layout-navbar-fixed">
@@ -103,8 +100,6 @@
             </main>
         </div>
         @stack('modals')
-
-        @livewireScripts
 
         
         <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>

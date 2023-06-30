@@ -363,121 +363,192 @@
     </div>
     </div>
 
-
+    @php
+    $babyProgressHealthReports = $baby->card_data->sortBy('age_per_month');
+    @endphp
     @push('scripts')
       <script>
-         let labels = [];
-let weightData = [];
-let colors = [];
+        let labels = [];
+        let weightData = [];
+        let colors = [];
 
-@php
-    $babyProgressHealthReports = $baby->card_data->sortBy('age_per_month');
+
+         var babyProgressHealthReports = {!! json_encode($babyProgressHealthReports) !!};
     
-    foreach ($babyProgressHealthReports as $report) {
-        echo "labels.push('" . $report->age_per_month . " months');";
-        echo "weightData.push(" . $report->weight . ");";
-        
-        // Set color based on weight
-        if ($report->weight < 3) {
-            echo "colors.push('red');";
-        } else if ($report->weight >= 3 && $report->weight < 4) {
-            echo "colors.push('orange');";
-        } else if ($report->weight >= 4 && $report->weight < 5) {
-            echo "colors.push('gray');";    
-        } else {
-            echo "colors.push('green');";
-        }
-    }
-@endphp
-
-var babyProgressHealthReports = {!! json_encode($babyProgressHealthReports) !!}; 
-console.log(babyProgressHealthReports)
-var ctx = document.getElementById('roadToHealth').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: labels,
-        datasets: [{
-            label: 'Weight',
-            data: weightData,
-            backgroundColor: colors,
-            borderColor: colors,
-            fill: false,
-            fillOpacity: 0.9,
-            lineTension: 0.5,
-            pointRadius: 5,
-            pointHoverRadius: 10,
-            pointHitRadius: 30,
-            pointBorderWidth: 7,
-            pointStyle: 'rectRounded',
-            pointBackgroundColor: colors,
-            pointBorderColor: colors,
-            pointHoverBackgroundColor: colors,
-            tension: 0.5,
-        }]
-    },
-    options: {
-        title: {
-            display: true,
-            text: 'Road to Health'
-        },
-        legend: {
-            display: true
-        },
-        scales: {
-             x: {
-            display: true,
-            title: {
-                display: true,
-                text: 'Age in Month'
-        },
-        border: {
-            display: true,
-            drawOnChartArea: true,
-            drawTicks: true,
-            drawBorder: true,
-            color: 'black',
-        },
-        grid: {
-            display: true,
-            drawOnChartArea: true,
-            drawTicks: true,
-            drawBorder: true,
-            color: colors,
-            fill: true,
-            fillOpacity: 0.5,
-            fillColor: colors,
-
-        }
-      },
-        y: {
-        display: true,
-        title: {
-          display: true,
-          text: 'Weight in kg'
-        },
-        }
-        },
-        backgroundColor: function(ctx) {
-            var weight = weightData[ctx.dataIndex];
-            if (weight < 3) {
-                return 'red';
-            } else if (weight >= 3 && weight < 6) {
-                return 'gray';
+            for (let i = 0; i < babyProgressHealthReports.length; i++) {
+            let report = babyProgressHealthReports[i];
+            labels.push(report.age_per_month + " months");
+            weightData.push(report.weight);
+            if (report.weight < 3) {
+                colors.push('red');
+            } else if (report.weight >= 3 && report.weight < 4) {
+                colors.push('orange');
+            } else if (report.weight >= 4 && report.weight < 5) {
+                colors.push('gray');
             } else {
-                return 'green';
-            }
-        },
-        layout: {
-            padding: {
-                left: 20,
-                right: 20,
-                top: 0,
-                bottom: 20
+                colors.push('green');
             }
         }
+        function convertColorsToRgba(colors, opacity) {
+    let rgbaColors = [];
+
+    for (let i = 0; i < colors.length; i++) {
+        let color = colors[i];
+
+        // Convert color names to rgba values
+        if (color === 'red') {
+            rgbaColors.push(`rgba(255, 0, 0, ${opacity})`);
+        } else if (color === 'orange') {
+            rgbaColors.push(`rgba(255, 165, 0, ${opacity})`);
+        } else if (color === 'gray') {
+            rgbaColors.push(`rgba(128, 128, 128, ${opacity})`);
+        } else if (color === 'green') {
+            rgbaColors.push(`rgba(0, 128, 0, ${opacity})`);
+        }
     }
-});
+
+    return rgbaColors;
+}
+
+        const image = new Image();
+        var url =  "{{ asset('baby.png') }}";
+        image.src = url;
+
+        const plugin = {
+        id: 'customCanvasBackgroundImage',
+            afterDraw: (chart) => {
+                if (image.complete) {
+                    const ctx = chart.ctx;
+                    const xAxis = chart.scales['x'];
+                    const yAxis = chart.scales['y'];
+                    const top = yAxis.top;
+                    const bottom = yAxis.bottom;
+                    xAxis.ticks.forEach((value, index) => {
+                        const x = xAxis.getPixelForTick(index);
+                        const y = bottom + (top - bottom) / 2 - image.height / 2;
+                        ctx.drawImage(image, x, y);
+                    });
+                } else {
+                    image.onload = () => chart.draw();
+                }
+            }
+        };
+        var ctx = document.getElementById('roadToHealth').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Weight',
+                    data: weightData,
+                    borderColor: colors,
+                    fill: false,
+                    fillColor: colors,
+                    fillOpacity: 0.5,
+                    backgroundColor: function(ctx) {
+                        var weight = weightData[ctx.dataIndex];
+                        return colors[ctx.dataIndex];
+                    },
+                    lineTension: 0.5,
+                    pointRadius: 5,
+                    pointHoverRadius: 10,
+                    pointHitRadius: 30,
+                    pointBorderWidth: 7,
+                    pointStyle: 'rectRounded',
+                    pointBackgroundColor: colors,
+                    pointBorderColor: colors,
+                    pointHoverBackgroundColor: colors,
+                    tension: 0.5,
+                },
+            {
+                    label: '',
+                    type: 'bar',
+                    data: weightData,
+                    borderColor: colors,
+                    fill: false,
+                    fillColor: colors,
+                    fillOpacity: 0.5,
+                    backgroundColor: convertColorsToRgba(colors,0.1),
+                }]
+            },
+            plugins: [plugin],
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Road to Health',
+                    color: 'green',
+                    font: {
+                        size: 20,
+                        weight: 'bold',
+                        family: 'Comic Sans MS',
+                        lineHeight: 1.2,
+                    },
+                    padding: {
+                        top: 20, left: 0, right: 0, bottom: 0
+                    }
+                },
+                legend: {
+                    display: true
+                },
+                scales: {
+                    x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Age in Month'
+                },
+                border: {
+                    display: true,
+                    drawOnChartArea: true,
+                    drawTicks: true,
+                    drawBorder: true,
+                    color: 'black',
+                },
+                grid: {
+                    display: true,
+                    offset: false,
+                    drawOnChartArea: true,
+                    drawTicks: true,
+                    drawBorder: true,
+                    color: convertColorsToRgba(colors,0.4),
+                    fill: false,
+                    fillOpacity: 0.2,
+                    fillColor: colors,
+                    // lineWidth: 190,
+
+                }
+            },
+                y: {
+                     beginAtZero: true,
+                display: true,
+                title: {
+                display: true,
+                text: 'Weight in kg'
+                },
+                }
+                },
+                backgroundColor: function(ctx) {
+                    var weight = weightData[ctx.dataIndex];
+                    if (weight < 3) {
+                        return 'red';
+                    } else if (weight >= 3 && weight < 6) {
+                        return 'gray';
+                    } else {
+                        return 'green';
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 20,
+                        right: 20,
+                        top: 0,
+                        bottom: 20
+                    }
+                }
+            }
+        });
+
 
 document.getElementById("printButton").addEventListener("click", function() {
     printChart();

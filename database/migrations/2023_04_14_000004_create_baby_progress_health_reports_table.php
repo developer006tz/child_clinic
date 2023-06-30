@@ -15,7 +15,7 @@ return new class extends Migration {
         ) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('baby_id');
-            $table->decimal('age_per_month');
+            $table->integer('age_per_month');
             $table->decimal('height');
             $table->decimal('weight');
             $table->decimal('head_circumference');
