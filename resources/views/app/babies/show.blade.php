@@ -347,7 +347,7 @@
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="card">
                     <!-- The timeline -->
-                    <button id="printButton">Print</button>
+                    <button class="btn btn-info" id="printButton">Print card</button>
                     <div class="card_wrapper">
                         <div class="title text-center">
                             <h3>ROAD TO HEALTH CHART</h3>
@@ -365,9 +365,12 @@
 
     @php
     $babyProgressHealthReports = $baby->card_data->sortBy('age_per_month');
+    $baby_name = $baby->name;
     @endphp
     @push('scripts')
       <script>
+        
+        var baby_name = {!! json_encode($baby_name) !!};
         let labels = [];
         let weightData = [];
         let colors = [];
@@ -520,7 +523,7 @@
                 }
             },
                 y: {
-                     beginAtZero: true,
+                beginAtZero: true,
                 display: true,
                 title: {
                 display: true,
@@ -550,10 +553,11 @@
         });
 
 
+
+
 document.getElementById("printButton").addEventListener("click", function() {
     printChart();
 });
-
 function printChart() {
     var chartArea = document.getElementById('roadToHealth').getContext('2d').canvas;
     var chartImage = chartArea.toDataURL("image/png");
@@ -564,7 +568,7 @@ function printChart() {
 
     var img = new Image();
     img.onload = function() {
-        printWindow.document.write('<h2>Road to Health Chart</h2>');
+        printWindow.document.write('<h2>Road to Health Chart for baby <span id="baby_name"></span> </span> </h2>');
         printWindow.document.write('<h3>This chart illustrates the progress towards achieving optimal health.</h3>');
         printWindow.document.write('<img src="' + chartImage + '" width="790" height="500"><br>');
         printWindow.print();
@@ -585,6 +589,8 @@ function printChart() {
                 $("div.col-md-3.profile").show();
                 $("div.col-md-12#all-info").removeClass("col-md-12").addClass("col-md-9");
             });
+
+            //
         });
 
 
