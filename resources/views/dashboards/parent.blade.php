@@ -1,6 +1,5 @@
 <div class="container-fluid">
     @php $mother = \App\Models\Mother::where('user_id',auth()->user()->id)->first() @endphp
-    {{$mother}}
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-lg-6 col-6">
