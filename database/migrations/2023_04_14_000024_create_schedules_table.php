@@ -16,8 +16,8 @@ return new class extends Migration {
             $table->text('message');
             $table->date('date_start');
             $table->date('date_end');
-            $table->time('time_start');
-            $table->time('time_end');
+            $table->time('time_start')->nullable();
+            $table->time('time_end')->nullable();
 
             $table->timestamps();
         });

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mother;
+use App\Models\Schedule;
+use App\Models\MotherSchedules;
 use Illuminate\View\View;
 use App\Models\BloodType;
 use App\Models\Pregnant;
@@ -121,19 +123,21 @@ class MotherController extends Controller
         $pregnancies = Pregnant::where('mother_id', $mother->id)->get();
         $sms = Sms::where('phone', $mother->phone)->get();
         $father = $mother->father;
+        // motherSchedules
+        $mother_schedules = $mother->motherSchedules;
         if(!empty($pregnancies)){
             foreach ($pregnancies as $key => $pregnancy) {
                 $pregnancy_appointments= PrenatalApointment::where('pregnant_id', $pregnancy->id)->get();
             }
             if(!empty($pregnancy_appointments)){
                 
-                return view('app.mothers.show', compact('mother', 'father', 'pregnancies', 'pregnancy_appointments'));
+                return view('app.mothers.show', compact('mother', 'father', 'pregnancies', 'pregnancy_appointments','mother_schedules'));
 
             }else{
-                return view('app.mothers.show', compact('mother', 'father', 'pregnancies'));
+                return view('app.mothers.show', compact('mother', 'father', 'pregnancies','mother_schedules'));
             }
         }
-        return view('app.mothers.show', compact('mother', 'father'));
+        return view('app.mothers.show', compact('mother', 'father','mother_schedules'));
     }
 
     /**

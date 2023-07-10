@@ -49,6 +49,10 @@ class Mother extends Model
         return $this->hasMany(MotherHealthStatus::class);
     }
 
+    public function motherSchedules(){
+        return $this->hasMany(MotherSchedules::class);
+    }
+
     public function motherMedicalHistories()
     {
         return $this->hasMany(MotherMedicalHistory::class);

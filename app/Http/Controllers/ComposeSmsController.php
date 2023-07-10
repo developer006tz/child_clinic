@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\View\View;
 use App\Models\ComposeSms;
 use Illuminate\Http\Request;
-use App\Models\MessageTemplate;
+use App\Models\Mother;
+use App\Models\Schedule;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\ComposeSmsStoreRequest;
 use App\Http\Requests\ComposeSmsUpdateRequest;
@@ -39,9 +40,10 @@ class ComposeSmsController extends Controller
     {
         $this->authorize('create', ComposeSms::class);
 
-        $messageTemplates = MessageTemplate::pluck('name', 'id');
+        $mothers = Mother::pluck('name', 'id');
+        $schedules = Schedule::pluck('name', 'id');
 
-        return view('app.all_compose_sms.create', compact('messageTemplates'));
+        return view('app.all_compose_sms.create', compact('mothers', 'schedules'));
     }
 
     /**

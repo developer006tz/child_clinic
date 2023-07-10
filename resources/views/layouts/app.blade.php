@@ -7,7 +7,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>CLINIC-CMS</title>
         <!-- Scripts -->
-        <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+        {{-- <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script> --}}
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- jQuery UI 1.11.4 -->
         <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -28,8 +29,22 @@
          <!-- Theme style -->
         <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
 
+        <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css')}}">
+        <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+        <!-- Bootstrap4 Duallistbox -->
+        <link rel="stylesheet" href="{{ asset('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
+        <!-- BS Stepper -->
+        <link rel="stylesheet" href="{{ asset('plugins/bs-stepper/css/bs-stepper.min.css')}}">
+        <!-- dropzonejs -->
+        <link rel="stylesheet" href="{{ asset('plugins/dropzone/min/dropzone.min.css')}}">
+
+
+
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
         <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
+         <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+
 {{--        datatables--}}
 {{--        <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" rel="stylesheet">--}}
         <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -110,6 +125,12 @@
             notyf.success('{{ session('success') }}')
         </script>
         @endif
+         @if (session()->has('error'))
+        <script>
+            var notyf = new Notyf({dismissible: true})
+            notyf.error('{{ session('error') }}')
+        </script>
+        @endif
 
         <script>
             /* Simple Alpine Image Viewer */
@@ -139,6 +160,21 @@
                 })
             })
         </script>
+        <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+
+    <!-- Bootstrap4 Duallistbox -->
+<script src="{{ asset('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') }}"></script>
+    <script src="{{ asset('plugins/inputmask/jquery.inputmask.min.js') }}"></script>
+
+    <script src="{{ asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
+<!-- BS-Stepper -->
+<script src="{{ asset('plugins/bs-stepper/js/bs-stepper.min.js') }}"></script>
+<!-- dropzonejs -->
+<script src="{{ asset('plugins/dropzone/min/dropzone.min.js') }}"></script>
+
+
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
         <script src="https://cdn.datatables.net/autofill/2.5.3/js/dataTables.autoFill.min.js"></script>
@@ -166,6 +202,10 @@
         $(document).ready( function () {
             $('#myTable_simple').DataTable({
             });
+
+            $('.myTable_simple').DataTable({
+            });
+            
             $('#myTable').DataTable(
                 {
                     "scrollX": true,
@@ -201,11 +241,30 @@
 
                 // add select livesearch
                 $('.select2').select2();
-            
+
+                 $('#daterange-btn').daterangepicker(
+                    {
+                        ranges   : {
+                        'Today'       : [moment(), moment()],
+                        'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                        },
+                        startDate: moment().subtract(29, 'days'),
+                        endDate  : moment()
+                    },
+                    function (start, end) {
+                        // $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+                         $('#start_date').val(start.format('YYYY-MM-DD'));
+                         $('#end_date').val(end.format('YYYY-MM-DD'));
+                    }
+                    )
 
         } );
     </script>
-        @auth
+        {{-- @auth
         @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) ||
                     Auth::user()->can('view-any', Spatie\Permission\Models\Permission::class))
             @can('view-any', Spatie\Permission\Models\Role::class)
@@ -221,6 +280,6 @@
         </script>
             @endcan
         @endif
-        @endauth
+        @endauth --}}
     </body>
 </html>

@@ -26,7 +26,7 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.date
             name="date_start"
-            label="Date Start"
+            label="Start Date"
             value="{{ old('date_start', ($editing ? optional($schedule->date_start)->format('Y-m-d') : '')) }}"
             max="255"
             required
@@ -36,14 +36,14 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.date
             name="date_end"
-            label="Date End"
+            label="End Date"
             value="{{ old('date_end', ($editing ? optional($schedule->date_end)->format('Y-m-d') : '')) }}"
             max="255"
             required
         ></x-inputs.date>
     </x-inputs.group>
 
-    <x-inputs.group class="col-sm-12">
+    {{-- <x-inputs.group class="col-sm-12">
         <x-inputs.text
             name="time_start"
             label="Time Start"
@@ -63,5 +63,5 @@
             placeholder="Time End"
             required
         ></x-inputs.text>
-    </x-inputs.group>
+    </x-inputs.group> --}}
 </div>

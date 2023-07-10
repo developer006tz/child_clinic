@@ -24,8 +24,6 @@ class ScheduleStoreRequest extends FormRequest
             'message' => ['required', 'max:255', 'string'],
             'date_start' => ['required', 'date'],
             'date_end' => ['required', 'date'],
-            'time_start' => ['required', 'date_format:H:i:s'],
-            'time_end' => ['required', 'date_format:H:i:s'],
         ];
     }
 }

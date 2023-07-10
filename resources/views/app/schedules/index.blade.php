@@ -40,12 +40,6 @@
                             <th class="text-left">
                                 @lang('crud.schedules.inputs.date_end')
                             </th>
-                            <th class="text-left">
-                                @lang('crud.schedules.inputs.time_start')
-                            </th>
-                            <th class="text-left">
-                                @lang('crud.schedules.inputs.time_end')
-                            </th>
                             <th class="text-center">
                                 @lang('crud.common.actions')
                             </th>
@@ -54,12 +48,10 @@
                     <tbody>
                         @forelse($schedules as $schedule)
                         <tr>
-                            <td>{{ $schedule->name ?? '-' }}</td>
+                            <td style="width:150px">{{ $schedule->name ?? '-' }}</td>
                             <td>{{ $schedule->message ?? '-' }}</td>
-                            <td>{{ $schedule->date_start ?? '-' }}</td>
-                            <td>{{ $schedule->date_end ?? '-' }}</td>
-                            <td>{{ $schedule->time_start ?? '-' }}</td>
-                            <td>{{ $schedule->time_end ?? '-' }}</td>
+                            <td>{{ \Carbon\Carbon::parse($schedule->date_start)->format('d/m/Y') ?? '-' }}</td>
+                            <td>{{ \Carbon\Carbon::parse($schedule->date_end)->format('d/m/Y') ?? '-' }}</td>
                             <td class="text-center" style="width: 134px;">
                                 <div
                                     role="group"
@@ -72,23 +64,13 @@
                                     >
                                         <button
                                             type="button"
-                                            class="btn btn-primary"
+                                            class="btn mx-2 btn-primary"
                                         >
                                             <i class="icon ion-md-create"></i>
                                         </button>
                                     </a>
-                                    @endcan @can('view', $schedule)
-                                    <a
-                                        href="{{ route('schedules.show', $schedule) }}"
-                                    >
-                                        <button
-                                            type="button"
-                                            class="btn btn-info mx-2"
-                                        >
-                                            <i class="icon ion-md-eye"></i>
-                                        </button>
-                                    </a>
-                                    @endcan @can('delete', $schedule)
+                                    @endcan
+                                     @can('delete', $schedule)
                                     <form
                                         action="{{ route('schedules.destroy', $schedule) }}"
                                         method="POST"
@@ -108,7 +90,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="7">
+                            <td colspan="5">
                                 @lang('crud.common.no_items_found')
                             </td>
                         </tr>
@@ -116,7 +98,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="7">{!! $schedules->render() !!}</td>
+                            <td colspan="5">{!! $schedules->render() !!}</td>
                         </tr>
                     </tfoot>
                 </table>

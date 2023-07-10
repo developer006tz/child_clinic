@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="searchbar mt-0 mb-4">
         <div class="row">
@@ -24,7 +25,7 @@
         <div class="card-body">
 
             <div class="table-responsive">
-                <table class="table table-bordered table-hover" id="myTable_simple">
+                <table class="table table-bordered table-hover" class="myTable_simple">
                     <thead>
                         <tr>
                             <th class="text-left">

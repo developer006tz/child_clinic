@@ -152,6 +152,10 @@ Route::prefix('/')
         ])->name('all-compose-sms.destroy');
 
         Route::resource('schedules', ScheduleController::class);
+
+        Route::post('create-schedule', [ScheduleController::class, 'generate_schedule'])->name(
+            'create-schedule.create'
+        );
         Route::get('all-sms', [SmsController::class, 'index'])->name(
             'all-sms.index'
         );

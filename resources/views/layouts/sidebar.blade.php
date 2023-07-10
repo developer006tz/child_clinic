@@ -173,14 +173,7 @@
                             </a>
                         </li>
                     @endcan --}}
-                    @can('view-any', App\Models\Vacination::class)
-                        <li class="nav-item">
-                            <a href="{{ route('vacinations.index') }}" class="nav-link {{ request()->routeIs('vacinations.index') ? 'active' : '' }}">
-                                <i class="nav-icon icon ion-md-finger-print"></i>
-                                <p> Manage Vaccine</p>
-                            </a>
-                        </li>
-                    @endcan
+                    
                     <li class="nav-item {{ $isActiveNotification ? 'menu-is-opening menu-open' : '' }}">
                         <a href="#" class="nav-link {{ $isActiveNotification ? 'active' : '' }}">
                             <i class="nav-icon icon  ion ion-md-notifications"></i>
@@ -190,19 +183,19 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            @can('view-any', App\Models\MessageTemplate::class)
+                            {{-- @can('view-any', App\Models\MessageTemplate::class)
                                 <li class="nav-item">
                                     <a href="{{ route('message-templates.index') }}" class="nav-link {{ request()->routeIs('message-templates.index') ? 'active' : '' }}">
                                         <i class="nav-icon icon ion-md-radio-button-off"></i>
                                         <p>Message Templates</p>
                                     </a>
                                 </li>
-                            @endcan
+                            @endcan --}}
                             @can('view-any', App\Models\ComposeSms::class)
                                 <li class="nav-item">
                                     <a href="{{ route('all-compose-sms.index') }}" class="nav-link {{ request()->routeIs('all-compose-sms.index') ? 'active' : '' }}">
                                         <i class="nav-icon icon ion-md-radio-button-off"></i>
-                                        <p>All Compose Sms</p>
+                                        <p>Send Message</p>
                                     </a>
                                 </li>
                             @endcan
@@ -235,6 +228,14 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        @can('view-any', App\Models\Vacination::class)
+                            <li class="nav-item">
+                                <a href="{{ route('vacinations.index') }}" class="nav-link {{ request()->routeIs('vacinations.index') ? 'active' : '' }}">
+                                    <i class="nav-icon icon ion-md-finger-print"></i>
+                                    <p> Manage Vaccine</p>
+                                </a>
+                            </li>
+                        @endcan
                             @can('view-any', App\Models\User::class)
                                 <li class="nav-item">
                                     <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}">

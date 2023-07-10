@@ -10,9 +10,15 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('mother_schedule', function (Blueprint $table) {
+        Schema::create('mother_schedules', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('mother_id');
             $table->unsignedBigInteger('schedule_id');
+            $table->string('message');
+            $table->date('date');
+            $table->string('status')->default('0');
+
+            $table->timestamps();
         });
     }
 
@@ -21,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('mother_schedule');
+        Schema::dropIfExists('mother_schedules');
     }
 };

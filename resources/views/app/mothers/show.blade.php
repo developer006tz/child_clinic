@@ -167,20 +167,22 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th style="width: 30%">Date</th>
-                            <th>Time</th>
+                            <th style="width: 30%">Appointment Title</th>
+                            <th style="width: 20%" >Attend Date</th>
+                            <th>Message</th>
                         </tr>
                         </thead>
                         <tbody>
-                            @isset($pregnancy_appointments)
-                            @forelse($pregnancy_appointments as $appointment)
+                            @isset($mother_schedules)
+                            @forelse($mother_schedules as $appointment)
                             <tr>
+                                <td>{{ $appointment->schedule->name ?? '-' }}</td>
                                 <td>{{ \Carbon\Carbon::parse($appointment->date)->format('d/m/Y') ?? '-' }}</td>
-                                <td>{{ $appointment->time ?? '-' }}</td>
+                                <td>{{ $appointment->message ?? '-' }}</td>
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="2">No Appointments Found</td>
+                                <td colspan="3">No Appointments Found</td>
                             </tr>
                         @endforelse
                         @endisset

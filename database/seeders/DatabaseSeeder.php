@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $user = \App\Models\User::factory()
             ->count(1)
             ->create([
+                'name'=>'Doctor Main',
                 'email' => 'admin@admin.com',
                 'password' => \Hash::make('admin'),
             ]);
@@ -26,11 +27,11 @@ class DatabaseSeeder extends Seeder
         // $this->call(BabyProgressHealthReportSeeder::class);
         // $this->call(BabyVaccinationSeeder::class);
         // $this->call(BirthCertificateSeeder::class);
-        $this->call(BloodTypeSeeder::class);
+        // $this->call(BloodTypeSeeder::class);
         // $this->call(CardSeeder::class);
         // $this->call(ClinicSeeder::class);
         // $this->call(ComposeSmsSeeder::class);
-        $this->call(DeseaseSeeder::class);
+        // $this->call(DeseaseSeeder::class);
         // $this->call(FatherSeeder::class);
         // $this->call(InsuranceSeeder::class);
         // $this->call(MessageTemplateSeeder::class);
@@ -42,7 +43,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(PrenatalApointmentSeeder::class);
         // $this->call(ScheduleSeeder::class);
         // $this->call(SmsSeeder::class);
-        $this->call(UserSeeder::class);
-        $this->call(VacinationSeeder::class);
+        // $this->call(UserSeeder::class);
+        // $this->call(VacinationSeeder::class);
     }
 }

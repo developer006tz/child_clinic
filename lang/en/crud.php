@@ -348,8 +348,8 @@ return [
         'inputs' => [
             'name' => 'Name',
             'message' => 'Message',
-            'date_start' => 'Date Start',
-            'date_end' => 'Date End',
+            'date_start' => 'Start date',
+            'date_end' => 'End date',
             'time_start' => 'Time Start',
             'time_end' => 'Time End',
         ],
