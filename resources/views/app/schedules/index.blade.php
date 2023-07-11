@@ -57,9 +57,9 @@
                     </thead>
                     <tbody>
                         @php 
-                        $time = \App\Models\ScheduleTime::first()->time;
+                        $time = \App\Models\ScheduleTime::first();
                         if($time){
-                            $time = \Carbon\Carbon::parse($time)->format('H:i');
+                            $time = \Carbon\Carbon::parse($time->time)->format('H:i');
                         }else{
                             $time = \Carbon\Carbon::now()->format('H:i');
                         }

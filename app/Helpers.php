@@ -34,9 +34,15 @@ if (!function_exists('beem_sms')) {
         ));
 
         $response = curl_exec($ch);
-        $response = json_decode($response);
-        curl_close($ch);
+        if ($response === FALSE) {
+            echo $response;
 
+            die(curl_error($ch));
+        }
+
+       
+        curl_close($ch);
+         $response = json_decode($response);
         return $response;
 
     }
