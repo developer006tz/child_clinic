@@ -65,6 +65,7 @@ class ComposeSmsController extends Controller
                     //send sms
                     try {
                         $sms = beem_sms($phone, $message);
+                        save_sms($message, $phone, $sms);
                     } catch (\Throwable $th) {
                         $th->getMessage();
 
@@ -80,6 +81,7 @@ class ComposeSmsController extends Controller
                 //send sms
                 try {
                     $sms = beem_sms($phone, $message);
+                    save_sms($message, $phone, $sms);
                 } catch (\Throwable $th) {
                     $th->getMessage();
 
@@ -97,19 +99,7 @@ class ComposeSmsController extends Controller
                 //send sms
                 try {
                     $sms = beem_sms($phone, $message);
-                    if($sms==null){
-                      \App\Models\Sms::create([
-                            'phone' => $phone,
-                            'body' => $message,
-                            'status' => '2',
-                        ]);
-                    }else{
-                        \App\Models\Sms::create([
-                            'phone' => $phone,
-                            'body' => $message,
-                            'status' => $sms,
-                        ]);
-                    }
+                    save_sms($message, $phone, $sms);
                 } catch (\Throwable $th) {
                     $th->getMessage();
 

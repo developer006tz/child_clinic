@@ -40,12 +40,12 @@ if (!function_exists('beem_sms')) {
         if ($httpcode == 200) {
             $response = json_decode($response, true);
             if ($response['successful']) {
-                return 1;
+                return '1';
             } else {
-                return 0;
+                return '0';
             }
         } else {
-            return null;
+            return '2';
 
         }
     }

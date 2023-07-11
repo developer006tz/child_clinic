@@ -32,11 +32,7 @@ class Kernel extends ConsoleKernel
                 $message = $record->message;
                 
                 $sms = beem_sms($phone, $message);
-                if($sms==null){
-                    save_sms($message, $phone, '2');
-                }else{
-                    save_sms($message,$phone, $sms);
-                }
+                save_sms($message,$phone, $sms);
                 
             }
         })->dailyAt($formattedTime);
