@@ -52,7 +52,7 @@
               <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Pending Failed</span>
+                <span class="info-box-text">Failed</span>
                 <span class="info-box-number">{{$allSms->where('status','2')->count() ?? '0'}}</span>
               </div>
               <!-- /.info-box-content -->
