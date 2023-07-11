@@ -1,22 +1,22 @@
-<?php 
+<?php
 
 if (!function_exists('beem_sms')) {
     function beem_sms($phone, $message)
     {
 
-        // $api_key='4448b31245845116';
-        $api_key = '4448b31245845117';
+        $api_key = '4448b31245845116';
+        // $api_key = '4448b31245845117';
         $secret_key = 'OWRkNWZhNWMxZjE3ZTg3YzQzNzcyN2Q4YTY2NDRiMDkwYjUwN2RmNmMyMzU2ZWUwNTk1N2VmOWE1NjNhZDQ5Ng==';
 
         $postData = array(
             'source_addr' => 'INFO',
-            'encoding'=>0,
+            'encoding' => 0,
             'schedule_time' => '',
             'message' => $message,
-            'recipients' => [array('recipient_id' => '1','dest_addr'=>$phone),array('recipient_id' => '2','dest_addr'=>'255700000011')]
+            'recipients' => [array('recipient_id' => '1', 'dest_addr' => $phone), array('recipient_id' => '2', 'dest_addr' => '255700000011')]
         );
 
-        $Url ='https://apisms.beem.africa/v1/send';
+        $Url = 'https://apisms.beem.africa/v1/send';
 
         $ch = curl_init($Url);
         error_reporting(E_ALL);
@@ -31,29 +31,31 @@ if (!function_exists('beem_sms')) {
                 'Content-Type: application/json'
             ),
             CURLOPT_POSTFIELDS => json_encode($postData)
-        ));
+        )
+        );
 
         $response = curl_exec($ch);
-        if ($response === FALSE) {
-            echo $response;
+        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-            die(curl_error($ch));
+        if ($httpcode == 200) {
+            $response = json_decode($response, true);
+            if ($response['successful']) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } else {
+            return null;
+
         }
-
-       
-        curl_close($ch);
-         $response = json_decode($response);
-        return $response;
-
     }
 }
 
 
 
 if (!function_exists('save_sms')) {
-    function save_sms($message, $phone,$status='1')
+    function save_sms($message, $phone,$status)
     {
-
         $sms = new \App\Models\Sms();
         $sms->body = $message;
         $sms->phone = $phone;

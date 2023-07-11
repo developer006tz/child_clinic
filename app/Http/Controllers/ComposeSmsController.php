@@ -94,11 +94,22 @@ class ComposeSmsController extends Controller
                 $mother_phone = $mother->phone;
                 $phone = validatePhoneNumber($mother_phone);
                 $message = $request->custom_message;
-                $sms = beem_sms($phone, $message);
-                dd($sms);
                 //send sms
                 try {
                     $sms = beem_sms($phone, $message);
+                    if($sms==null){
+                      \App\Models\Sms::create([
+                            'phone' => $phone,
+                            'body' => $message,
+                            'status' => '2',
+                        ]);
+                    }else{
+                        \App\Models\Sms::create([
+                            'phone' => $phone,
+                            'body' => $message,
+                            'status' => $sms,
+                        ]);
+                    }
                 } catch (\Throwable $th) {
                     $th->getMessage();
 

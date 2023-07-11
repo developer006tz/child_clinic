@@ -30,8 +30,14 @@ class Kernel extends ConsoleKernel
                 $mother = \App\Models\Mother::find($record->mother_id)->first()->phone;
                 $phone = validatePhoneNumber($mother);
                 $message = $record->message;
-                beem_sms($phone, $message);
-                save_sms($message, $phone, 1);
+                
+                $sms = beem_sms($phone, $message);
+                if($sms==null){
+                    save_sms($message, $phone, '2');
+                }else{
+                    save_sms($message,$phone, $sms);
+                }
+                
             }
         })->dailyAt($formattedTime);
 
