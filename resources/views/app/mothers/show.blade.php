@@ -173,6 +173,7 @@
                         </tr>
                         </thead>
                         <tbody>
+                            
                             @isset($mother_schedules)
                             @forelse($mother_schedules as $appointment)
                             <tr>

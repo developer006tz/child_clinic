@@ -35,24 +35,6 @@ return new class extends Migration {
                 'first_word' => '2022-04-10',
                 'first_step' => '2022-07-25',
             ],
-            [
-                'baby_id' => 3,
-                'first_smile' => '2022-04-05',
-                'first_word' => '2022-07-20',
-                'first_step' => '2022-10-05',
-            ],
-            [
-                'baby_id' => 4,
-                'first_smile' => '2022-06-01',
-                'first_word' => '2022-09-15',
-                'first_step' => '2023-01-10',
-            ],
-            [
-                'baby_id' => 5,
-                'first_smile' => '2022-08-10',
-                'first_word' => '2022-12-01',
-                'first_step' => '2023-03-20',
-            ],
         ]);
 
     }

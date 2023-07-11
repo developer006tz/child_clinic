@@ -120,6 +120,17 @@ class MotherController extends Controller
     {
         $this->authorize('view', $mother);
 
+        $records = \App\Models\MotherSchedules::whereHas('schedule', function ($query) {
+            $query->where('date_start', '>=', now()->addDays(1));
+        })->get();
+
+        foreach ($records as $key => $record) {
+            $mother = Mother::find($record->mother_id)->first()->phone;
+            $phone = validatePhoneNumber($mother);
+            $message = $record->message;
+            dd($mother, $message);
+        }
+
         $pregnancies = Pregnant::where('mother_id', $mother->id)->get();
         $sms = Sms::where('phone', $mother->phone)->get();
         $father = $mother->father;

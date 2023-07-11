@@ -33,4 +33,16 @@ class MotherSchedules extends Model
     public function schedule(){
         return $this->belongsTo(Schedule::class);
     }
+
+    public function scheduleSmsReminder()
+    {
+        for ($i = 1; $i <= 7; $i++) {
+            $records = $this->whereHas('schedule', function ($query) use ($i) {
+                $query->where('date_start', '>=', now()->addDays($i));
+            })->get();
+
+        }
+
+        return $records;
+    }
 }

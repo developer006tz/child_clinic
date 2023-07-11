@@ -6,6 +6,7 @@ use Illuminate\View\View;
 use App\Models\ComposeSms;
 use Illuminate\Http\Request;
 use App\Models\Mother;
+use App\Models\MotherSchedules;
 use App\Models\Schedule;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\ComposeSmsStoreRequest;
@@ -49,13 +50,59 @@ class ComposeSmsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ComposeSmsStoreRequest $request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $this->authorize('create', ComposeSms::class);
 
-        $validated = $request->validated();
+        if($request->schedule_id != null){
+            if($request->attendance != null){
+                $mothers = MotherSchedules::where('schedule_id', $request->schedule_id)->where('status','0')->get();
+                //fetch phone nember of each mother and send sms to her
+                foreach($mothers as $mother){
+                    $mother_phone = Mother::where('id', $mother->mother_id)->first()->phone;
+                    $phone = validatePhoneNumber($mother_phone);
+                    $message = $request->custom_message;
+                    //send sms
+                    try {
+                        $sms = beem_sms($phone, $message);
+                    } catch (\Throwable $th) {
+                        $th->getMessage();
 
-        $composeSms = ComposeSms::create($validated);
+                    }
+                }
+            }
+            $mothers = MotherSchedules::where('schedule_id', $request->schedule_id)->get();
+            //fetch phone nember of each mother and send sms to her
+            foreach($mothers as $mother){
+                $mother_phone = Mother::where('id', $mother->mother_id)->first()->phone;
+                $phone = validatePhoneNumber($mother_phone);
+                $message = $request->custom_message;
+                //send sms
+                try {
+                    $sms = beem_sms($phone, $message);
+                } catch (\Throwable $th) {
+                    $th->getMessage();
+
+                }
+            }
+        }
+
+        if(empty($request->schedule_id) && $request->mother_id != null){
+            $mothers = Mother::find($request->mother_id);
+            //fetch phone nember of each mother and send sms to her
+            foreach ($mothers as $mother) {
+                $mother_phone = $mother->phone;
+                $phone = validatePhoneNumber($mother_phone);
+                $message = $request->custom_message;
+                //send sms
+                try {
+                    $sms = beem_sms($phone, $message);
+                } catch (\Throwable $th) {
+                    $th->getMessage();
+
+                }
+            }
+        }
 
         return redirect()
             ->route('all-compose-sms.index', $composeSms)

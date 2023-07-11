@@ -39,30 +39,7 @@ return new class extends Migration {
                 'occupation' => 'Teacher',
                 'mother_id' => 2,
             ],
-            [
-                'name' => 'William Wilson',
-                'dob' => '1985-11-10',
-                'phone' => '555-123-4567',
-                'address' => '789 Oak Avenue',
-                'occupation' => 'Doctor',
-                'mother_id' => 3,
-            ],
-            [
-                'name' => 'David Thompson',
-                'dob' => '1992-09-29',
-                'phone' => '111-222-3333',
-                'address' => '321 Pine Street',
-                'occupation' => 'Accountant',
-                'mother_id' => 4,
-            ],
-            [
-                'name' => 'Joseph Moore',
-                'dob' => '1994-05-05',
-                'phone' => '444-555-6666',
-                'address' => '567 Cedar Road',
-                'occupation' => 'Lawyer',
-                'mother_id' => 5,
-            ],
+            
         ]);
 
     }

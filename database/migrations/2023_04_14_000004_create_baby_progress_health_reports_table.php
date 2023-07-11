@@ -57,46 +57,6 @@ return new class extends Migration {
                 'head_circumference' => 38.1,
                 'bmi' => 15.1,
             ],
-            [
-                'baby_id' => 3,
-                'age_per_month' => 1,
-                'height' => 51.8,
-                'weight' => 3.9,
-                'head_circumference' => 37.0,
-                'bmi' => 14.4,
-            ],
-            [
-                'baby_id' => 4,
-                'age_per_month' => 1,
-                'height' => 53.6,
-                'weight' => 4.2,
-                'head_circumference' => 37.5,
-                'bmi' => 14.9,
-            ],
-            [
-                'baby_id' => 4,
-                'age_per_month' => 2,
-                'height' => 57.2,
-                'weight' => 4.8,
-                'head_circumference' => 39.3,
-                'bmi' => 16.2,
-            ],
-            [
-                'baby_id' => 5,
-                'age_per_month' => 1,
-                'height' => 52.4,
-                'weight' => 3.7,
-                'head_circumference' => 36.5,
-                'bmi' => 14.0,
-            ],
-            [
-                'baby_id' => 5,
-                'age_per_month' => 2,
-                'height' => 56.1,
-                'weight' => 4.4,
-                'head_circumference' => 38.0,
-                'bmi' => 15.3,
-            ],
         ]);
 
     }

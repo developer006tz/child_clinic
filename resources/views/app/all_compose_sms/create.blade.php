@@ -74,6 +74,8 @@
         </div>
     </x-inputs.group>
 
+    
+
                 <div class="my-4">
                     <button type="submit" class="btn btn-primary float-left">
                         <i class="icon ion-md-save"></i>
@@ -91,7 +93,7 @@
             </div>
         </div>
             @php $editing = isset($composeSms) @endphp
-<x-form
+                <x-form
                 method="POST"
                 action="{{ route('all-compose-sms.store') }}"
                 class="mt-4"
@@ -99,7 +101,7 @@
             
        <x-inputs.group class="col-sm-12">
         <div class="select2-success">
-        <x-inputs.select name="mother_id" label="Mother" class="select2" multiple="multiple" data-placeholder="Select Mother" data-dropdown-css-class="select2-success" style="width: 100%;" required>
+        <x-inputs.select name="mother_id[]" label="Mother" class="select2" multiple="multiple" data-placeholder="Select Mother" data-dropdown-css-class="select2-success" style="width: 100%;" >
             @php $selected = old('mother_id', ($editing ? $motherMedicalHistory->mother_id : '')) @endphp
             <option   value="0">All mothers</option>
             @foreach($mothers as $value => $label)
@@ -110,9 +112,30 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
+            <div class="select2-success">
+            <x-inputs.select name="schedule_id" label="Choose schedule" class="select2" data-placeholder="Choose Schedule" data-dropdown-css-class="select2-success" style="width: 100%;">
+                <option value="" >__select schedule__</option>
+                @foreach($schedules as $value => $label)
+                <option value="{{ $value }}"  >{{ $label }}</option>
+                @endforeach
+            </x-inputs.select>
+            </div>
+        </x-inputs.group>
+
+         <x-inputs.group class="col-sm-12">
+            <div class="select2-success">
+            <x-inputs.select name="attendance" label="By attendance"  data-placeholder="Choose Schedule" data-dropdown-css-class="select2-success" style="width: 100%;">
+                <option value="" >__choose attendance__</option>
+                <option value="1">Attended</option>
+                <option value="0">Not Attended</option>
+            </x-inputs.select>
+            </div>
+        </x-inputs.group>
+
+    <x-inputs.group class="col-sm-12">
         <x-inputs.textarea
             name="custom_message"
-            label="Custom Message"
+            label="Message"
             maxlength="255"
             >{{ old('custom_message', ($editing ? $composeSms->custom_message :
             '')) }}</x-inputs.textarea

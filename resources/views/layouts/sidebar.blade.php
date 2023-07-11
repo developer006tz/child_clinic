@@ -193,7 +193,7 @@
                             @endcan --}}
                             @can('view-any', App\Models\ComposeSms::class)
                                 <li class="nav-item">
-                                    <a href="{{ route('all-compose-sms.index') }}" class="nav-link {{ request()->routeIs('all-compose-sms.index') ? 'active' : '' }}">
+                                    <a href="{{ route('all-compose-sms.create') }}" class="nav-link {{ request()->routeIs('all-compose-sms.index') ? 'active' : '' }}">
                                         <i class="nav-icon icon ion-md-radio-button-off"></i>
                                         <p>Send Message</p>
                                     </a>
