@@ -57,8 +57,12 @@
                     </thead>
                     <tbody>
                         @php 
-                        $time = \App\Models\ScheduleTime::where('id', 1)->first()->time;
-                        $formatedTime = \Carbon\Carbon::parse($time)->format('H:i');
+                        $time = \App\Models\ScheduleTime::first()->time;
+                        if($time){
+                            $time = \Carbon\Carbon::parse($time)->format('H:i');
+                        }else{
+                            $time = \Carbon\Carbon::now()->format('H:i');
+                        }
                         @endphp
                         @forelse($schedules as $schedule)
                         <tr>
@@ -66,7 +70,7 @@
                             <td>{{ $schedule->message ?? '-' }}</td>
                             <td>{{ \Carbon\Carbon::parse($schedule->date_start)->format('d/m/Y') ?? '-' }}</td>
                             <td>{{ \Carbon\Carbon::parse($schedule->date_end)->format('d/m/Y') ?? '-' }}</td>
-                            <td> <a href="#"> {{$formatedTime ?? '-'}}</a></td>
+                            <td> <a href="#"> {{$time ?? '-'}}</a></td>
                             <td class="text-center" style="width: 134px;">
                                 <div
                                     role="group"

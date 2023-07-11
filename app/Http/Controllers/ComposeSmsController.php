@@ -94,6 +94,8 @@ class ComposeSmsController extends Controller
                 $mother_phone = $mother->phone;
                 $phone = validatePhoneNumber($mother_phone);
                 $message = $request->custom_message;
+                $sms = beem_sms($phone, $message);
+                dd($sms);
                 //send sms
                 try {
                     $sms = beem_sms($phone, $message);
