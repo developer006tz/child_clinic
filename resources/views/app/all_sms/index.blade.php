@@ -101,32 +101,14 @@
                         <tr>
                             <td>{{ $sms->body ?? '-' }}</td>
                             <td>{{ $sms->phone ?? '-' }}</td>
-                            <td>{{ $sms->status ?? '-' }}</td>
+                            <td> @if($sms->status == 1) <span class="badge badge-success">sent</span>@elseif($sms->status ==0)<span class="badge badge-warning">pending</span>@else <span class="badge badge-danger">failed</span> @endif</td>
                             <td class="text-center" style="width: 134px;">
                                 <div
                                     role="group"
                                     aria-label="Row Actions"
                                     class="btn-group"
                                 >
-                                    @can('update', $sms)
-                                    <a href="{{ route('all-sms.edit', $sms) }}">
-                                        <button
-                                            type="button"
-                                            class="btn btn-primary"
-                                        >
-                                            <i class="icon ion-md-create"></i>
-                                        </button>
-                                    </a>
-                                    @endcan @can('view', $sms)
-                                    <a href="{{ route('all-sms.show', $sms) }}">
-                                        <button
-                                            type="button"
-                                            class="btn btn-info mx-2"
-                                        >
-                                            <i class="icon ion-md-eye"></i>
-                                        </button>
-                                    </a>
-                                    @endcan @can('delete', $sms)
+                                     @can('delete', $sms)
                                     <form
                                         action="{{ route('all-sms.destroy', $sms) }}"
                                         method="POST"
