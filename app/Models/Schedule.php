@@ -35,4 +35,8 @@ class Schedule extends Model
     public function scheduleMother(){
         return $this->belongsTo(MotherSchedules::class);
     }
+
+    public function scheduleTime(){
+        return $this->hasOne(scheduleTime::class);
+    }
 }

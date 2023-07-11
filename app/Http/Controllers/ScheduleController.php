@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Schedule;
 use App\Models\Mother;
 use App\Models\MotherSchedules;
+use App\Models\scheduleTime;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\ScheduleStoreRequest;
 use App\Http\Requests\ScheduleUpdateRequest;
+use Illuminate\Support\Facades\Artisan;
+use Symfony\Component\Process\Process;
 
 class ScheduleController extends Controller
 {
@@ -99,12 +102,49 @@ class ScheduleController extends Controller
             ->withError('No mothers found');
         }
         
-        
+    }
+
+    public function set_schedule_time(Request $request):RedirectResponse 
+    {
+
+
+        $validated = $request->validate([
+            'time' => 'required',
+        ]);
+
+        //return the first record of scheduleTime::class
+        $check = scheduleTime::first();
+        if(!empty($check)){
+            $check->update($validated);
+        }else{
+            scheduleTime::create($validated);
+        }
 
         return redirect()
-            ->route('schedules.index', $schedule)
-            ->withSuccess(__('crud.common.created'));
+            ->route('schedules.index')
+            ->withSuccess(__('crud.common.saved'));
+        
     }
+
+    public function executeSchedule()
+    {
+        $process = new Process(['php', 'artisan', 'schedule:work']);
+        $process->start();
+        sleep(120); // Wait for 3 minutes (180 seconds)
+        $process->stop();
+        return redirect()
+            ->route('schedules.index')
+            ->withSuccess(__('Schedule executed successfully'));
+    }
+
+    // public function executeSchedule()
+    // {
+    //     Artisan::queue('schedule:execute');
+    //     return redirect()
+    //         ->route('schedules.index')
+    //         ->withSuccess(__('Schedule executed successfully'));
+    // }
+
 
     /**
      * Display the specified resource.

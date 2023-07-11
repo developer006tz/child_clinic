@@ -156,6 +156,10 @@ Route::prefix('/')
         Route::post('create-schedule', [ScheduleController::class, 'generate_schedule'])->name(
             'create-schedule.create'
         );
+
+        Route::post('schedule-time', [ScheduleController::class, 'set_schedule_time'])->name('scheduletime.set');
+
+        Route::get('execute-schedule', [ScheduleController::class, 'executeSchedule'])->name('scheduletime.execute');
         Route::get('all-sms', [SmsController::class, 'index'])->name(
             'all-sms.index'
         );

@@ -1,6 +1,70 @@
 @extends('layouts.app')
 
 @section('content')
+
+{{-- test  --}}
+
+
+<div class="container">
+        <h5 class="mb-2">MESSAGES REPORTS</h5>
+        <div class="row">
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Messages</span>
+                <span class="info-box-number">{{$allSms->count() ?? '0'}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-success"><i class="far fa-flag"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Sent Messages</span>
+                <span class="info-box-number">{{$allSms->where('status','1')->count() ?? '0'}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Pending Messages</span>
+                <span class="info-box-number">{{$allSms->where('status','0')->count() ?? '0'}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Pending Failed</span>
+                <span class="info-box-number">{{$allSms->where('status','2')->count() ?? '0'}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+
+{{-- end test  --}}
 <div class="container">
     <div class="searchbar mt-0 mb-4">
         <div class="row">
@@ -8,13 +72,6 @@
                 <h2>
                     @lang('crud.all_sms.index_title')
                 </h2>
-            </div>
-            <div class="col-md-6 text-right">
-                @can('create', App\Models\Sms::class)
-                <a href="{{ route('all-sms.create') }}" class="btn btn-primary">
-                    <i class="icon ion-md-add"></i> @lang('crud.common.create')
-                </a>
-                @endcan
             </div>
         </div>
     </div>

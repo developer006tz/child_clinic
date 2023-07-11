@@ -17,6 +17,9 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
+        $time = \App\Models\ScheduleTime::where('id', 1)->first()->time;
+        $formattedTime = \Carbon\Carbon::createFromFormat('H:i:s', $time)->format('H:i');
+
         // Schedule a call for 1 day in the future
         $schedule->call(function () {
             $records = \App\Models\MotherSchedules::whereHas('schedule', function ($query) {
@@ -28,73 +31,23 @@ class Kernel extends ConsoleKernel
                 $phone = validatePhoneNumber($mother);
                 $message = $record->message;
                 beem_sms($phone, $message);
+                save_sms($message, $phone, 1);
             }
-        })->dailyAt('06:33');
+        })->dailyAt($formattedTime);
 
         // Schedule a call for 2 days in the future
-        $schedule->call(function () {
-            $records = \App\Models\MotherSchedules::whereHas('schedule', function ($query) {
-                $query->where('date_start', '>=', now()->addDays(5));
-            })->get();
-            foreach ($records as $record) {
-                $mother = \App\Models\Mother::find($record->mother_id)->first()->phone;
-                $phone = validatePhoneNumber($mother);
-                $message = $record->message;
-                beem_sms($phone, $message);
-            }
-        })->dailyAt('06:33');
+        // $schedule->call(function () {
+        //     $records = \App\Models\MotherSchedules::whereHas('schedule', function ($query) {
+        //         $query->where('date_start', '>=', now()->addDays(5));
+        //     })->get();
+        //     foreach ($records as $record) {
+        //         $mother = \App\Models\Mother::find($record->mother_id)->first()->phone;
+        //         $phone = validatePhoneNumber($mother);
+        //         $message = $record->message;
+        //         beem_sms($phone, $message);
+        //     }
+        // })->dailyAt($formattedTime);
 
-        // Schedule a call for 3 days in the future
-        $schedule->call(function () {
-            $records = \App\Models\MotherSchedules::whereHas('schedule', function ($query) {
-                $query->where('date_start', '>=', now()->addDays(6));
-            })->get();
-            foreach ($records as $record) {
-                 $mother = \App\Models\Mother::find($record->mother_id)->first()->phone;
-                $phone = validatePhoneNumber($mother);
-                $message = $record->message;
-                beem_sms($phone, $message);
-            }
-        })->dailyAt('06:33');
-
-        // Schedule a call for 4 days in the future
-        $schedule->call(function () {
-            $records = \App\Models\MotherSchedules::whereHas('schedule', function ($query) {
-                $query->where('date_start', '>=', now()->addDays(7));
-            })->get();
-            foreach ($records as $record) {
-                 $mother = \App\Models\Mother::find($record->mother_id)->first()->phone;
-                $phone = validatePhoneNumber($mother);
-                $message = $record->message;
-                beem_sms($phone, $message);
-            }
-        })->dailyAt('06:33');
-
-        // Schedule a call for 5 days in the future
-        $schedule->call(function () {
-            $records = \App\Models\MotherSchedules::whereHas('schedule', function ($query) {
-                $query->where('date_start', '>=', now()->addDays(8));
-            })->get();
-            foreach ($records as $record) {
-                 $mother = \App\Models\Mother::find($record->mother_id)->first()->phone;
-                $phone = validatePhoneNumber($mother);
-                $message = $record->message;
-                beem_sms($phone, $message);
-            }
-        })->dailyAt('06:33');
-
-        // Schedule a call for 6 days in the future
-        $schedule->call(function () {
-            $records = \App\Models\MotherSchedules::whereHas('schedule', function ($query) {
-                $query->where('date_start', '>=', now()->addDays(9));
-            })->get();
-            foreach ($records as $record) {
-                 $mother = \App\Models\Mother::find($record->mother_id)->first()->phone;
-                $phone = validatePhoneNumber($mother);
-                $message = $record->message;
-                beem_sms($phone, $message);
-            }
-        })->dailyAt('06:33');
     }
 
 

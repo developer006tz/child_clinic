@@ -4,7 +4,8 @@ if (!function_exists('beem_sms')) {
     function beem_sms($phone, $message)
     {
 
-        $api_key='4448b31245845116';
+        // $api_key='4448b31245845116';
+        $api_key = '4448b31245845117';
         $secret_key = 'OWRkNWZhNWMxZjE3ZTg3YzQzNzcyN2Q4YTY2NDRiMDkwYjUwN2RmNmMyMzU2ZWUwNTk1N2VmOWE1NjNhZDQ5Ng==';
 
         $postData = array(
@@ -35,6 +36,21 @@ if (!function_exists('beem_sms')) {
         $response = curl_exec($ch);
         $response = json_decode($response);
         curl_close($ch);
+
+    }
+}
+
+
+
+if (!function_exists('save_sms')) {
+    function save_sms($message, $phone,$status='1')
+    {
+
+        $sms = new \App\Models\Sms();
+        $sms->body = $message;
+        $sms->phone = $phone;
+        $sms->status = $status;
+        $sms->save();
 
     }
 }
