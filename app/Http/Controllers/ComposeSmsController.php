@@ -105,7 +105,7 @@ class ComposeSmsController extends Controller
         }
 
         return redirect()
-            ->route('all-compose-sms.index', $composeSms)
+            ->route('all-compose-sms.create')
             ->withSuccess(__('crud.common.created'));
     }
 
