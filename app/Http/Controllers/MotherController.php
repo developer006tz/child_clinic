@@ -106,9 +106,12 @@ class MotherController extends Controller
             'body' => 'Hellow '.$mother->name.' You are registered as Parent  in ' . $clinic->name . ' Clinic System. You can  login with email: '.$random_email.' and password: ' . $password,
             'status' => '0',
         ];
-        $sms = Sms::create($sms_data);
+        $save_mesage = Sms::create($sms_data);
 
-        beem_sms(validatePhoneNumber($user->phone), $sms->body);
+        $sms = beem_sms(validatePhoneNumber($user->phone), $save_mesage->body);
+        $save_mesage->status = $sms;
+        $save_mesage->save();
+        
 
         return to_route('mothers.index', $mother)->withSuccess(__('crud.common.created'));
     }
@@ -128,7 +131,6 @@ class MotherController extends Controller
             $mother = Mother::find($record->mother_id)->first()->phone;
             $phone = validatePhoneNumber($mother);
             $message = $record->message;
-            dd($mother, $message);
         }
 
         $pregnancies = Pregnant::where('mother_id', $mother->id)->get();
