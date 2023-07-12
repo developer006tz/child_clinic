@@ -62,7 +62,7 @@
                                     >
                                          @can('delete', $schedule)
                                             <form
-                                                action="{{ route('users.destroy', $schedule) }}"
+                                                action="{{ route('mother-schedule.delete', $schedule) }}"
                                                 method="POST"
                                                 onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')"
                                             >

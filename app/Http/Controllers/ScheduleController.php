@@ -241,4 +241,22 @@ class ScheduleController extends Controller
             ->route('schedules.index')
             ->withSuccess(__('crud.common.removed'));
     }
+
+    public function delete_mother_schedule(Request $request,  $motherSchedule): RedirectResponse
+    {
+   
+
+        $motherSchedule = MotherSchedules::find($motherSchedule);
+        if(!$motherSchedule){
+            return redirect()
+            ->route('schedules.index')
+            ->withError(__('crud.common.removed'));
+        } else {
+            $motherSchedule->delete();
+
+            return redirect()
+                ->back()
+                ->withSuccess(__('crud.common.removed'));
+        }
+    }
 }

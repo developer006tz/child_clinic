@@ -157,6 +157,10 @@ Route::prefix('/')
             'create-schedule.create'
         );
 
+        Route::delete('delete-mother-schedule/{schedule}', [ScheduleController::class, 'delete_mother_schedule'])->name(
+            'mother-schedule.delete'
+        );
+
         Route::post('schedule-time', [ScheduleController::class, 'set_schedule_time'])->name('scheduletime.set');
 
         Route::get('execute-schedule', [ScheduleController::class, 'executeSchedule'])->name('scheduletime.execute');
