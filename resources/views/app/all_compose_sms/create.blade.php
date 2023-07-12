@@ -74,13 +74,17 @@
         </div>
     </x-inputs.group>
 
-    
+
 
                 <div class="my-4">
                     <button type="submit" class="btn btn-primary float-left">
                         <i class="icon ion-md-save"></i>
-                        @lang('crud.common.create')
+                        create schedule
                     </button>
+                    <a href="{{route('schedulemessage.view')}}" class="btn btn-secondary float-left ml-4">
+                        <i class="icon ion-md-eye"></i>
+                        view created schedules
+                    </a>
                 </div>
 
             </x-form>
@@ -98,7 +102,7 @@
                 action="{{ route('all-compose-sms.store') }}"
                 class="mt-4"
             >
-            
+
        <x-inputs.group class="col-sm-12">
         <div class="select2-success">
         <x-inputs.select name="mother_id[]" label="Mother" class="select2" multiple="multiple" data-placeholder="Select Mother" data-dropdown-css-class="select2-success" style="width: 100%;" >
@@ -153,10 +157,10 @@
         </div>
     </div>
 
-            
+
         </div>
     </div>
-    
+
 </div>
 
 @endsection

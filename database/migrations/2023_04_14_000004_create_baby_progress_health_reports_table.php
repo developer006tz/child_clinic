@@ -16,9 +16,9 @@ return new class extends Migration {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('baby_id');
             $table->integer('age_per_month');
-            $table->decimal('height');
+            $table->decimal('height')->nullable();
             $table->decimal('weight');
-            $table->decimal('head_circumference');
+            $table->decimal('head_circumference')->nullable();
             $table->decimal('bmi')->nullable();
 
             $table->timestamps();
@@ -32,6 +32,7 @@ return new class extends Migration {
                 'weight' => 3.8,
                 'head_circumference' => 37.2,
                 'bmi' => 14.1,
+                'created_at'=>now(),
             ],
             [
                 'baby_id' => 1,
@@ -40,6 +41,7 @@ return new class extends Migration {
                 'weight' => 4.5,
                 'head_circumference' => 38.6,
                 'bmi' => 15.4,
+                'created_at'=>now(),
             ],
             [
                 'baby_id' => 2,
@@ -48,6 +50,7 @@ return new class extends Migration {
                 'weight' => 3.6,
                 'head_circumference' => 36.8,
                 'bmi' => 14.2,
+                'created_at'=>now(),
             ],
             [
                 'baby_id' => 2,
@@ -56,6 +59,7 @@ return new class extends Migration {
                 'weight' => 4.2,
                 'head_circumference' => 38.1,
                 'bmi' => 15.1,
+                'created_at'=>now(),
             ],
         ]);
 

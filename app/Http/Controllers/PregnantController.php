@@ -49,12 +49,17 @@ class PregnantController extends Controller
         $this->authorize('create', Pregnant::class);
 
         $validated = $request->validated();
+        if(trim($validated['pregnant_defects']) == null){
+            $validated['pregnant_defects'] = 'No defects';
+        }
 
         $pregnant = Pregnant::create($validated);
 
-        return redirect()
-            ->route('pregnants.index', $pregnant)
-            ->withSuccess(__('crud.common.created'));
+        $mother = Mother::where('id', $pregnant->mother_id)->first();
+
+
+        return to_route('mothers.show', $mother)
+            ->withSuccess('Baby was successfully added.');
     }
 
     /**

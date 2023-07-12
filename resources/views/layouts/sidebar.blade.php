@@ -122,46 +122,7 @@
                                     </a>
                                 </li>
                             @endcan
-                            {{-- @can('view-any', App\Models\Pregnant::class)
-                                <li class="nav-item">
-                                    <a href="{{ route('pregnants.index') }}" class="nav-link {{ request()->routeIs('pregnants.index') ? 'active' : '' }}">
-                                        <i class="nav-icon icon ion-ios-happy"></i>
-                                        <p>Pregnants</p>
-                                    </a>
-                                </li>
-                            @endcan
-                                @can('view-any', App\Models\PregnantComplications::class)
-                                    <li class="nav-item">
-                                        <a href="{{ route('all-pregnant-complications.index') }}" class="nav-link {{ request()->routeIs('all-pregnant-complications.index') ? 'active' : '' }}">
-                                            <i class="nav-icon icon ion-ios-snow"></i>
-                                            <p>Pregnant Complications</p>
-                                        </a>
-                                    </li>
-                                @endcan
-                                @can('view-any', App\Models\PrenatalApointment::class)
-                                    <li class="nav-item">
-                                        <a href="{{ route('prenatal-apointments.index') }}" class="nav-link {{ request()->routeIs('prenatal-apointments.index') ? 'active' : '' }}">
-                                            <i class="nav-icon icon ion-md-time"></i>
-                                            <p>Prenatal Apointments</p>
-                                        </a>
-                                    </li>
-                                @endcan
-                                @can('view-any', App\Models\MotherMedicalHistory::class)
-                                    <li class="nav-item">
-                                        <a href="{{ route('mother-medical-histories.index') }}" class="nav-link {{ request()->routeIs('mother-medical-histories.index') ? 'active' : '' }}">
-                                            <i class="nav-icon icon ion-md-medkit"></i>
-                                            <p>Medical Histories</p>
-                                        </a>
-                                    </li>
-                                @endcan
-                                @can('view-any', App\Models\MotherHealthStatus::class)
-                                    <li class="nav-item">
-                                        <a href="{{ route('mother-health-statuses.index') }}" class="nav-link {{ request()->routeIs('mother-health-statuses.index') ? 'active' : '' }}">
-                                            <i class="nav-icon icon ion-md-help-circle-outline"></i>
-                                            <p>Health Statuses</p>
-                                        </a>
-                                    </li>
-                                @endcan --}}
+
                         </ul>
                     </li>
 {{--                end mother--}}
@@ -173,7 +134,7 @@
                             </a>
                         </li>
                     @endcan --}}
-                    
+
                     <li class="nav-item {{ $isActiveNotification ? 'menu-is-opening menu-open' : '' }}">
                         <a href="#" class="nav-link {{ $isActiveNotification ? 'active' : '' }}">
                             <i class="nav-icon icon  ion ion-md-notifications"></i>
@@ -244,6 +205,60 @@
                                     </a>
                                 </li>
                             @endcan
+
+{{--                            test --}}
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>
+                                        mother info's
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview" style="display: none;">
+                                    @can('view-any', App\Models\Pregnant::class)
+                                        <li class="nav-item">
+                                            <a href="{{ route('pregnants.index') }}" class="nav-link {{ request()->routeIs('pregnants.index') ? 'active' : '' }}">
+                                                <i class="nav-icon icon ion-ios-happy"></i>
+                                                <p>Pregnants</p>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                    @can('view-any', App\Models\PregnantComplications::class)
+                                        <li class="nav-item">
+                                            <a href="{{ route('all-pregnant-complications.index') }}" class="nav-link {{ request()->routeIs('all-pregnant-complications.index') ? 'active' : '' }}">
+                                                <i class="nav-icon icon ion-ios-snow"></i>
+                                                <p>Pregnant Complications</p>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                    @can('view-any', App\Models\PrenatalApointment::class)
+                                        <li class="nav-item">
+                                            <a href="{{ route('prenatal-apointments.index') }}" class="nav-link {{ request()->routeIs('prenatal-apointments.index') ? 'active' : '' }}">
+                                                <i class="nav-icon icon ion-md-time"></i>
+                                                <p>Prenatal Apointments</p>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                    @can('view-any', App\Models\MotherMedicalHistory::class)
+                                        <li class="nav-item">
+                                            <a href="{{ route('mother-medical-histories.index') }}" class="nav-link {{ request()->routeIs('mother-medical-histories.index') ? 'active' : '' }}">
+                                                <i class="nav-icon icon ion-md-medkit"></i>
+                                                <p>Medical Histories</p>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                    @can('view-any', App\Models\MotherHealthStatus::class)
+                                        <li class="nav-item">
+                                            <a href="{{ route('mother-health-statuses.index') }}" class="nav-link {{ request()->routeIs('mother-health-statuses.index') ? 'active' : '' }}">
+                                                <i class="nav-icon icon ion-md-help-circle-outline"></i>
+                                                <p>Health Statuses</p>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                </ul>
+                            </li>
+{{--                            test end --}}
                              @can('view-any', App\Models\Father::class)
                         <li class="nav-item">
                             <a href="{{ route('fathers.index') }}" class="nav-link {{ request()->routeIs('fathers.index') ? 'active' : '' }}">

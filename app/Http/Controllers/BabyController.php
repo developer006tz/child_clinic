@@ -63,9 +63,11 @@ class BabyController extends Controller
 
         $baby = Baby::create($validated);
 
-        return redirect()
-            ->route('babies.show', $baby)
-            ->withSuccess(__('crud.common.created'));
+        $mother = Mother::where('id', $baby->mother_id)->first();
+
+
+        return to_route('mothers.show', $mother)
+            ->withSuccess('Baby was successfully added.');
     }
 
     /**

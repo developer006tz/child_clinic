@@ -92,14 +92,14 @@ class MotherController extends Controller
         $mother = Mother::create($mother_validated);
 
         $father_data = [
-            'name' => $request->name,
-            'dob' => $request->dob,
-            'phone' => $request->phone,
-            'address' => $request->address,
+            'name' => $request->f_name,
+            'dob' => $request->f_dob,
+            'phone' => $request->f_phone,
+            'address' => $request->f_address,
             'occupation' => $request->f_occupation,
             'mother_id' => $mother->id,
         ];
-        
+
         $mother->father()->create($father_data);
         $sms_data = [
             'phone' => $mother->phone,
@@ -111,7 +111,7 @@ class MotherController extends Controller
         $sms = beem_sms(validatePhoneNumber($user->phone), $save_mesage->body);
         $save_mesage->status = $sms;
         $save_mesage->save();
-        
+
 
         return to_route('mothers.index', $mother)->withSuccess(__('crud.common.created'));
     }
@@ -123,16 +123,6 @@ class MotherController extends Controller
     {
         $this->authorize('view', $mother);
 
-        $records = \App\Models\MotherSchedules::whereHas('schedule', function ($query) {
-            $query->where('date_start', '>=', now()->addDays(1));
-        })->get();
-
-        foreach ($records as $key => $record) {
-            $mother = Mother::find($record->mother_id)->first()->phone;
-            $phone = validatePhoneNumber($mother);
-            $message = $record->message;
-        }
-
         $pregnancies = Pregnant::where('mother_id', $mother->id)->get();
         $sms = Sms::where('phone', $mother->phone)->get();
         $father = $mother->father;
@@ -143,7 +133,7 @@ class MotherController extends Controller
                 $pregnancy_appointments= PrenatalApointment::where('pregnant_id', $pregnancy->id)->get();
             }
             if(!empty($pregnancy_appointments)){
-                
+
                 return view('app.mothers.show', compact('mother', 'father', 'pregnancies', 'pregnancy_appointments','mother_schedules'));
 
             }else{

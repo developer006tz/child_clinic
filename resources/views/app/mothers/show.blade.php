@@ -51,10 +51,10 @@
                     <div class="row d-flex justify-content-end mb-2">
                         <div class="col-md-3">
                             @can('create', App\Models\Pregnant::class)
-                            <a href="#appointment" class="btn btn-success btn-block" data-toggle="modal" data-target="#appoint_modal_add"><b> <i class="icon ion-md-create"></i> Add</b></a>
+                            <a href="#pregnancies" class="btn btn-success btn-block" data-toggle="modal" data-target="#add_pregnancy"><b> <i class="icon ion-md-create"></i> Add</b></a>
                             @endcan
                         </div>
-                        
+
                     </div>
                     <div class="post">
                         <div class="card">
@@ -111,12 +111,12 @@
                                 @empty
                                     <a href="#pregnancy_complications_modal" class="btn btn-success btn-block" data-toggle="modal" data-target="#pregnancy_complications_modal_add"><b> <i class="icon ion-md-create"></i> Add</b></a>
                                 @endforelse
-                            @empty 
+                            @empty
                             <span>__</span>
                             @endforelse
                             @endcan
                         </div>
-                        
+
                     </div>
                     <div class="card">
                             <div class="card-header">
@@ -143,7 +143,7 @@
                                             @empty
                                                 <td colspan="3">No Complications Found</td>
                                             @endforelse
-                                            @empty 
+                                            @empty
                                             <td colspan="3">No Complications Found</td>
                                             @endforelse
 
@@ -162,7 +162,7 @@
                             <a href="#appointment" class="btn btn-success btn-block" data-toggle="modal" data-target="#appoint_modal_add"><b> <i class="icon ion-md-create"></i> Add</b></a>
                             @endcan
                         </div>
-                        
+
                     </div>
                     <table class="table table-bordered">
                         <thead>
@@ -173,7 +173,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            
+
                             @isset($mother_schedules)
                             @forelse($mother_schedules as $appointment)
                             <tr>
@@ -198,7 +198,7 @@
                             <a href="#medical-history" class="btn btn-success btn-block" data-toggle="modal" data-target="#medical_history" ><b> <i class="icon ion-md-create"></i> Add</b></a>
                             @endcan
                         </div>
-                        
+
                     </div>
                     <div class="">
                         <table class="table table-bordered">
@@ -234,7 +234,7 @@
                     <div class="row d-flex justify-content-end mb-2">
                         <div class="col-md-3">
                             @can('view-any', App\Models\Babies::class)
-                            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#progress_health" ><b> <i class="icon ion-md-create"></i> Add</b></a>
+                            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#add_baby" ><b> <i class="icon ion-md-create"></i> Add</b></a>
                             @endcan
                         </div>
                     </div>
@@ -255,7 +255,7 @@
                                     {{-- mother health status --}}
                                     @forelse($mother->babies as $baby)
                                     <tr>
-                                        <td>{{ $baby->name ?? '-' }}</td>
+                                        <td> <a href="{{route('babies.show',$baby)}}">{{ $baby->name ?? '-' }}</a> </td>
                                         <td>{{ $baby->gender ?? '-' }}</td>
                                         <td>{{ \Carbon\Carbon::parse($baby->birthdate)->format('d/m/Y') ?? '-' }}</td>
                                         <td class="bg-info" >{{ $baby->weight_at_birth.' kg'?? '-' }}</td>
@@ -301,11 +301,12 @@
 
         </div>
     </div>
-                </div>
+    </div>
 </div>
 </div>
 </div>
 
- 
+  @include('modals.add_baby')
+  @include('modals.add_pregnancy')
 @endsection
 

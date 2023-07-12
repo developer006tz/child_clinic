@@ -184,4 +184,6 @@ Route::prefix('/')
 
         Route::resource('users', UserController::class);
         Route::resource('mothers', MotherController::class);
+
+        Route::get('all-schedules',[ScheduleController::class, 'retreive_all_mother_schedules'])->name('schedulemessage.view');
     });

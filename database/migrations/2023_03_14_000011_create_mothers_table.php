@@ -39,6 +39,7 @@ return new class extends Migration {
                 'address' => '123 Main Street',
                 'insurance_info' => 'Yes',
                 'occupation' => 'Teacher',
+                'created_at'=>now(),
             ],
             [
                 'clinic_id' => 1,
@@ -50,8 +51,9 @@ return new class extends Migration {
                 'address' => '456 Elm Street',
                 'insurance_info' => 'Yes',
                 'occupation' => 'Doctor',
+                'created_at'=>now(),
             ],
-            
+
         ]);
 
     }

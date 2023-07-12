@@ -26,7 +26,8 @@
                             <b>Dob</b> <a class="float-right">{{ \Carbon\Carbon::parse($baby->birthdate)->format('d/m/Y') ?? '-' }}</a>
                         </li>
                         <li class="list-group-item">
-                            <b>Mother</b> <a class="float-right">{{ optional($baby->mother)->name ?? '-' }}</a>
+                            @php $mother = $baby->mother; @endphp
+                            <b>Mother</b> <a class="float-right" href="{{route('mothers.show',$mother)}}}"> {{ optional($baby->mother)->name ?? '-' }}</a>
                         </li>
                         <li class="list-group-item">
                             <b>Father</b> <a class="float-right">{{ optional($baby->father)->name ?? '-' }}</a>
@@ -121,7 +122,7 @@
                     <div class="row d-flex justify-content-end">
                         <div class="col-md-3">
 
-                            
+
                              @can('create', App\Models\BabyDevelopmentMilestone::class)
                             @if(empty($baby->babyDevelopmentMilestones) || $baby->babyDevelopmentMilestones->count() < 1)
                             <a href="#milestone_modal" class="btn btn-success btn-block" data-toggle="modal" data-target="#milestone_modal"><b> <i class="icon ion-md-create"></i> Add</b></a>
@@ -133,9 +134,9 @@
                             <a href="#milestone_modal" class="btn btn-success btn-block" data-toggle="modal" data-target="#editing_milestone_modal"><b> <i class="icon ion-md-create"></i> update record</b></a>
                             @endif
                             @endcan
-                          
+
                         </div>
-                        
+
                     </div>
                     <div class="timeline timeline-inverse">
                         <div class="time-label">
@@ -201,7 +202,7 @@
                             <a href="#vaccine" class="btn btn-success btn-block" data-toggle="modal" data-target="#vaccination_modal"><b> <i class="icon ion-md-create"></i> Add</b></a>
                             @endcan
                         </div>
-                        
+
                     </div>
                     <table class="table table-bordered">
                         <thead>
@@ -243,7 +244,7 @@
                             <a href="#medical-history" class="btn btn-success btn-block" data-toggle="modal" data-target="#medical_history" ><b> <i class="icon ion-md-create"></i> Add</b></a>
                             @endcan
                         </div>
-                        
+
                     </div>
                     <div class="">
                         <table class="table table-bordered">
@@ -285,7 +286,7 @@
                             <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#progress_health" ><b> <i class="icon ion-md-create"></i> Add</b></a>
                             @endcan
                         </div>
-                        
+
                     </div>
                     <div class="timeline timeline-inverse">
                         <!-- timeline time label -->
@@ -314,18 +315,18 @@
                                     <table class="table table-bordered">
                                         <thead>
                                         <tr>
-                                            <th style="width: 30%">Height (cm)</th>
+{{--                                            <th style="width: 30%">Height (cm)</th>--}}
                                             <th>Weight (kg)</th>
-                                            <th>Head circumference (cm)</th>
-                                            <th>BMI</th>
+{{--                                            <th>Head circumference (cm)</th>--}}
+{{--                                            <th>BMI</th>--}}
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td>{{$report->height ?? '-'}}</td>
-                                            <td>{{$report->weight ?? '-'}}</td>
-                                            <td>{{$report->head_circumference ?? '-'}}</td>
-                                            <td>{{$report->bmi ?? '-'}}</td>
+{{--                                            <td>{{$report->height ?? '-'}}</td>--}}
+                                            <td>{{$report->weight.' kg' ?? '-'}}</td>
+{{--                                            <td>{{$report->head_circumference ?? '-'}}</td>--}}
+{{--                                            <td>{{$report->bmi ?? '-'}}</td>--}}
                                         </tr>
                                         </tbody>
                                     </table>
@@ -369,7 +370,7 @@
     @endphp
     @push('scripts')
       <script>
-        
+
         var baby_name = {!! json_encode($baby_name) !!};
         let labels = [];
         let weightData = [];
@@ -377,7 +378,7 @@
 
 
          var babyProgressHealthReports = {!! json_encode($babyProgressHealthReports) !!};
-    
+
             for (let i = 0; i < babyProgressHealthReports.length; i++) {
             let report = babyProgressHealthReports[i];
             labels.push(report.age_per_month + " months");
@@ -561,7 +562,7 @@ document.getElementById("printButton").addEventListener("click", function() {
 function printChart() {
     var chartArea = document.getElementById('roadToHealth').getContext('2d').canvas;
     var chartImage = chartArea.toDataURL("image/png");
-    var printWindow = window.open('', '', 'height=800,width=800'); 
+    var printWindow = window.open('', '', 'height=800,width=800');
     printWindow.document.write('<html><head><title>Road to Health Chart</title>');
     printWindow.document.write('<style>@media print { h2,h3 { text-align: center; } }</style>');
     printWindow.document.write('</head><body>');
@@ -575,7 +576,7 @@ function printChart() {
         printWindow.document.close();
     };
     img.src = chartImage;
-    
+
     printWindow.document.write('</body></html>');
 }
 
@@ -597,7 +598,7 @@ function printChart() {
 </script>
     @endpush
 
-    
+
  @include('modals.progress-health')
  @include('modals.medical-history')
  @include('modals.vaccine')

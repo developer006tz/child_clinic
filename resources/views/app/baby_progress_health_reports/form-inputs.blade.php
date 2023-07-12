@@ -23,7 +23,7 @@
         ></x-inputs.number>
     </x-inputs.group>
 
-    <x-inputs.group class="col-sm-12">
+    {{--<x-inputs.group class="col-sm-12">
         <x-inputs.number
             id="heightInput"
             name="height"
@@ -32,10 +32,10 @@
             max="255"
             step="0.01"
             placeholder="Current Height"
-            
+
             required
         ></x-inputs.number>
-    </x-inputs.group>
+    </x-inputs.group>--}}
 
     <x-inputs.group class="col-sm-12">
         <x-inputs.number
@@ -46,12 +46,12 @@
             max="255"
             step="0.01"
             placeholder="Current Weight"
-            
+
             required
         ></x-inputs.number>
     </x-inputs.group>
 
-    <x-inputs.group class="col-sm-12">
+   {{-- <x-inputs.group class="col-sm-12">
         <x-inputs.number
             name="head_circumference"
             label="Current Head Circumference (in cm)"
@@ -61,9 +61,9 @@
             placeholder="Current head_circumference"
             required
         ></x-inputs.number>
-    </x-inputs.group>
+    </x-inputs.group>--}}
 
-    <x-inputs.group class="col-sm-12">
+    {{--<x-inputs.group class="col-sm-12">
         <x-inputs.number
            id="bmiInput"
             name="bmi"
@@ -71,15 +71,15 @@
             :value="old('bmi', ($editing ? $babyProgressHealthReport->bmi : ''))"
             max="255"
             step="0.01"
-            
+
             readonly
         ></x-inputs.number>
-    </x-inputs.group>
+    </x-inputs.group>--}}
 </div>
 
 @push('scripts')
 <script>
- 
+
     $(function() {
   var heightInput = $('input[name="height"]');
   var weightInput = $('input[name="weight"]');
@@ -92,7 +92,7 @@
     bmiInput.val(bmi.toFixed(2));
   }
 
-  
+
 
   heightInput.on('change keyup', calculateBMI);
   weightInput.on('change keyup', calculateBMI);

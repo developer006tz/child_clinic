@@ -33,6 +33,17 @@ class ScheduleController extends Controller
         return view('app.schedules.index', compact('schedules', 'search'));
     }
 
+    public function retreive_all_mother_schedules(Request $request):view
+    {
+        $search = $request->get('search', '');
+        $all_mother_schedules = \App\Models\MotherSchedules::search($search)
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+        return view('app.schedules.mother-schedules', compact('all_mother_schedules', 'search'));
+
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -66,7 +77,7 @@ class ScheduleController extends Controller
         // check if start_date is empty or end_date is empty
         if (empty($request->start_date) || empty($request->end_date)) {
            if( !empty($request->mothers) && in_array('0', $request->mothers)){
-                $mothers = Mother::whereHas('babies')->get();
+                $mothers = Mother::whereHas('babies')->orwhereHas('pregnants')->get();
            }else{
                 if(!empty($request->mothers)){
                     $mothers = Mother::find($request->mothers);
@@ -75,36 +86,43 @@ class ScheduleController extends Controller
                     ->route('all-compose-sms.create')
                     ->withError('choose mothers by date range or selecting them');
                 }
-                
+
            }
         }else{
-            $mothers = Mother::whereHas('babies')->whereBetween('created_at', [$request->start_date, $request->end_date])->get();
+            //mother with babies or with pregnants
+            $mothers = Mother::whereHas('babies')->orwhereHas('pregnants')->whereBetween('created_at', [$request->start_date, $request->end_date])->get();
+
         }
-  
+
         //check if mothers are not empty then loop through them to create mother_schedules for each mother
         if(!empty($mothers)){
             $schedule = Schedule::find($request->schedule);
+            $i = 0;
             foreach ($mothers as $mother) {
-                $message = sprintf($schedule->message, $mother->name, \Carbon\Carbon::parse($schedule->start_date)->format('d/m/Y'), $schedule->name);
-                MotherSchedules::create([
-                    'mother_id' => $mother->id,
-                    'schedule_id' => $request->schedule,
-                    'message'=> $message,
-                    'status' => '0',
-                    'date' => now(),
-                ]);
+                //check if there is the record of schedule_id and mother_id in a MotherSchedules then to skip  if no record to create
+                $motherSchedule = MotherSchedules::where('schedule_id', $schedule->id)->where('mother_id', $mother->id)->first();
+                if (!$motherSchedule) {
+                    $message = sprintf($schedule->message, $mother->name, \Carbon\Carbon::parse($schedule->start_date)->format('d/m/Y'), $schedule->name);
+                    MotherSchedules::create([
+                        'schedule_id' => $schedule->id,
+                        'mother_id' => $mother->id,
+                        'message' => $message,
+                        'date' => now(),
+                    ]);
+                    $i++;
+                }
             }
 
-            return to_route('all-compose-sms.create')->withSuccess('Schedules Created successfull');
+            return to_route('all-compose-sms.create')->withSuccess(' "'.$i.'" Schedules Created successfull');
         }else{
             return redirect()
             ->route('all-compose-sms.create')
             ->withError('No mothers found');
         }
-        
+
     }
 
-    public function set_schedule_time(Request $request):RedirectResponse 
+    public function set_schedule_time(Request $request):RedirectResponse
     {
 
 
@@ -123,7 +141,7 @@ class ScheduleController extends Controller
         return redirect()
             ->route('schedules.index')
             ->withSuccess(__('crud.common.saved'));
-        
+
     }
 
     public function executeSchedule()

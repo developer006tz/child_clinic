@@ -23,9 +23,9 @@ class BabyProgressHealthReportStoreRequest extends FormRequest
         return [
             'baby_id' => ['required', 'exists:babies,id'],
             'age_per_month' => ['required', 'numeric'],
-            'height' => ['required', 'numeric'],
+            'height' => ['nullable', 'numeric'],
             'weight' => ['required', 'numeric'],
-            'head_circumference' => ['required', 'numeric'],
+            'head_circumference' => ['nullable', 'numeric'],
             'bmi' => ['nullable', 'numeric'],
         ];
     }

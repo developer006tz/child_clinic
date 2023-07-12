@@ -34,6 +34,7 @@ return new class extends Migration {
                 'head_circumference' => 35.2,
                 'mother_id' => 1,
                 'father_id' => 1,
+                'created_at'=>now(),
             ],
             [
                 'name' => 'Liam James',
@@ -44,8 +45,9 @@ return new class extends Migration {
                 'head_circumference' => 36.0,
                 'mother_id' => 2,
                 'father_id' => 2,
+                'created_at'=>now(),
             ],
-         
+
         ]);
 
     }

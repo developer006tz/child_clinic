@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
- 
+
 
     protected function schedule(Schedule $schedule)
     {
@@ -30,10 +30,14 @@ class Kernel extends ConsoleKernel
                 $mother = \App\Models\Mother::find($record->mother_id)->first()->phone;
                 $phone = validatePhoneNumber($mother);
                 $message = $record->message;
-                
+
                 $sms = beem_sms($phone, $message);
                 save_sms($message,$phone, $sms);
-                
+                if($sms=='1'){
+                    $schedule_sent_successfull = \App\Models\MotherSchedules::find($record->id);
+                    $schedule_sent_successfull->update(['status'=>'1']);
+                }
+
             }
         })->dailyAt($formattedTime);
 

@@ -35,16 +35,16 @@
                             <th class="text-right">
                                 @lang('crud.baby_progress_health_reports.inputs.age_per_month')
                             </th>
-                            <th class="text-right">
-                                @lang('crud.baby_progress_health_reports.inputs.height')
-                            </th>
+{{--                            <th class="text-right">--}}
+{{--                                @lang('crud.baby_progress_health_reports.inputs.height')--}}
+{{--                            </th>--}}
                             <th class="text-right">
                                 @lang('crud.baby_progress_health_reports.inputs.weight')
                             </th>
 
-                            <th class="text-left">
-                                @lang('crud.baby_progress_health_reports.inputs.head_circumference')
-                            </th>
+{{--                            <th class="text-left">--}}
+{{--                                @lang('crud.baby_progress_health_reports.inputs.head_circumference')--}}
+{{--                            </th>--}}
                             <th class="text-right">
                                 @lang('crud.baby_progress_health_reports.inputs.bmi')
                             </th>
@@ -58,9 +58,9 @@
                         <tr>
                             <td>{{ optional($babyProgressHealthReport->baby)->name ?? '-' }}</td>
                             <td>{{ $babyProgressHealthReport->age_per_month ?? '-' }} Month</td>
-                            <td>{{ $babyProgressHealthReport->height ?? '-' }} inchs</td>
+{{--                            <td>{{ $babyProgressHealthReport->height ?? '-' }} inchs</td>--}}
                             <td>{{ $babyProgressHealthReport->weight ?? '-' }} kigs</td>
-                            <td>{{ $babyProgressHealthReport->head_circumference ?? '-' }} cm</td>
+{{--                            <td>{{ $babyProgressHealthReport->head_circumference ?? '-' }} cm</td>--}}
                             <td>{{ $babyProgressHealthReport->bmi ?? '-' }}</td>
                             <td class="text-center" style="width: 134px;">
                                 <div role="group" aria-label="Row Actions" class="btn-group">
@@ -92,14 +92,14 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6">@lang('crud.common.no_items_found')</td>
+                            <td colspan="4">@lang('crud.common.no_items_found')</td>
                         </tr>
                     @endforelse
 
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="6">
+                            <td colspan="4">
                                 {!! $babyProgressHealthReports->render() !!}
                             </td>
                         </tr>

@@ -28,7 +28,7 @@ class PregnantStoreRequest extends FormRequest
             'weight_at_birth' => ['nullable', 'numeric'],
             'height_at_birth' => ['nullable', 'numeric'],
             'gender' => ['nullable', 'in:male,female'],
-            'pregnant_defects' => ['required', 'max:255', 'string'],
+            'pregnant_defects' => ['nullable', 'max:255', 'string'],
         ];
     }
 }
