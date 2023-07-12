@@ -58,23 +58,52 @@ class ComposeSmsController extends Controller
             if($request->attendance != null){
                 $mothers = MotherSchedules::where('schedule_id', $request->schedule_id)->where('status','0')->get();
                 //fetch phone nember of each mother and send sms to her
-                foreach($mothers as $mother){
-                    $mother_phone = Mother::where('id', $mother->mother_id)->first()->phone;
-                    $phone = validatePhoneNumber($mother_phone);
-                    $message = $request->custom_message;
-                    //send sms
-                    try {
-                        $sms = beem_sms($phone, $message);
-                        save_sms($message, $phone, $sms);
-                    } catch (\Throwable $th) {
-                        $th->getMessage();
+                if (count($mothers) > 0) {
+                    foreach ($mothers as $mother) {
+                        $mother_phone = Mother::where('id', $mother->mother_id)->first()->phone;
+                        $phone = validatePhoneNumber($mother_phone);
+                        $message = $request->custom_message;
+                        //send sms
+                        try {
+                            $sms = beem_sms($phone, $message);
+                            save_sms($message, $phone, $sms);
+                        } catch (\Throwable $th) {
+                            $th->getMessage();
 
+                        }
                     }
+                    return redirect()->back()->with('success', 'SMS sent successfully');
+                }else{
+                    return redirect()->back()->with('error', 'No mothers found for this schedule');
                 }
-            }
-            $mothers = MotherSchedules::where('schedule_id', $request->schedule_id)->get();
-            //fetch phone nember of each mother and send sms to her
-            foreach($mothers as $mother){
+            }else{
+                if (!empty($request->mother_id)) {
+                    $mothers = MotherSchedules::where('schedule_id', $request->schedule_id)->where('mother_id', $request->mother_id)->get();
+                    //fetch phone nember of each mother and send sms to her
+                    if (count($mothers) > 0) {
+                        foreach ($mothers as $mother) {
+                            $mother_phone = Mother::where('id', $mother->mother_id)->first()->phone;
+                            $phone = validatePhoneNumber($mother_phone);
+                            $message = $request->custom_message;
+                            //send sms
+                            try {
+                                $sms = beem_sms($phone, $message);
+                                save_sms($message, $phone, $sms);
+                            } catch (\Throwable $th) {
+                                $th->getMessage();
+
+                            }
+                        }
+                        return redirect()->back()->with('success', 'SMS sent successfully');
+                    }else{
+                        return redirect()->back()->with('error', 'No mothers found for this schedule');
+                    }
+                 
+                }else{
+             $mothers = MotherSchedules::where('schedule_id', $request->schedule_id)->get();
+            
+            if(count($mothers)>0){
+                foreach($mothers as $mother){
                 $mother_phone = Mother::where('id', $mother->mother_id)->first()->phone;
                 $phone = validatePhoneNumber($mother_phone);
                 $message = $request->custom_message;
@@ -87,29 +116,43 @@ class ComposeSmsController extends Controller
 
                 }
             }
-        }
+            return redirect()->back()->with('success', 'SMS sent successfully');
 
-        if(empty($request->schedule_id) && $request->mother_id != null){
+            }else{
+                    return redirect()->back()->with('error', 'No mothers found for this schedule');
+                }
+                
+            }
+            
+            }
+            
+        }else{
+            if($request->mother_id != null){
             $mothers = Mother::find($request->mother_id);
             //fetch phone nember of each mother and send sms to her
-            foreach ($mothers as $mother) {
-                $mother_phone = $mother->phone;
-                $phone = validatePhoneNumber($mother_phone);
-                $message = $request->custom_message;
-                //send sms
-                try {
-                    $sms = beem_sms($phone, $message);
-                    save_sms($message, $phone, $sms);
-                } catch (\Throwable $th) {
-                    $th->getMessage();
+            if(count($mothers) > 0){
+                    foreach ($mothers as $mother) {
+                                    $mother_phone = $mother->phone;
+                                    $phone = validatePhoneNumber($mother_phone);
+                                    $message = $request->custom_message;
+                                    //send sms
+                                    try {
+                                        $sms = beem_sms($phone, $message);
+                                        save_sms($message, $phone, $sms);
+                                    } catch (\Throwable $th) {
+                                        $th->getMessage();
 
-                }
+                                    }
+                                }
+                    return redirect()->back()->with('success', 'SMS sent successfully');
+            }else{
+                    return redirect()->back()->with('error', 'No mothers found.');
             }
+            
+        }
         }
 
-        return redirect()
-            ->route('all-compose-sms.create')
-            ->withSuccess(__('crud.common.created'));
+        return to_route('all-compose-sms.create')->with('error', 'error send sms');
     }
 
     /**
