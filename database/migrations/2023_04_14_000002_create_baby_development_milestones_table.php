@@ -21,22 +21,6 @@ return new class extends Migration {
 
             $table->timestamps();
         });
-
-        DB::table('baby_development_milestones')->insert([
-            [
-                'baby_id' => 1,
-                'first_smile' => '2022-03-01',
-                'first_word' => '2022-06-15',
-                'first_step' => '2022-09-10',
-            ],
-            [
-                'baby_id' => 2,
-                'first_smile' => '2021-12-20',
-                'first_word' => '2022-04-10',
-                'first_step' => '2022-07-25',
-            ],
-        ]);
-
     }
 
     /**

@@ -28,34 +28,6 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        DB::table('mothers')->insert([
-            [
-                'clinic_id' => 1,
-                'name' => 'Emma Johnson',
-                'user_id' => 2,
-                'blood_type_id' => 1,
-                'dob' => '1990-05-15',
-                'phone' => '255746828843',
-                'address' => '123 Main Street',
-                'insurance_info' => 'Yes',
-                'occupation' => 'Teacher',
-                'created_at'=>now(),
-            ],
-            [
-                'clinic_id' => 1,
-                'name' => 'Olivia Davis',
-                'user_id' => 3,
-                'blood_type_id' => 2,
-                'dob' => '1992-09-22',
-                'phone' => '255621097541',
-                'address' => '456 Elm Street',
-                'insurance_info' => 'Yes',
-                'occupation' => 'Doctor',
-                'created_at'=>now(),
-            ],
-
-        ]);
-
     }
 
     /**

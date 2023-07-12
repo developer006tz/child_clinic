@@ -163,23 +163,6 @@ class PermissionsSeeder extends Seeder
         $parentRole = Role::create(['name' => 'parent']);
         $parentRole->givePermissionTo(['list babies', 'view babies',  'list mothers','view mothers','list allsms','view allsms']);
 
-        $emails = [
-            1 => 'ava.thompson@gmail.com',
-            2 => 'emma.johnson@gmail.com',
-            3 => 'isabella.moore@gmail.com',
-            4 => 'olivia.davis@gmail.com',
-            5 => 'sophia.wilson@gmail.com',
-        ];
-
-        // for each email assign role parent
-        foreach ($emails as $email) {
-            $user = \App\Models\User::whereEmail($email)->first();
-            $user->assignRole($parentRole);
-        }
-
-        //create doctor role and assign permissions related to doctors
-
-
         //create nurse role and assign permissions related to nurses
         $nurseRole = Role::create(['name' => 'nurse']);
         $nurseRole->givePermissionTo(['list babies', 'view babies', 'list clinics', 'view clinics', 'list pregnants', 'view pregnants', 'list prenatalapointments', 'view prenatalapointments', 'list schedules', 'view schedules', 'list vacinations', 'view vacinations']);

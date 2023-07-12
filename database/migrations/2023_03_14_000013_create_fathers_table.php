@@ -22,26 +22,6 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        DB::table('fathers')->insert([
-            [
-                'name' => 'James Johnson',
-                'dob' => '1988-03-15',
-                'phone' => '123-456-7890',
-                'address' => '123 Main Street',
-                'occupation' => 'Engineer',
-                'mother_id' => 1,
-            ],
-            [
-                'name' => 'Michael Davis',
-                'dob' => '1990-06-22',
-                'phone' => '987-654-3210',
-                'address' => '456 Elm Street',
-                'occupation' => 'Teacher',
-                'mother_id' => 2,
-            ],
-            
-        ]);
-
     }
 
     /**

@@ -77,9 +77,9 @@ class MotherController extends Controller
         $clinic = Clinic::first();
         $password = rand(1000, 999999);
         $pass = Hash::make($password);
-        $random_email = str_replace(' ', '', $mother_validated['name']) . rand(10, 9999) . '@clinic.com';
+        $random_email = str_replace(' ', '', strtolower($mother_validated['name'])) . rand(10, 9999) . '@clinic.com';
         $user_data = [
-            'name' => $mother_validated['name'],
+            'name' =>strtolower(ucfirst( $mother_validated['name'])),
             'email' => $random_email,
             'phone' => validatePhoneNumber($mother_validated['phone']),
             'clinic_id' => $clinic->id,
@@ -89,12 +89,14 @@ class MotherController extends Controller
         $user->assignRole(Role::findByName('parent'));
 
         $mother_validated['user_id'] = $user->id;
+        $mother_validated['name'] = strtolower(ucfirst($mother_validated['name']));
+        $mother_validated['phone'] = validatePhoneNumber($mother_validated['phone']);
         $mother = Mother::create($mother_validated);
 
         $father_data = [
             'name' => $request->f_name,
             'dob' => $request->f_dob,
-            'phone' => $request->f_phone,
+            'phone' => validatePhoneNumber($request->f_phone),
             'address' => $request->f_address,
             'occupation' => $request->f_occupation,
             'mother_id' => $mother->id,
@@ -102,7 +104,7 @@ class MotherController extends Controller
 
         $mother->father()->create($father_data);
         $sms_data = [
-            'phone' => $mother->phone,
+            'phone' => validatePhoneNumber($mother->phone),
             'body' => 'Hellow '.$mother->name.' You are registered as Parent  in ' . $clinic->name . ' Clinic System. You can  login with email: '.$random_email.' and password: ' . $password,
             'status' => '0',
         ];

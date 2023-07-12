@@ -77,7 +77,8 @@ class ScheduleController extends Controller
         // check if start_date is empty or end_date is empty
         if (empty($request->start_date) || empty($request->end_date)) {
            if( !empty($request->mothers) && in_array('0', $request->mothers)){
-                $mothers = Mother::whereHas('babies')->orwhereHas('pregnants')->get();
+                $mothers = Mother::whereHas('babies')->get();
+                $pregnants = Mother::whereHas('pregnants')->get();
            }else{
                 if(!empty($request->mothers)){
                     $mothers = Mother::find($request->mothers);
@@ -90,14 +91,34 @@ class ScheduleController extends Controller
            }
         }else{
             //mother with babies or with pregnants
-            $mothers = Mother::whereHas('babies')->orwhereHas('pregnants')->whereBetween('created_at', [$request->start_date, $request->end_date])->get();
+            $mothers = Mother::whereHas('babies')->whereBetween('created_at', [$request->start_date, $request->end_date])->get();
+            $pregnants = Mother::whereHas('pregnants')->whereBetween('created_at', [$request->start_date, $request->end_date])->get();
+
+        }
+  $j = 0;
+        //check if mothers are not empty then loop through them to create mother_schedules for each mother
+        if (!empty($pregnants)) {
+            $schedule = Schedule::find($request->schedule);
+            foreach ($pregnants as $pregnant) {
+                //check if there is the record of schedule_id and mother_id in a MotherSchedules then to skip  if no record to create
+                $pregnantSchedule = MotherSchedules::where('schedule_id', $schedule->id)->where('mother_id', $pregnant->id)->first();
+                if (!$pregnantSchedule) {
+                    $message = sprintf($schedule->message, $pregnant->name, \Carbon\Carbon::parse($schedule->start_date)->format('d/m/Y'), $schedule->name);
+                    MotherSchedules::create([
+                        'schedule_id' => $schedule->id,
+                        'mother_id' => $pregnant->id,
+                        'message' => $message,
+                        'date' => now(),
+                    ]);
+                    $j++;
+                }
+            }
 
         }
 
-        //check if mothers are not empty then loop through them to create mother_schedules for each mother
         if(!empty($mothers)){
             $schedule = Schedule::find($request->schedule);
-            $i = 0;
+            $i = $j;
             foreach ($mothers as $mother) {
                 //check if there is the record of schedule_id and mother_id in a MotherSchedules then to skip  if no record to create
                 $motherSchedule = MotherSchedules::where('schedule_id', $schedule->id)->where('mother_id', $mother->id)->first();
@@ -115,6 +136,9 @@ class ScheduleController extends Controller
 
             return to_route('all-compose-sms.create')->withSuccess(' "'.$i.'" Schedules Created successfull');
         }else{
+            if(!empty($pregnants)){
+                return to_route('all-compose-sms.create')->withSuccess(' "'.$j.'" Schedules Created successfull');
+            }
             return redirect()
             ->route('all-compose-sms.create')
             ->withError('No mothers found');

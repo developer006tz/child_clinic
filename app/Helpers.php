@@ -3,6 +3,7 @@
 if (!function_exists('beem_sms')) {
     function beem_sms($phone, $message)
     {
+        $valid = validatePhoneNumber($phone);
 
         $api_key = '4448b31245845116';
         // $api_key = '4448b31245845117';
@@ -13,7 +14,7 @@ if (!function_exists('beem_sms')) {
             'encoding' => 0,
             'schedule_time' => '',
             'message' => $message,
-            'recipients' => [array('recipient_id' => '1', 'dest_addr' => $phone), array('recipient_id' => '2', 'dest_addr' => '255700000011')]
+            'recipients' => [array('recipient_id' => '1', 'dest_addr' => $valid), array('recipient_id' => '2', 'dest_addr' => '255700000011')]
         );
 
         $Url = 'https://apisms.beem.africa/v1/send';

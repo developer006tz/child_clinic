@@ -24,45 +24,6 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        DB::table('baby_progress_health_reports')->insert([
-            [
-                'baby_id' => 1,
-                'age_per_month' => 1,
-                'height' => 52.5,
-                'weight' => 3.8,
-                'head_circumference' => 37.2,
-                'bmi' => 14.1,
-                'created_at'=>now(),
-            ],
-            [
-                'baby_id' => 1,
-                'age_per_month' => 2,
-                'height' => 56.3,
-                'weight' => 4.5,
-                'head_circumference' => 38.6,
-                'bmi' => 15.4,
-                'created_at'=>now(),
-            ],
-            [
-                'baby_id' => 2,
-                'age_per_month' => 1,
-                'height' => 50.2,
-                'weight' => 3.6,
-                'head_circumference' => 36.8,
-                'bmi' => 14.2,
-                'created_at'=>now(),
-            ],
-            [
-                'baby_id' => 2,
-                'age_per_month' => 2,
-                'height' => 54.1,
-                'weight' => 4.2,
-                'head_circumference' => 38.1,
-                'bmi' => 15.1,
-                'created_at'=>now(),
-            ],
-        ]);
-
     }
 
     /**

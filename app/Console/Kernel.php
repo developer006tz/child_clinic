@@ -27,8 +27,8 @@ class Kernel extends ConsoleKernel
             })->get();
             foreach ($records as $record) {
 
-                $mother = \App\Models\Mother::find($record->mother_id)->first()->phone;
-                $phone = validatePhoneNumber($mother);
+                $mother = \App\Models\Mother::find($record->mother_id);
+                $phone = validatePhoneNumber($mother->phone);
                 $message = $record->message;
 
                 $sms = beem_sms($phone, $message);
