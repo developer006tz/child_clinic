@@ -23,7 +23,7 @@ class PregnantStoreRequest extends FormRequest
             'mother_id' => ['required', 'exists:mothers,id'],
             'due_date' => ['required', 'date'],
             'date_of_delivery' => ['nullable', 'date'],
-            'time_of_delivery' => ['nullable', 'date_format:H:i:s'],
+            'time_of_delivery' => ['nullable', 'date_format:H:i'],
             'number_of_weeks_lasted' => ['nullable', 'numeric'],
             'weight_at_birth' => ['nullable', 'numeric'],
             'height_at_birth' => ['nullable', 'numeric'],
