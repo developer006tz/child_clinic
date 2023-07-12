@@ -171,22 +171,21 @@ class PermissionsSeeder extends Seeder
             5 => 'sophia.wilson@gmail.com',
         ];
 
-        // for each email assign role parent 
+        // for each email assign role parent
         foreach ($emails as $email) {
             $user = \App\Models\User::whereEmail($email)->first();
             $user->assignRole($parentRole);
         }
 
         //create doctor role and assign permissions related to doctors
-        $doctorRole = Role::create(['name' => 'doctor']);
-        $doctorRole->givePermissionTo(['list babies', 'view babies', 'list clinics', 'view clinics', 'list pregnants', 'view pregnants', 'list prenatalapointments', 'view prenatalapointments', 'list schedules', 'view schedules', 'list vacinations', 'view vacinations']);
+
 
         //create nurse role and assign permissions related to nurses
         $nurseRole = Role::create(['name' => 'nurse']);
         $nurseRole->givePermissionTo(['list babies', 'view babies', 'list clinics', 'view clinics', 'list pregnants', 'view pregnants', 'list prenatalapointments', 'view prenatalapointments', 'list schedules', 'view schedules', 'list vacinations', 'view vacinations']);
 
-        
-       
+
+
 
         // Create admin exclusive permissions
         Permission::create(['name' => 'list roles']);
@@ -215,6 +214,9 @@ class PermissionsSeeder extends Seeder
         $allPermissions = Permission::all();
         $adminRole = Role::create(['name' => 'super-admin']);
         $adminRole->givePermissionTo($allPermissions);
+
+        $doctorRole = Role::create(['name' => 'doctor']);
+        $doctorRole->givePermissionTo($allPermissions);
 
         $user = \App\Models\User::whereEmail('admin@admin.com')->first();
 

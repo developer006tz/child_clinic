@@ -1,5 +1,17 @@
 <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
+    @php
+        $user = Auth::user();
+    @endphp
+    <div class="row mb-3">
+        <div class="col-sm-12 d-flex justify-content-end">
+            Welcome <span class="badge badge-success ml-2" > {{Auth::user()->name}} </span> <span class="badge badge-primary ml-2">
+                                @forelse ($user->roles as $role)
+                    {{ $role->name }},
+                @empty - @endforelse
+                            </span>
+        </div>
+    </div>
                 <div class="row">
                     <div class="col-lg-3 col-6">
                         <!-- small box -->
